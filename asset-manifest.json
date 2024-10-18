@@ -1,8 +1,11 @@
 {
   "files": {
-    "main.css": "/tierraprometidawebapp/static/css/main.4213b4f6.css",
-    "main.js": "/tierraprometidawebapp/static/js/main.86182a2e.js",
+    "main.css": "/tierraprometidawebapp/static/css/main.8957346b.css",
+    "main.js": "/tierraprometidawebapp/static/js/main.f4daf325.js",
     "static/js/453.6cdc9542.chunk.js": "/tierraprometidawebapp/static/js/453.6cdc9542.chunk.js",
+    "static/media/img-00.png": "/tierraprometidawebapp/static/media/img-00.95f132025ec86464adc7.png",
+    "static/media/img-02.png": "/tierraprometidawebapp/static/media/img-02.3184e9b7bd4ca4e5dac4.png",
+    "static/media/img-01.png": "/tierraprometidawebapp/static/media/img-01.4e3c5e66b6ce7d08ed8f.png",
     "static/media/logo-04.png": "/tierraprometidawebapp/static/media/logo-04.3f4b26a3f2e15ed77622.png",
     "static/media/logo-11.png": "/tierraprometidawebapp/static/media/logo-11.3ecdb91dc465b1a18437.png",
     "static/media/logo-01.png": "/tierraprometidawebapp/static/media/logo-01.794306449004e4bcc670.png",
@@ -18,12 +21,12 @@
     "static/media/logo-07.png": "/tierraprometidawebapp/static/media/logo-07.fa64d4d8518263f217c9.png",
     "static/media/logo-09.png": "/tierraprometidawebapp/static/media/logo-09.25cca8f63e0a2b156d6f.png",
     "index.html": "/tierraprometidawebapp/index.html",
-    "main.4213b4f6.css.map": "/tierraprometidawebapp/static/css/main.4213b4f6.css.map",
-    "main.86182a2e.js.map": "/tierraprometidawebapp/static/js/main.86182a2e.js.map",
+    "main.8957346b.css.map": "/tierraprometidawebapp/static/css/main.8957346b.css.map",
+    "main.f4daf325.js.map": "/tierraprometidawebapp/static/js/main.f4daf325.js.map",
     "453.6cdc9542.chunk.js.map": "/tierraprometidawebapp/static/js/453.6cdc9542.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4213b4f6.css",
-    "static/js/main.86182a2e.js"
+    "static/css/main.8957346b.css",
+    "static/js/main.f4daf325.js"
   ]
 }
