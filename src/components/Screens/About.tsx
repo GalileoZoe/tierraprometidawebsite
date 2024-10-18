@@ -40,7 +40,7 @@ export const About = () => {
 
             <div className='image-description'>
           
-                <p className='description'>Aquí puedes añadir una breve descripción que resalte la importancia de Tierra Prometida.</p>
+                <p className='textblack'>Clínica Profesional de Rehabilitación y Desarrollo Humano.</p>
             </div>
 
             <div className='cards-container'>
@@ -58,7 +58,7 @@ export const About = () => {
                 </div>
             </div>
     <br />
-            <img src={require('../../assets/logo-12.png')} alt='Descripción' className='imgs' />
+            {/* <img src={require('../../assets/logo-12.png')} alt='Descripción' className='imgs' /> */}
            
               <br />
 

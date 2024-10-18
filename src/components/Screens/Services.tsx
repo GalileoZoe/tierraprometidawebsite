@@ -24,7 +24,7 @@ export const Services = () => {
       case 2:
         return <Window
           tittle='Psicología'
-          description='Atención Psicológica Profesional individual, grupal y familiar.'
+          description='Atención Psicológica Profesional. Sesiones individuales, grupales y familiares.'
           button='Más Información'
         />;
       case 3:
@@ -48,7 +48,7 @@ export const Services = () => {
       case 6:
         return <Window
           tittle='Desarrollo Humano'
-          description='Desarrollar su potencial, así como una personalidad feliz y libre de adicciones.'
+          description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones, mediante el desarrollo de hábitos saludables y una mentalidad positiva.'
           button='Más Información'
         />;
       case 7:
@@ -66,9 +66,10 @@ export const Services = () => {
       case 9:
         return <Window
           tittle='Eventos Culturales'
-          description='Recibimos visitas como artistas Conferencias, Pintura y Música en vivo y excuriones paara favorecer y al desarrollo de una libre personalidad libre de adicciones.'
+          description='
+Organizamos sesiones de arte, pintura, música en vivo y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables'
           button='Más Información'
-        />;
+        />
       default:
         return null;
     }
@@ -129,7 +130,7 @@ export const Services = () => {
               <FaUsers className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Sesiones AL-ANON</p>
             </li>
-            
+
             <li className='item fade-in-element' title='Desintoxicación' onClick={() => changeService(5)}>
               <FaHeart className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Desintoxicación</p>
