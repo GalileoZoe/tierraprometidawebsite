@@ -1,0 +1,960 @@
+/* /////// App //////// */
+
+.App-header {
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* App Themes  */
+
+.App {
+  text-align: center;
+  overflow: hidden;
+}
+
+.AppBlack {
+  background-color: #f7e5e5;
+  background-image: radial-gradient(circle at center center, #2c2727, #2b2727),
+    repeating-radial-gradient(circle at center center, #1d1c1c, #3b3939, 1900px, transparent 200px, transparent 200px);
+  background-blend-mode: color-burn;
+  display: flexbox;
+  white-space: pre-line;
+}
+
+.AppRed {
+  background-color: #f7e5e5;
+  opacity: 0.9;
+  background-image: radial-gradient(circle at center center, #ff6060, #ff585898),
+    repeating-radial-gradient(circle at center center, #fd5959, #db1313e1, 1900px, transparent 800px, transparent 400px);
+  background-blend-mode: color-burn;
+  display: flexbox;
+  white-space: pre-line;
+}
+
+.AppWhite {
+  background-color: whitesmoke;
+  opacity: 0.9;
+  display: flexbox;
+  white-space: pre-line;
+}
+
+/* .AppWhite:hover {
+    background-color: #f7e5e5;
+    opacity: 0.9;
+    background-image: radial-gradient(circle at center center, #f8a7a7, #f7e5e5), 
+    repeating-radial-gradient(circle at center center, #f74444, #f58f8f, 600px, transparent 720px, transparent 200px);
+    background-blend-mode:color-burn;
+    }
+   */
+
+
+
+
+
+/* /////// Animation /////// */
+
+/* Animation for fading in from top to bottom */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInFromTop 1.5s ease-out forwards;
+}
+
+@keyframes fadeInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    /* Start slightly above the initial position */
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    /* End at the final position */
+  }
+}
+
+
+/* /////// Components /////// */
+
+
+/*  Button  */
+
+.button {
+  background-color: #db1313;
+  color: whitesmoke;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 1s ease-in-out;
+}
+
+.button:hover {
+  background-color: #db1313;
+  color: whitesmoke;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+
+
+
+/*  Card  */
+
+.description {
+  font-size: 1.2em;
+  color: #555;
+  /* Color del texto descriptivo */
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  /* Espacio entre las tarjetas */
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  /* Borde suave */
+  border-radius: 8px;
+  /* Bordes redondeados */
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* Sombra suave */
+  width: 200px;
+  /* Ancho de las tarjetas */
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  color: #333;
+  /* Color del título de la tarjeta */
+}
+
+.card p {
+  color: #777;
+  /* Color del texto de la tarjeta */
+}
+
+
+
+
+/*  Circle  */
+
+.center {
+  display: 'flex';
+  flex-direction: 'column';
+  justify-content: 'center';
+  align-items: 'center';
+}
+
+/*  Circle  */
+
+.circle {
+  background-color: #db1313;
+  height: 0.3em;
+  width: 0.3em;
+  border: white 2px;
+
+}
+
+
+
+
+/* Gallery */
+
+
+.gallery {
+  position: relative;
+  overflow: hidden;
+}
+
+.imagewrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.imagecontainer {
+  position: relative;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.label {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo negro semitransparente */
+  color: white;
+  font-size: 2em;
+  padding: 0.5em;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.navbutton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.navbutton:first-of-type {
+  left: 10px;
+}
+
+.navbutton:last-of-type {
+  right: 10px;
+}
+
+
+.navbutton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: whitesmoke;
+  cursor: pointer;
+  align-self: center;
+  font-size: 1em;
+}
+
+.navbutton:hover {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #db1313;
+  cursor: pointer;
+  align-self: center;
+}
+
+.navbuttonblack {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #151515;
+  cursor: pointer;
+  align-self: center;
+  font-size: 1em;
+}
+
+.navbuttonblack:hover {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #db1313;
+  cursor: pointer;
+  align-self: center;
+}
+
+.navbuttonblack:focus {
+  outline: none;
+}
+
+.navbuttonblack:nth-child(2) {
+  left: 10px;
+}
+
+.navbuttonblack:nth-child(3) {
+  right: 10px;
+}
+
+.navbutton:focus {
+  outline: none;
+}
+
+.navbutton:nth-child(2) {
+  left: 10px;
+}
+
+.navbutton:nth-child(3) {
+  right: 10px;
+}
+
+
+/* Table */
+
+.table {
+  border-collapse: 'collapse';
+  width: '100%';
+}
+
+.tablemargin {
+  max-height: '400px';
+  overflow-y: 'auto';
+}
+
+.tableheader {
+  color: #db1313;
+  text-align: center;
+  font-size: 1em;
+}
+
+.tableheader:hover {
+  color: #db1313;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+/* Text */
+
+.text {
+  color: black;
+  font-weight: 100;
+  text-align: center;
+  font-size: 2em;
+}
+
+.text:hover {
+  color: #920e0e;
+  font-weight: 100;
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.textss {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.7em;
+}
+
+.textss:hover {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+
+.texts {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.texts:hover {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.textblack {
+  color: #000;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.textblack:hover {
+  color: #000;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.textblacks {
+  color: #000;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.7em;
+}
+
+.textblacks:hover {
+  color: #000;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.7em;
+  cursor: pointer;
+}
+
+.textred {
+  color: snow;
+  font-weight: 100;
+  text-align: center;
+  font-size: 2em;
+}
+
+.textred:hover {
+  color: snow;
+  font-weight: 100;
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/*  Paragraph  */
+.paragraph {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1.4em;
+  transition: color 0.5s ease;
+  cursor: pointer;
+}
+
+
+
+
+/*  Image  */
+.img {
+  width: 280px;
+  height: auto;
+}
+
+.imgs {
+  width: 4em;
+  height: auto;
+}
+
+/*  Icons  */
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  transition: all 0.8s ease-in-out;
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  width: 1.5em;
+  height: 1.5em;
+  transform: scale(1.1);
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icondelete {
+  width: 1.2em;
+  height: 1.2em;
+  transition: all 0.8s ease-in-out;
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icondelete:hover {
+  width: 1.2em;
+  height: 1.2em;
+  transform: scale(1.1);
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icongreen {
+  width: 1.5em;
+  height: 1.5em;
+  transition: all 0.8s ease-in-out;
+  color: #32cd32;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icongreen:hover {
+  width: 1.2em;
+  height: 1.2em;
+  transform: scale(1.1);
+  color: #32cd32;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconwhite {
+  width: 1.2em;
+  height: 1.2em;
+  transition: all 0.8s ease-in-out;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconwhite:hover {
+  width: 1.2em;
+  height: 1.2em;
+  transform: scale(1.1);
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconfile {
+  width: 1.2em;
+  height: 1.2em;
+  transition: all 0.8s ease-in-out;
+  color: #ffd000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconfile:hover {
+  width: 1.2em;
+  height: 1.2em;
+  transform: scale(1.1);
+  color: #ffd000;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconupdate {
+  width: 1.2em;
+  height: 1.2em;
+  transition: all 0.8s ease-in-out;
+  color: #0044ff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconupdate:hover {
+  width: 1.2em;
+  height: 1.2em;
+  transform: scale(1.1);
+  color: #0044ff;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconred {
+  width: 2em;
+  height: 2em;
+  transition: all 0.8s ease-in-out;
+  color: snow;
+  text-align: center;
+}
+
+.iconred:hover {
+  width: 2em;
+  height: 2em;
+  transform: scale(1.1);
+  color: snow;
+  text-align: center;
+}
+
+
+/*  Item  */
+.item {
+  list-style: none;
+  color: #db1313;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.5s ease;
+  font-size: 1.1em;
+  text-decoration: none;
+}
+
+.item:hover {
+  color: #db1313;
+}
+
+
+/*  Logo  */
+
+.logo {
+  width: auto;
+  height: 8em;
+}
+
+/*  Map  */
+.map {
+  width: 600px;
+  height: 220px;
+  border: #db1313 solid 2px;
+  border-radius: 10px;
+}
+
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  /* Opcional, para agregar margen vertical */
+}
+
+/*  Form  */
+
+.form {
+  background-color: transparent;
+  border-radius: 10px;
+  border: solid 2px #db1313;
+  height: auto;
+  width: auto;
+  padding: 20px;
+  color: white;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 2px #db1313;
+  height: auto;
+  width: auto;
+  color: #db1313;
+}
+
+.inputs {
+  background-color: transparent;
+  border: none;
+  height: auto;
+  width: 6em;
+  color: #db1313;
+}
+
+
+
+/*  Section  */
+
+.section {
+  justify-content: 'center';
+  align-items: 'center';
+  flex-direction: 'column';
+  gap: '20px';
+  background-size: 'cover';
+  background-position: 'center';
+  height: '100vh';
+  width: '100vw';
+  text-align: center;
+
+}
+
+
+
+/*  Title  */
+
+.title {
+  color: #db1313;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+}
+
+.title:hover {
+  color: #920e0e;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.titles {
+  color: #db1313;
+  font-weight: 100;
+  font-size: 1em;
+  text-align: center;
+}
+
+.titles:hover {
+  color: #920e0e;
+  font-weight: 100;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.titleRed {
+  color: whitesmoke;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+}
+
+
+.titleRed:hover {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* /////// Layout /////// */
+
+/*  Footer  */
+
+.footer {
+  width: 100%;
+  height: 2em;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+
+.footerlogo img {
+  height: 3em;
+}
+
+.footeritems {
+  list-style: none;
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.footeritem {
+  list-style: none;
+  margin-left: 20px;
+  color: #db1313;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.footeritem:hover {
+  color: #db1313;
+}
+
+.footeritemred {
+  list-style: none;
+  margin-left: 20px;
+  color: whitesmoke;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+.footeritemred:hover {
+  color: #ff8080;
+}
+
+
+/*  NavBar */
+
+.navbar {
+  width: 100%;
+  height: 2em;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1em 0em 1em 0em;
+}
+
+.navbarlogo img {
+  height: 2em;
+  padding-left: 10px;
+}
+
+.navbaritems {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbaritem {
+  margin-left: 20px;
+  color: #db1313;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 20px;
+  font-size: 1em;
+  transition: color 0.8s ease;
+}
+
+.navbaritem:hover {
+  color: #720c0c;
+
+}
+
+
+.navbaritemblack {
+  margin-left: 20px;
+  color: #151515;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.navbaritemblack {
+  margin-left: 20px;
+  color: #151515;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.navbaritemwhite {
+  margin-left: 20px;
+  color: #db1313;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.navbaritemred {
+  margin-left: 20px;
+  color: whitesmoke;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1em;
+  transition: color 0.3s ease;
+}
+
+.navbaritemred:hover {
+  color: #fd5959;
+}
+
+
+/*  Slider  */
+
+.slider {
+  display: flex;
+  flex-wrap: wrap;
+  /* Permite que los elementos se envuelvan en la siguiente línea si es necesario */
+  gap: 15px;
+  /* Espaciado entre los elementos */
+  justify-content: center;
+  /* Centra los elementos horizontalmente */
+  list-style-type: none;
+  /* Quita los puntos de la lista */
+  padding: 0;
+  /* Quita el padding de la lista */
+}
+
+.slider li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centra el contenido dentro del <li> */
+  text-align: center;
+  /* Centra el texto */
+  cursor: pointer;
+  /* Cambia el cursor cuando pasa sobre el <li> */
+  padding: 10px;
+  /* Espaciado interno opcional */
+}
+
+/*  Window  */
+
+.window {
+  background-color: #fd59594d;
+  width: 600px;
+  height: auto;
+  margin: auto;
+}
+
+.windowbutton {
+  background-color: #db1313;
+  color: #fd5959;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 1s ease-in-out;
+}
+
+.windowbutton:hover {
+  background-color: #db1313;
+  color: #fd5959;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(1.1);
+}
