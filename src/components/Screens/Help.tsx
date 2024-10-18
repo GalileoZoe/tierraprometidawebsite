@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaInfoCircle, FaQuestionCircle } from 'react-icons/fa'
+import { FaHeart, FaInfoCircle, FaQuestionCircle } from 'react-icons/fa'
 import { useFeed } from '../../context/FeedContext'
 
 export const Help = () => {
@@ -12,13 +12,30 @@ export const Help = () => {
 
     <h1 className='title'>Ayuda</h1>
 
-    <p className='paragraph'>¿Tienes alguna duda o sugerencia? </p>
-    <p className='paragraph'>Contactános. </p>
+    <br />
+
+    <p className='paragraph'>Gracias por formar parte de   </p>
+
+    <div className="item">
+        <img className="img" src={require('../../assets/logo-09.png')} />
+        <p>24 horas</p>
+      </div> 
+
+   
+
+<br />
+
+    <p className='paragraph'>Tu ayuda contribuye a la recuperación de nuestros usuarios y de miles de familias{'\n'} que logran vivir una nueva vida .   </p>
 
 
-    <a className='icon fade-in-element' title='Contacto' onClick={()=>changeFeed(6)}>
-          <FaQuestionCircle className='icon' />,
-            <p className='button'>Ayuda</p>
+    <br />
+    <br />
+    
+    <a className='icon fade-in-element' href='https://wa.me/529624304734' title='Contacto' >
+    <p className='paragraph'>Quiero Ayudar </p>
+    <FaHeart className='button' />
+    <br />
+    <br />
           </a>
           
     </div>

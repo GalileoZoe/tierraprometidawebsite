@@ -33,8 +33,6 @@ export const About = () => {
 
     <img className="img" src={require('../../assets/logo-09.png')} />
     <p className='item'>24 horas</p>
-    <p className='paragraph fade-in-element'>La Semilla Eres Tú</p>
-                
               
             </div>
 

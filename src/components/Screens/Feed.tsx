@@ -63,14 +63,14 @@ export const Feed: React.FC = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(0, 0, 0, 0.9)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(7, 7, 7, 0.8)', // Capa oscura con opacidad
           zIndex: 1, // Mantiene la capa detrás del contenido
         }}
       />
 
       {/* Contenido principal */}
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <h1 className='title fade-in-element' style={{ color: '#fff' }}>
+        <h1 className='title fade-in-element' style={{color:'transparent'}} >
           Tierra Prometida
         </h1>
 
@@ -92,7 +92,7 @@ export const Feed: React.FC = () => {
               alt='Logo Tierra Prometida'
             />
 
-            <p className='texts' style={{ color: '#fff' }}>Previniendo y liberando adicciones</p>
+            <p className='paragraph' style={{ color: '#fff' }}>Previniendo y liberando adicciones</p>
 
             <br />
 

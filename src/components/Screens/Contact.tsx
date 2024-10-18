@@ -42,12 +42,11 @@ export const Contact = () => {
         <h1 className={theme == 2 ? 'titleRed' : 'title'}>Contacto</h1>
 
 
-        <ul className='slider fade-in-element'>
-          <li className='item ' title='' onClick={() => changeTheme(theme === 1 ? 0 : 1)}>
-            <img className="img" src={require('../../assets/logo-09.png')} />
-            <p>24 horas</p>
-          </li>
-        </ul>
+   
+        <div className="item">
+        <img className="img" src={require('../../assets/logo-09.png')} />
+        <p>24 horas</p>
+      </div>
 
         <br />
         <br />

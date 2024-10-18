@@ -6,7 +6,7 @@ import axios from "axios";
 export const useStudentsApi = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [listStudents, setListStudents] = useState<Student[]>([]);
-    const apiUrl: string = 'http://172.21.176.1:3000/api/tierraprometida/v1/students';
+    const apiUrl: string = 'https://tierraprometida-production.up.railway.app/api/tierraprometida/v1/students';
 
     // Cargar estudiantes desde la API
     const loadStudents = async () => {
