@@ -3,13 +3,13 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFolder, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale } from 'react-icons/fa';
+import { FaFilePdf,FaMap, FaFolder, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
-    const {theme, changeTheme}=useTheme();
+    const {theme}=useTheme();
     const [editingStudent, setEditingStudent] = useState<Student | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false); // Nuevo estado para creación
 
@@ -47,10 +47,12 @@ export const Students: React.FC = () => {
     return (
         <div>
             <h1 className='title'>Usuarios</h1>
-            <a onClick={handleCreate} className='icon'>
-                <FaUser  />
-                <FaPlus  />
+            <a onClick={handleCreate} className='button'>
+                <FaUser style={{marginLeft:10}} />
+                <FaPlus style={{marginRight:10}} />
             </a>
+            <br />
+            <br />
             {isLoading ? (
                 <p className='icon' >Cargando...</p>
             ) : (
@@ -58,6 +60,7 @@ export const Students: React.FC = () => {
                     <table className='table'>
                         <thead>
                             <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
+                                <th className='tableheader' >ID</th>
                                 <th className='tableheader' >PDF</th>
                                 <th className='tableheader' >Nombre Completo</th>
                                 <th className='tableheader' >Edad</th>
@@ -66,17 +69,19 @@ export const Students: React.FC = () => {
                                 <th className='tableheader' >Dirección</th>
                                 <th className='tableheader' >Teléfono</th>
                                 <th className='tableheader' >Estigma</th>
-                                <th className='tableheader' >Descripción</th>
-                                {/* <th className='tableheader' >Estado</th> */}
+                                {/* <th className='tableheader' >Descripción</th> */}
+                                <th className='tableheader' >Estado</th>
                                 <th className='tableheader' >Ingreso</th>
+                                <th className='tableheader' >Estancia</th>
                                 <th className='tableheader' >Egreso</th>
-                                <th className='tableheader' >Acciones</th>
+                                <th className='tableheader' >Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {listStudents.length > 0 ? (
                                 listStudents.map((student: Student) => (
                                     <tr key={student._id} style={{ textAlign: 'center', zIndex: 1, fontSize: '15px' }}>
+                                        <td className={theme==0?'texts':'textblack'} >{student.number}</td>
                                         <td>
                                             <PDFDownloadLink
                                                 document={<PDFDocument student={student} />}
@@ -87,20 +92,21 @@ export const Students: React.FC = () => {
                                         </td>
                                         <td className={theme==0?'texts':'textblack'} >{student.name} {student.lastname}</td>
                                        <td className={theme==0?'texts':'textblack'} >{student.age}</td>
-                                       <td className={theme==0?'texts':'textblack'} >{student.gender==='Femenino'?<FaFemale className='icon'/> : <FaMale className='icon' /> }</td>
+                                       <td className={theme==0?'texts':'textblack'} >{student.gender=='Femenino'?<FaFemale className='icon'/> : <FaMale className='icon' /> }</td>
                                         <td className={theme==0?'texts':'textblack'} >{student.tutor}</td>
                                         {/* <td className={theme==0?'texts':'textblack'} >{student.email}</td> */}
-                                        <td className={theme==0?'texts':'textblack'} >{student.address}</td>
+                                        <td className={theme==0?'texts':'textblack'} ><FaMap className='icon' /></td>
                                         <td className={theme==0?'texts':'textblack'} >{student.phone}</td>
                                         <td className={theme==0?'texts':'textblack'} >{student.drug}</td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.description}</td>
-                                        {/* <td className={theme==0?'texts':'textblack'} >{student.status}</td> */}
-                                        <td className={theme==0?'textss':'textblacks'} >{student.startdate}</td>
-                                        <td className={theme==0?'textss':'textblacks'} >{student.enddate}</td>
+                                        {/* <td className={theme==0?'texts':'textblack'} >{student.description}</td> */}
+                                        <td className={theme==0?'texts':'textblack'} >{student.status}</td>
+                                        <td className={theme==0?'texts':'textblack'} >{student.startdate}</td>
+                                        <td className={theme==0?'texts':'textblack'} >{student.stay?`${student.stay} Meses`:null}</td>
+                                        <td className={theme==0?'texts':'textblack'} >{student.enddate}</td>
                                         <td>
                                             <FaFolder    className='iconfile' />
                                             <FaPen
-                                                className='iconupdate'
+                                                className='iconupdate' 
                                                 onClick={() => handleEdit(student)}
                                             />
                                             <FaTrash

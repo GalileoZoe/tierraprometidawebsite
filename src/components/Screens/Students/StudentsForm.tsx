@@ -52,7 +52,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
             <div>
                     <label className='texts' >Ingreso:</label>
                     <input
-                        className='input'
+                        className='inputs'
                         type="date"
                         name="startdate"
                         value={formData.startdate}
@@ -64,7 +64,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                 <div>
                     <label className='texts' >Salida:</label>
                     <input
-                        className='input'
+                        className='inputs'
                         type="date"
                         name="enddate"
                         value={formData.enddate}
@@ -74,6 +74,17 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                 </div>
                 <p className="texts">Usuario</p>
                 <div  style={{display:'flex'}} >
+                <div>
+                    <label className='texts' >Número:</label>
+                    <input
+                        className='inputs'
+                        type="number"
+                        name="number"
+                        value={formData.number}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
                 <div>
                     <label className='texts' >Nombre:</label>
                     <input
@@ -101,18 +112,6 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                 </div>
 
                 <div>
-                    <label className='texts' >Usuario:</label>
-                    <input
-                        className='input'
-                        type="text"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <div>
                     <label className='texts' >Edad:</label>
                     <input
                         className='input'
@@ -122,6 +121,18 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         onChange={handleChange}
                         required
                     />
+                </div>
+                <div>
+                    <label className='texts' >Estancia:</label>
+                    <input
+                        className='input'
+                        type="number"
+                        name="stay"
+                        value={formData.stay}
+                        onChange={handleChange}
+                        required
+                    />
+                        <label className='texts' >Meses</label>
                 </div>
 
              
@@ -144,7 +155,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     </select>
                 </div>
 
-                <div>
+                {/* <div>
                     <label className='texts' >Descripción:</label>
                     <textarea
                         name="description"
@@ -152,7 +163,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         onChange={handleChange}
                         required
                     />
-                </div>
+                </div> */}
 
                
                 <div>
@@ -165,11 +176,26 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         required
                     >
                         <option value="">Estado</option>
-                        <option value="Activo">Activo</option>
-                        <option value="Inactivo">Inactivo</option>
+                        <option value="Baja">Baja</option>
+                        <option value="En Tratamiento">En Tratamiento</option>
+                        <option value="Egresado">Egresado</option>
                     </select>
                 </div>
                 <p className="texts">Responsable</p>
+
+                
+                <div>
+                    <label className='texts' >Responsable:</label>
+                    <input
+                        className='input'
+                        type="text"
+                        name="tutor"
+                        value={formData.tutor}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
 
                 <div>
                     <label className='texts' >Correo Electrónico:</label>
@@ -180,6 +206,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         value={formData.email}
                         onChange={handleChange}
                         required
+           
                     />
                 </div>
 

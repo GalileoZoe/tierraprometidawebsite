@@ -1,5 +1,5 @@
 export interface Student {
-    number?: number;
+    number?: string;
     _id?: number | string;
     name?: string;
     lastname?: string;
@@ -13,6 +13,7 @@ export interface Student {
     address?: string;
     drug?: string;
     tutor?: string;
+    stay?: string;
     file?: string;
     files?: string[];
     description?: string;

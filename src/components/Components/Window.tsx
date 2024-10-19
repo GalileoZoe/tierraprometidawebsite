@@ -1,7 +1,7 @@
 import { title } from 'process'
 import React from 'react'
 import { useService } from '../../context/ServiceContext'
-import { FaAppleAlt, FaChild, FaClosedCaptioning, FaFutbol, FaHeart, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
+import { FaAppleAlt,  FaFutbol, FaHeart, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
 
 interface WindowProps {
   action?: () => void,
@@ -13,7 +13,7 @@ interface WindowProps {
   image?: string,
 }
 
-export const Window: React.FC<WindowProps> = ({ action, button, href, icon, tittle, description, image }) => {
+export const Window: React.FC<WindowProps> = ({ action, button, href, tittle, description }) => {
 
   const { service, changeService } = useService();
 

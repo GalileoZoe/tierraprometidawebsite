@@ -35,6 +35,7 @@ export const useStudentsApi = () => {
             address: data.address,
             drug: data.drug,
             tutor: data.tutor,
+            stay: data.stay,
             file: data.file,
             files: data.files, 
             description: data.description,
@@ -60,6 +61,7 @@ export const useStudentsApi = () => {
     // Actualizar un estudiante existente en la API
     const updateStudent = async (data: Student) => {
         const dataBody: Student = {
+            number: data.number,
             name: data.name,
             lastname: data.lastname,
             username: data.username,
@@ -71,6 +73,7 @@ export const useStudentsApi = () => {
             address: data.address,
             drug: data.drug,
             tutor: data.tutor,
+            stay: data.stay,
             file: data.file,
             files: data.files, 
             description: data.description,

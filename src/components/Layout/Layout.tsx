@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { About } from '../Screens/About';
@@ -8,15 +8,11 @@ import { HolaMundo } from '../Screens/HolaMundo';
 import { Location } from '../Screens/Location';
 import { Services } from '../Screens/Services';
 import { Students } from '../Screens/Students/Students';
-import { Student } from '../../interfaces/Students';
-import { useStudentsApi } from '../../hooks/useStudentsApi';
 import { Store } from '../Screens/Store/Store';
 import { Help } from '../Screens/Help';
 
 export const Layout: React.FC = () => {
     const { feed } = useFeed(); 
-    const { listStudents } = useStudentsApi();
-    const [editingStudent, setEditingStudent] = useState<Student | null>(null);
 
  
     switch (feed) {

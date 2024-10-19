@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
-import { FaPhone, FaMapPin, FaFacebook, FaWhatsapp, FaComment, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaFacebook, FaWhatsapp, FaComment, FaEnvelope } from 'react-icons/fa';
 
 export const Feed: React.FC = () => {
   const { feed, changeFeed } = useFeed();
-  const { theme, changeTheme } = useTheme();
+  const { theme } = useTheme();
 
   // Estado para manejar el icono actual
   const [iconIndex, setIconIndex] = useState(0);

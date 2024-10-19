@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import '../../App.css';
 import { useFeed } from "../../context/FeedContext";
 import { useTheme } from "../../context/ThemeContext";
-import { FaAdjust, FaApple, FaAppleAlt, FaBed, FaChess, FaCode, FaCoffee, FaComment, FaDice, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaHome, FaHotel, FaHotTub, FaLeaf, FaMapPin, FaMask, FaMedkit, FaMusic, FaNutritionix, FaPaintBrush, FaPhone, FaRegUser, FaSpa, FaSteam, FaStethoscope, FaTiktok, FaUser, FaUserMd, FaWhatsapp } from "react-icons/fa";
+import {  FaCode,  FaComment,  FaEnvelope, FaFacebook,  FaMapPin,FaPhone,  FaTiktok, FaWhatsapp } from "react-icons/fa";
 
 export const Contact = () => {
 

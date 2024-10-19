@@ -3,7 +3,6 @@ import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useSession } from '../../context/SessionContext';
-import { FaStore, FaToggleOff, FaToggleOn } from 'react-icons/fa';
 
 export const NavBar: React.FC = () => {
   const { feed, changeFeed } = useFeed();

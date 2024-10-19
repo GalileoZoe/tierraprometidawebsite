@@ -4,6 +4,7 @@ import { useStudentsApi } from './useStudentsApi';  // Asegúrate de que este ho
 // Definir la estructura de los datos del formulario
 export interface FormStudentData {
     _id?: string;
+    number?: string;
     name?: string;
     lastname?: string;
     username?: string;
@@ -14,6 +15,7 @@ export interface FormStudentData {
     address?: string;
     drug?: string;
     tutor?: string;
+    stay?: string;
     description?: string;
     startdate?: string;
     enddate?: string;
@@ -23,6 +25,7 @@ export interface FormStudentData {
 // Estado inicial del formulario
 export const initialUseStateForm: FormStudentData = {
     _id: '',
+    number: '',
     name: '',
     lastname: '',
     username: '',

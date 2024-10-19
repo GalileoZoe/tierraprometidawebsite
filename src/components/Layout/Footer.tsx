@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import { useTheme } from '../../context/ThemeContext';
 import { useSession } from '../../context/SessionContext';
-import { FaAdjust, FaAppStore, FaCode, FaInfo, FaPhone, FaPowerOff, FaRegUser, FaShoppingBag, FaShoppingCart, FaSign, FaSignInAlt, FaStore, FaToggleOff, FaToggleOn, FaUser, FaUserAlt, FaUserAltSlash, FaUserInjured, FaWifi } from 'react-icons/fa';
+import {  FaRegUser, FaSignInAlt, FaStore, FaToggleOff, FaToggleOn, FaUser, FaWifi } from 'react-icons/fa';
 import { useFeed } from '../../context/FeedContext';
 
 export const Footer: React.FC = () => {
