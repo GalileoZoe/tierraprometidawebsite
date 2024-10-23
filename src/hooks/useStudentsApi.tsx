@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { tierraprometidaApi } from "../api/tierraprometidaApi";
-import { Student } from "../interfaces/Students"; // Asegúrate de importar tu interfaz Student
+import { Student } from "../interfaces/Students";
 import axios from "axios";
 
 export const useStudentsApi = () => {
@@ -22,32 +22,10 @@ export const useStudentsApi = () => {
     };
 
     // Crear un nuevo estudiante en la API
-    const createStudent = async (data: Student) => {
-        const dataBody: Student = {
-            name: data.name,
-            lastname: data.lastname,
-            username: data.username,
-            gender: data.gender,
-            age: data.age,
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            address: data.address,
-            drug: data.drug,
-            tutor: data.tutor,
-            stay: data.stay,
-            file: data.file,
-            files: data.files, 
-            description: data.description,
-            startdate: data.startdate,
-            enddate: data.enddate,
-            status: data.status,
-        };
-    
-        console.log("Datos a enviar:", dataBody); 
-    
+    const createStudent = async (data: Student, files?: File[]) => {
         try {
-            await tierraprometidaApi.post(apiUrl, dataBody);
+            await tierraprometidaApi.post(apiUrl, data);
+            // Aquí podrías manejar la carga de archivos si es necesario
             loadStudents();
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -59,31 +37,10 @@ export const useStudentsApi = () => {
     };
 
     // Actualizar un estudiante existente en la API
-    const updateStudent = async (data: Student) => {
-        const dataBody: Student = {
-            number: data.number,
-            name: data.name,
-            lastname: data.lastname,
-            username: data.username,
-            gender: data.gender,
-            age: data.age,
-            email: data.email,
-            password: data.password,
-            phone: data.phone,
-            address: data.address,
-            drug: data.drug,
-            tutor: data.tutor,
-            stay: data.stay,
-            file: data.file,
-            files: data.files, 
-            description: data.description,
-            startdate: data.startdate,
-            enddate: data.enddate,
-            status: data.status,
-        };
-
+    const updateStudent = async (data: Student, files?: File[]) => {
         try {
-            await tierraprometidaApi.put(`${apiUrl}/${data._id}`, dataBody);
+            await tierraprometidaApi.put(`${apiUrl}/${data._id}`, data);
+            // Aquí también podrías manejar la carga de archivos si es necesario
             loadStudents(); // Recargar la lista después de actualizar
         } catch (error) {
             console.error("Error updating student:", error);
@@ -100,7 +57,7 @@ export const useStudentsApi = () => {
         }
     };
 
-    // Cargar la lista de estudiantes al montar el componente
+
     useEffect(() => {
         loadStudents();
     }, []);

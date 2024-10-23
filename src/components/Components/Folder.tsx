@@ -18,7 +18,7 @@ export const Folder: React.FC<{ studentId: string }> = ({ studentId }) => {
             <ul>
                 {student.files?.length ? (
                     student.files.map((file, index) => (
-                        <li key={index}>{file}</li>
+                        <li key={index}>{file.file}</li>
                     ))
                 ) : (
                     <li>No hay archivos disponibles.</li>

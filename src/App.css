@@ -667,8 +667,9 @@
 .inputs {
   background-color: transparent;
   border: none;
+  border-bottom: solid 2px #db1313;
   height: auto;
-  width: 6em;
+  width: 3em;
   color: #db1313;
 }
 

@@ -41,7 +41,10 @@ export const Footer: React.FC = () => {
           {session == 0 ? <FaRegUser className={theme == 2 ? 'iconred' : 'icon'} /> : <FaUser className={theme == 2 ? 'iconred' : 'icon'} />}
         </li>
         {session==1?<li className={theme == 2 ? 'footeritemred' : 'footeritem'} title='Tienda' onClick={() => changeFeed(10) }><FaStore className={theme == 2 ? 'iconred' : 'icon'} /></li>:null}
-        {session == 1 ? <li className={theme == 2 ? 'footeritemred' : 'footeritem'} title='Cerrar Sesión' onClick={() => changeSession(0)} ><FaSignInAlt className={theme == 2 ? 'iconred' : 'icon'} /></li> : null}
+        {session == 1 ? <li className={theme == 2 ? 'footeritemred' : 'footeritem'} title='Cerrar Sesión' onClick={() => {
+    changeSession(0); 
+    changeFeed(1);
+  }} ><FaSignInAlt className={theme == 2 ? 'iconred' : 'icon'} /></li> : null}
         {/* <FaCode className={theme==2?'iconred':'icon'}/> */}
         {isOnline ? (
       
@@ -49,7 +52,7 @@ export const Footer: React.FC = () => {
              <FaWifi className='icongreen' />
         </li>
         ) : (
-          <li className={theme == 2 ? 'footeritemred' : 'footeritem'} title='Iniciar Sesión' onClick={() => changeSession(1)}>
+          <li className={theme == 2 ? 'footeritemred' : 'footeritem'} title='Iniciar Sesión'  onClick={() => changeSession(1)}>
          <FaWifi className='icon' />
      </li>
         )}
