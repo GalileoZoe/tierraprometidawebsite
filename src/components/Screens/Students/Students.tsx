@@ -6,12 +6,14 @@ import { Student } from '../../../interfaces/Students';
 import { FaFilePdf,FaMap, FaFolder, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaFileMedicalAlt, FaFileMedical, FaCommentMedical, FaClinicMedical, FaGraduationCap, FaHeart, FaBriefcaseMedical, FaAngleDown, FaAngleUp, FaAngellist, FaDiagnoses, FaRulerHorizontal, FaGripHorizontal, FaRegHeart, FaRegGrinHearts, FaPhone, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaClipboard, FaAlignLeft, FaCircle } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
+import { StudentDetail } from './StudentDetail';
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
     const {theme}=useTheme();
     const [editingStudent, setEditingStudent] = useState<Student | null>(null);
     const [isCreating, setIsCreating] = useState<boolean>(false); // Nuevo estado para creación
+    const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
 
     const handleDelete = (student: Student) => {
         const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este estudiante?");
@@ -34,7 +36,20 @@ export const Students: React.FC = () => {
         setIsCreating(false); // Desactivar creación al cerrar formulario
     };
 
+    const handleOpenDetail = (student: Student) => {
+        setSelectedStudent(student); // Asignar el estudiante seleccionado
+    };
 
+
+    const handleCloseDetail = () => {
+        setSelectedStudent(null); // Cerrar el detalle
+    }
+
+    if (selectedStudent) {
+        return (
+            <StudentDetail student={selectedStudent} onClose={handleCloseDetail} />
+        );
+    }
 
     if (editingStudent || isCreating) {
         return (
@@ -46,8 +61,6 @@ export const Students: React.FC = () => {
         );
     }
 
-
-    
     return (
         <section className='section' >
         <div>
@@ -74,7 +87,6 @@ export const Students: React.FC = () => {
                                 <th className='tableheader' ></th>
                                 <th className='tableheader' >Edad</th>
                                 <th className='tableheader' >Género</th>
-                                <th className='tableheader' >Grupo</th>
                                 <th className='tableheader' >Sustancia</th>
                                 <th className='tableheader' >Responsable</th>
                                 <th className='tableheader' >Dirección</th>
@@ -83,7 +95,7 @@ export const Students: React.FC = () => {
                                 <th className='tableheader' >Ingreso</th>
                                 <th className='tableheader' >Estancia</th>
                                 <th className='tableheader' >Egreso</th>
-                                <th className='tableheader' >Descripción</th>
+                                {/* <th className='tableheader' >Descripción</th> */}
                                 <th className='tableheader' >Reportes</th>
                                 <th className='tableheader' >Opciones</th>
                             </tr>
@@ -101,7 +113,9 @@ export const Students: React.FC = () => {
                                                 <FaFilePdf className='icon' />
                                             </PDFDownloadLink>
                                         </td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.name} {student.lastname}</td>
+                                        <td onClick={() => handleOpenDetail(student)}>
+{student.name} {student.lastname}
+</td>
                                         {(() => {
         switch (student.status) {
             case 'Baja':
@@ -116,9 +130,8 @@ export const Students: React.FC = () => {
     })()}
                                        <td className={theme==0?'texts':'textblack'} >{student.age}</td>
                                        <td className={theme==0?'texts':'textblack'} >{student.gender=='Femenino'?<FaFemale className='icon'/> : <FaMale className='icon' /> }</td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.blood}</td>
-                                        <td className={theme === 0 ? 'texts' : 'textblack'}>
-    {(() => {
+                                        <td className={theme === 0 ? 'texts' : 'textblack'}>{student.drug}
+    {/* {(() => {
         switch (student.drug) {
             case 'Cannabis':
                 return <FaCannabis title='Cannabis' className='icon' />;
@@ -131,7 +144,7 @@ export const Students: React.FC = () => {
             default:
                 return <section>Droga No Disponible</section>;
         }
-    })()}
+    })()} */}
 </td>
                                         <td className={theme==0?'texts':'textblack'} >{student.tutor}</td>
                                         {/* <td className={theme==0?'texts':'textblack'} >{student.email}</td> */}
@@ -142,7 +155,7 @@ export const Students: React.FC = () => {
                                         <td className={theme==0?'texts':'textblack'} >{student.startdate}</td>
                                         <td className={theme==0?'texts':'textblack'} >{student.stay?`${student.stay} Meses`:null}</td>
                                         <td className={theme==0?'texts':'textblack'} >{student.enddate}</td>
-                                        <td className={theme==0?'texts':'textblack'} ><FaAlignLeft title={student.description} className='icon' /></td>
+                                        {/* <td className={theme==0?'texts':'textblack'} ><FaAlignLeft title={student.description} className='icon' /></td> */}
                                         <td className={theme==0?'texts':'textblack'} ><FaFileMedicalAlt className='icon' /></td>
                                         <td>
                                             <FaFolder    className='iconfile' />
@@ -159,13 +172,13 @@ export const Students: React.FC = () => {
     {(() => {
         switch (student.status) {
             case 'Baja':
-                return <FaAngleDown title='Baja' className='icon' />;
+                return <FaAngleDown title='Baja' className='textred' />;
             case 'En Tratamiento':
-                return <FaRegHeart title='En Tratamiento' className='icon' />;
+                return <FaCircle title='En Tratamiento' className='textgreens' />;
             case 'Egresado':
-                return <FaAngleUp title='Egresado' className='icongreen' />; // Cambié a FaGraduationCap para Egresado
+                return <FaAngleUp title='Egresado' className='textgreen' />;
             default:
-                return <section>Status No Disponible</section>;
+                return 'N/A';
         }
     })()}
 </td> */}
@@ -173,7 +186,7 @@ export const Students: React.FC = () => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={13}>No hay estudiantes disponibles</td>
+                                    <td colSpan={7}>No hay usuarios</td>
                                 </tr>
                             )}
                         </tbody>
