@@ -421,6 +421,77 @@
   font-size: 1em;
   cursor: pointer;
 }
+.textgreen {
+  color: #32cd32;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.textgreen:hover {
+  color: #32cd32;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+.textgreens {
+  color: #32cd32;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.6em;
+}
+
+.textgreens:hover {
+  color: #32cd32;
+  font-weight: 100;
+  text-align: center;
+  font-size: 0.6em;
+  cursor: pointer;
+}
+.textred {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.textred:hover {
+  color: #db1313;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+.textwhite {
+  color: snow;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.textwhite:hover {
+  color: snow;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.textblue {
+  color: #0044ff;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+}
+
+.textblue:hover {
+  color: #0044ff;
+  font-weight: 100;
+  text-align: center;
+  font-size: 1em;
+  cursor: pointer;
+}
 
 .textblacks {
   color: #000;
@@ -437,20 +508,6 @@
   cursor: pointer;
 }
 
-.textred {
-  color: snow;
-  font-weight: 100;
-  text-align: center;
-  font-size: 2em;
-}
-
-.textred:hover {
-  color: snow;
-  font-weight: 100;
-  text-align: center;
-  font-size: 2em;
-  cursor: pointer;
-}
 
 /*  Paragraph  */
 .paragraph {
@@ -461,8 +518,6 @@
   transition: color 0.5s ease;
   cursor: pointer;
 }
-
-
 
 
 /*  Image  */
