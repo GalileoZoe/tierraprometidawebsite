@@ -3,17 +3,19 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf,FaMap, FaFolder, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaFileMedicalAlt, FaFileMedical, FaCommentMedical, FaClinicMedical, FaGraduationCap, FaHeart, FaBriefcaseMedical, FaAngleDown, FaAngleUp, FaAngellist, FaDiagnoses, FaRulerHorizontal, FaGripHorizontal, FaRegHeart, FaRegGrinHearts, FaPhone, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaClipboard, FaAlignLeft, FaCircle } from 'react-icons/fa';
+import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 import { StudentDetail } from './StudentDetail';
+import StudentsFiles from './StudentsFiles'; // Importa el componente para mostrar archivos
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
-    const {theme}=useTheme();
+    const { theme } = useTheme();
     const [editingStudent, setEditingStudent] = useState<Student | null>(null);
-    const [isCreating, setIsCreating] = useState<boolean>(false); // Nuevo estado para creación
+    const [isCreating, setIsCreating] = useState<boolean>(false); // Estado para crear nuevo estudiante
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
+    const [selectedFiles, setSelectedFiles] = useState<Student | null>(null); // Estado para mostrar archivos
 
     const handleDelete = (student: Student) => {
         const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este estudiante?");
@@ -37,17 +39,34 @@ export const Students: React.FC = () => {
     };
 
     const handleOpenDetail = (student: Student) => {
-        setSelectedStudent(student); // Asignar el estudiante seleccionado
+        setSelectedStudent(student); // Mostrar el detalle del estudiante
     };
-
 
     const handleCloseDetail = () => {
         setSelectedStudent(null); // Cerrar el detalle
-    }
+    };
+
+    const handleShowFiles = (student: Student) => {
+        setSelectedFiles(student); // Mostrar archivos del estudiante
+    };
+
+    const handleCloseFiles = () => {
+        setSelectedFiles(null); // Cerrar el componente de archivos
+    };
 
     if (selectedStudent) {
         return (
             <StudentDetail student={selectedStudent} onClose={handleCloseDetail} />
+        );
+    }
+
+    if (selectedFiles) {
+        return (
+            <StudentsFiles
+                files={selectedFiles?.files || []} // Asegúrate de pasar un array vacío si no hay archivos
+                student={selectedFiles} // Asegúrate de pasar el estudiante seleccionado
+                onClose={handleCloseFiles}
+            />
         );
     }
 
@@ -62,61 +81,61 @@ export const Students: React.FC = () => {
     }
 
     return (
-        <section className='section' >
-        <div>
-            <h1 className='title'>Usuarios</h1>
-            <FaUser style={{ alignSelf: 'center' }} className='icon' />
-            <br />
+        <section className="section">
+            <div>
+                <h1 className="title">Usuarios</h1>
+                <FaUser className="icon" />
+                <br />
 
-            <a onClick={handleCreate} style={{float:'left'}} className='button'>
-                <FaUser style={{marginLeft:10}} />
-                <FaPlus style={{marginRight:10}} />
-            </a>
-            <br />
-            <br />
-            {isLoading ? (
-                <p className='icon' >Cargando...</p>
-            ) : (
-                <div className='tablemargin'>
-                    <table className='table'>
-                        <thead>
-                            <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
-                                <th className='tableheader' >No.</th>
-                                <th className='tableheader' >PDF</th>
-                                <th className='tableheader' >Usuario</th>
-                                <th className='tableheader' ></th>
-                                <th className='tableheader' >Edad</th>
-                                <th className='tableheader' >Género</th>
-                                <th className='tableheader' >Sustancia</th>
-                                <th className='tableheader' >Responsable</th>
-                                <th className='tableheader' >Dirección</th>
-                                <th className='tableheader' >Teléfono</th>
-                              
-                                <th className='tableheader' >Ingreso</th>
-                                <th className='tableheader' >Estancia</th>
-                                <th className='tableheader' >Egreso</th>
-                                {/* <th className='tableheader' >Descripción</th> */}
-                                <th className='tableheader' >Reportes</th>
-                                <th className='tableheader' >Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {listStudents.length > 0 ? (
-                                listStudents.map((student: Student) => (
-                                    <tr key={student._id} style={{ textAlign: 'center', zIndex: 1, fontSize: '15px' }}>
-                                        <td className={theme==0?'texts':'textblack'} >{student.number}</td>
-                                        <td>
-                                            <PDFDownloadLink
-                                                document={<PDFDocument student={student} />}
-                                                fileName={`${student.name}_${student.lastname}.pdf`}
-                                            >
-                                                <FaFilePdf className='icon' />
-                                            </PDFDownloadLink>
-                                        </td>
-                                        <td onClick={() => handleOpenDetail(student)}>
-{student.name} {student.lastname}
-</td>
-                                        {(() => {
+                <a onClick={handleCreate} className="button" style={{float:'left'}} >
+                    <FaUser style={{ marginLeft: 10 }} />
+                    <FaPlus style={{ marginRight: 10 }} />
+                </a>
+                <br />
+                <br />
+                {isLoading ? (
+                    <p>Cargando...</p>
+                ) : (
+                    <div className="tablemargin">
+                        <table className="table" style={{textAlign:'center'}}>
+                            <thead>
+                                <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
+                                    <th className='tableheader' >No.</th>
+                                    <th className='tableheader' >PDF</th>
+                                    <th className='tableheader' >Usuario</th>
+                                    <th className='tableheader' ></th>
+                                    <th className='tableheader' >Edad</th>
+                                    <th className='tableheader' >Género</th>
+                                    <th className='tableheader' >Sustancia</th>
+                                    <th className='tableheader' >Responsable</th>
+                                    <th className='tableheader' >Dirección</th>
+                                    <th className='tableheader' >Teléfono</th>
+                                    <th className='tableheader' >Ingreso</th>
+                                    <th className='tableheader' >Estancia</th>
+                                    <th className='tableheader' >Egreso</th>
+                                    <th className='tableheader' >Reportes</th>
+                                    <th className='tableheader' >Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                {listStudents.length > 0 ? (
+                                    listStudents.map((student: Student) => (
+                                        <tr key={student._id} style={{ textAlign: 'center', fontSize: '15px' }}>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.number}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >
+                                                <PDFDownloadLink
+                                                    document={<PDFDocument student={student} />}
+                                                    fileName={`${student.name}_${student.lastname}.pdf`}
+                                                >
+                                                    <FaFilePdf className="icon" />
+                                                </PDFDownloadLink>
+                                            </td>
+                                            <td  className={theme==0?'texts':'textblack'} onClick={() => handleOpenDetail(student)}>
+                                                {student.name} {student.lastname}
+                                            </td>
+                                     
+                                            
+                                            {(() => {
         switch (student.status) {
             case 'Baja':
                 return    <td title='Baja'> <FaAngleDown className='textred' /> </td>;
@@ -128,72 +147,38 @@ export const Students: React.FC = () => {
                 return <section>Status No Disponible</section>;
         }
     })()}
-                                       <td className={theme==0?'texts':'textblack'} >{student.age}</td>
-                                       <td className={theme==0?'texts':'textblack'} >{student.gender=='Femenino'?<FaFemale className='icon'/> : <FaMale className='icon' /> }</td>
-                                        <td className={theme === 0 ? 'texts' : 'textblack'}>{student.drug}
-    {/* {(() => {
-        switch (student.drug) {
-            case 'Cannabis':
-                return <FaCannabis title='Cannabis' className='icon' />;
-            case 'Alcohol':
-                return <FaWineBottle title='Alcohol' className='icon' />;
-            case 'Metanfetamina':
-                return <FaSnowflake title='Metanfetamina' className='icon' />;
-            case 'Heroina':
-                return <FaSyringe title='Heroína' className='icon' />;
-            default:
-                return <section>Droga No Disponible</section>;
-        }
-    })()} */}
-</td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.tutor}</td>
-                                        {/* <td className={theme==0?'texts':'textblack'} >{student.email}</td> */}
-                                        <td className={theme==0?'texts':'textblack'} ><FaMap title={student.address} className='icon' /></td>
-                                        <td className={theme==0?'texts':'textblack'} ><a  href={ `tel:+52 ${student.phone}`}><FaPhone  title={student.phone} className='icon' /></a></td>
-                                       
-                                       
-                                        <td className={theme==0?'texts':'textblack'} >{student.startdate}</td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.stay?`${student.stay} Meses`:null}</td>
-                                        <td className={theme==0?'texts':'textblack'} >{student.enddate}</td>
-                                        {/* <td className={theme==0?'texts':'textblack'} ><FaAlignLeft title={student.description} className='icon' /></td> */}
-                                        <td className={theme==0?'texts':'textblack'} ><FaFileMedicalAlt className='icon' /></td>
-                                        <td>
-                                            <FaFolder    className='iconfile' />
-                                            <FaPen
-                                                className='iconupdate'
-                                                onClick={() => handleEdit(student)}
-                                            />
-                                            <FaTrash
-                                                className='icondelete'
-                                                onClick={() => handleDelete(student)}
-                                            />
-                                        </td>
-                                        {/* <td className={theme === 0 ? 'texts' : 'textblack'}>
-    {(() => {
-        switch (student.status) {
-            case 'Baja':
-                return <FaAngleDown title='Baja' className='textred' />;
-            case 'En Tratamiento':
-                return <FaCircle title='En Tratamiento' className='textgreens' />;
-            case 'Egresado':
-                return <FaAngleUp title='Egresado' className='textgreen' />;
-            default:
-                return 'N/A';
-        }
-    })()}
-</td> */}
+                                            
+                                            
+                                            <td  className={theme==0?'texts':'textblack'} >{student.age}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.drug}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.tutor}</td>
+                                            <td  className={theme==0?'texts':'textblack'} ><FaMap title={student.address} className="icon" /></td>
+                                            <td  className={theme==0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhone title={student.phone} className="icon" /></a></td>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.startdate}</td>
+                                            <td  className={theme==0?'texts':'textblack'} ><FaClinicMedical title={`${student.stay} Meses`} className="icon" /></td>
+                                            <td  className={theme==0?'texts':'textblack'} ><FaSignOutAlt title={student.enddate} className="icon" /></td>
+                                            <td  className={theme==0?'texts':'textblack'} >
+                                                {/* Agregar el ícono para mostrar archivos */}
+                                                <FaFileMedicalAlt className="icon"/>
+                                            </td>
+                                            <td  className={theme==0?'texts':'textblack'} >
+                                                <FaFolder className='iconfile' onClick={() => handleShowFiles(student)} />
+                                                <FaPen className='iconupdate' onClick={() => handleEdit(student)} />
+                                                <FaTrash  className='icon'  onClick={() => handleDelete(student)} />
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td colSpan={7}>No hay usuarios</td>
                                     </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={7}>No hay usuarios</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
-                </div>
-            )}
-        </div>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
         </section>
     );
 };

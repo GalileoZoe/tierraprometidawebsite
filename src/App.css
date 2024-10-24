@@ -551,6 +551,24 @@
   cursor: pointer;
 }
 
+.iconx {
+  width: 4em;
+  height: 4em;
+  transition: all 0.8s ease-in-out;
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconx:hover {
+  width: 4em;
+  height: 4em;
+  transform: scale(1.1);
+  color: #db1313;
+  text-align: center;
+  cursor: pointer;
+}
+
 .icondelete {
   width: 1.2em;
   height: 1.2em;
@@ -983,6 +1001,17 @@
   height: auto;
   margin: auto;
   z-index: 100; /* Asegura que esté sobre otros elementos */
+}
+
+.windowdetail{
+    background: '#ffffff';
+    border-radius: 15px;
+    padding: 30px;
+    width: 500px;
+    max-width: 95%;
+    position: 'relative';
+    overflow-y: 'auto';
+    max-height: 90vh;
 }
 
 .windowbutton {
