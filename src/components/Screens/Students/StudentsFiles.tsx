@@ -1,6 +1,6 @@
 import React from 'react';
 import { File, Student } from '../../../interfaces/Students'; // Asegúrate de que la interfaz File esté correctamente importada
-import { FaFilePdf, FaFileImage, FaFileAudio, FaFileVideo, FaFile } from 'react-icons/fa'; // Importa los iconos que necesites
+import { FaFilePdf, FaFileImage, FaFileAudio, FaFileVideo, FaFile, FaArrowLeft } from 'react-icons/fa'; // Importa los iconos que necesites
 
 interface StudentsFilesProps {
     files: File[];
@@ -41,7 +41,7 @@ const StudentsFiles: React.FC<StudentsFilesProps> = ({ files, student,onClose })
     // Estilos en línea
     const directoryStyle: React.CSSProperties = {
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+        gridTemplateColumns: 'repeat(4, 1fr)', // Exactamente dos columnas
         gap: '20px',
         padding: '20px',
         backgroundColor: '#f1f1f1',
@@ -83,6 +83,9 @@ const StudentsFiles: React.FC<StudentsFilesProps> = ({ files, student,onClose })
     return (
         <section className="section">
                         <h2 className='title' >Archivos de {student.name} {student.lastname}</h2>
+                        <FaArrowLeft onClick={onClose} className="button" style={{float:'left'}} />
+                        <br />
+                        <br />
         <div style={directoryStyle}>
 
             {files.length === 0 ? (
@@ -109,7 +112,6 @@ const StudentsFiles: React.FC<StudentsFilesProps> = ({ files, student,onClose })
                 ))
             )}
         </div>
-        <a onClick={onClose} className="button">Cerrar</a>
         </section>
     );
 };

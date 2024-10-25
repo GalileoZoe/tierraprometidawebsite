@@ -1,6 +1,6 @@
 import React from 'react';
 import { Student } from '../../../interfaces/Students';
-import { FaPhone, FaMap, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale, FaAlignLeft, FaAngleDown, FaAngleUp, FaCircle } from 'react-icons/fa';
+import { FaPhone, FaMap, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale, FaAlignLeft, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaTimes, FaTint, FaVirus, FaAllergies, FaClipboard } from 'react-icons/fa';
 import '../../../App.css'
 
 
@@ -10,72 +10,88 @@ interface StudentDetailProps {
 }
 
 export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }) => {
-    const renderDrugIcon = (drug: string) => {
-        switch (drug) {
-            case 'Cannabis':
-                return <FaCannabis title="Cannabis" style={styles.drugIcon} />;
-            case 'Alcohol':
-                return <FaWineBottle title="Alcohol" style={styles.drugIcon} />;
-            case 'Metanfetamina':
-                return <FaSnowflake title="Metanfetamina" style={styles.drugIcon} />;
-            case 'Heroina':
-                return <FaSyringe title="Heroína" style={styles.drugIcon} />;
-            default:
-                return 'No disponible';
-        }
-    };
+    
 
     return (
         <section style={styles.section}>
             <div style={styles.modal}>
-            <p className="texts" style={{marginTop:-20}} >Usuario</p>
+                <p className="texts" style={{ marginTop: -20 }} >Usuario</p>
 
-                <button onClick={onClose} style={styles.closeBtn}>×</button>
+                <div style={{display:'flex', gap:130}}>
+                    <p className='texts' title='Ingreso' >{student.startdate}</p>
+                    <p className='texts' title='Estancia'>{student.stay ? `${student.stay} Meses` : 'No disponible'}</p>
+                    <p className='texts' title='Egreso' > {student.enddate}</p>
+                </div>
+                <FaTimes onClick={onClose} className='icon' style={styles.closeBtn}/>
                 <div style={styles.header}>
-                    <h2 className='title' >{student.name} {student.lastname}    {student.age}</h2>
-                    {student.gender === 'Femenino' ? <FaFemale className='icon' /> : <FaMale className='icon' />}
+                    <h2 className='title' >{student.number}</h2>
+                    <h2 className='titleblack' > {student.name} {student.lastname} </h2>
+                    <h2 > {student.age}</h2>
+                  
 
                     <a href="">                 {(() => {
-        switch (student.status) {
-            case 'Baja':
-                return    <td title='Baja'> <FaAngleDown className='textred' /> </td>;
-            case 'En Tratamiento':
-                return    <td title='En Tratamiento' > <FaCircle className='textgreens' /></td>;
-            case 'Egresado':
-                return   <td title='Egresado' > <FaAngleUp className='textgreen' /></td>;
-            default:
-                return <section>Status No Disponible</section>;
+                        switch (student.status) {
+                            case 'Baja':
+                                return <td title='Baja'> <FaAngleDown className='textred' /> </td>;
+                            case 'En Tratamiento':
+                                return <td title='En Tratamiento' > <FaCircle className='textgreens' /></td>;
+                            case 'Egresado':
+                                return <td title='Egresado' > <FaAngleUp className='textgreen' /></td>;
+                            default:
+                                return <section>Status No Disponible</section>;
+                        }
+                    })()}</a>
+
+
+
+                </div>
+
+                <p className="texts" style={{ marginTop: -20 }} >Historial Clínico</p>
+
+                <div style={styles.infoRow}>
+                    <p>
+                        
+                    {(() => {
+        switch (student.drug) {
+            case 'Cannabis':
+                return <FaCannabis title="Cannabis" className='icon' />;
+            case 'Alcohol':
+                return <FaWineBottle title="Alcohol" className='icon' />;
+            case 'Metanfetamina':
+                return <FaSnowflake title="Metanfetamina" className='icon' />;
+            case 'Heroina':
+                return <FaSyringe title="Heroína" className='icon' />;
+            case 'Anfetaminas':
+                return <FaSyringe title="Heroína" className='icon' />;
         }
-    })()}</a>
-              
-                </div>
-
-                <div style={styles.infoRow}>
-                    <p>{student.startdate}</p>
-                    <p><strong>Estancia:</strong> {student.stay ? `${student.stay} Meses` : 'No disponible'}</p>
-                    <p> {student.enddate}</p>
-                </div>
-
-                <div style={styles.infoRow}>
-                    <p><strong>Sustancia de Impacto:</strong> {student.drug} </p>
+    })()}                
+                     </p>
                     <p> {student.stigma} </p>
                 </div>
 
+
                 <div style={styles.infoRow}>
-                <p><strong>Grupo Sanguíneo:</strong> {student.blood}</p>
-                    <p><strong>Enfermedades:</strong> {student.disease} </p> 
-                    <p><strong>Alergias:</strong> {student.allergy} </p> 
+                <p>
+            {student.gender === 'Masculino' ? 
+                <FaMale title={student.gender} className="icon" />
+             : 
+                <FaFemale title={student.gender} className="icon" />
+            }
+        </p>
+                    <p><FaTint title='Grupo Sanguineo' className='icon' />  {student.blood}</p>
+                    <p><FaVirus title='Enfermedades' className='icon' /> {student.disease} </p>
+                    <p><FaAllergies title='Alergias' className='icon' /> {student.allergy} </p>
 
                 </div>
-                <p><strong>Descripción:</strong> {student.description} </p>
+                <p><FaClipboard title='Description' className='icon' /> {student.description} </p>
 
                 <p className="texts">Responsable</p>
                 <div style={styles.infoBlock}>
-                    <p><strong>Responsable:</strong> {student.tutor}</p>
-                    <p><strong>Dirección:</strong> <FaMap title={student.address} style={styles.inlineIcon} /> {student.address}</p>
-                    <p><strong>Teléfono:</strong> <FaPhone title={student.phone} style={styles.inlineIcon} /> {student.phone}</p>
+                    <p><strong className='icon' >Responsable:</strong> {student.tutor}</p>
+                    <p><strong className='icon' >Dirección:</strong>  {student.address}</p>
+                    <p><strong className='icon' >Teléfono:</strong>  {student.phone}</p>
                 </div>
-                <button onClick={onClose} className='button'>Cerrar</button>
+                <FaArrowLeft title='Regresar' className='icon' onClick={onClose} />
             </div>
         </section>
     );
@@ -109,12 +125,6 @@ const styles: { [key: string]: React.CSSProperties } = {
         position: 'absolute',
         top: '15px',
         right: '20px',
-        fontSize: '20px',
-        background: 'none',
-        border: 'none',
-        cursor: 'pointer',
-        color: '#ff6666',
-        transition: 'color 0.3s ease',
     },
     header: {
         display: 'flex',

@@ -3,11 +3,12 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle } from 'react-icons/fa';
+import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 import { StudentDetail } from './StudentDetail';
 import StudentsFiles from './StudentsFiles'; // Importa el componente para mostrar archivos
+import { useFeed } from '../../../context/FeedContext';
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
@@ -16,6 +17,7 @@ export const Students: React.FC = () => {
     const [isCreating, setIsCreating] = useState<boolean>(false); // Estado para crear nuevo estudiante
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
     const [selectedFiles, setSelectedFiles] = useState<Student | null>(null); // Estado para mostrar archivos
+    const {feed, changeFeed}=useFeed();
 
     const handleDelete = (student: Student) => {
         const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este estudiante?");
@@ -87,9 +89,12 @@ export const Students: React.FC = () => {
                 <FaUser className="icon" />
                 <br />
 
-                <a onClick={handleCreate} className="button" style={{float:'left'}} >
+                <a onClick={handleCreate} className="button" style={{float:'right'}} >
                     <FaUser style={{ marginLeft: 10 }} />
                     <FaPlus style={{ marginRight: 10 }} />
+                </a>
+                <a onClick={()=>changeFeed(1)} style={{float:'left'}} >
+                    <FaArrowLeft className='icon'/>
                 </a>
                 <br />
                 <br />
@@ -106,7 +111,8 @@ export const Students: React.FC = () => {
                                     <th className='tableheader' ></th>
                                     <th className='tableheader' >Edad</th>
                                     <th className='tableheader' >Género</th>
-                                    <th className='tableheader' >Sustancia</th>
+                                    <th className='tableheader' >Sustancia de Impacto</th>
+                                    <th className='tableheader' ></th>
                                     <th className='tableheader' >Responsable</th>
                                     <th className='tableheader' >Dirección</th>
                                     <th className='tableheader' >Teléfono</th>
@@ -130,7 +136,7 @@ export const Students: React.FC = () => {
                                                     <FaFilePdf className="icon" />
                                                 </PDFDownloadLink>
                                             </td>
-                                            <td  className={theme==0?'texts':'textblack'} onClick={() => handleOpenDetail(student)}>
+                                            <td  className={theme==0?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
                                                 {student.name} {student.lastname}
                                             </td>
                                      
@@ -152,6 +158,7 @@ export const Students: React.FC = () => {
                                             <td  className={theme==0?'texts':'textblack'} >{student.age}</td>
                                             <td  className={theme==0?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
                                             <td  className={theme==0?'texts':'textblack'} >{student.drug}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >{student.stigma}</td>
                                             <td  className={theme==0?'texts':'textblack'} >{student.tutor}</td>
                                             <td  className={theme==0?'texts':'textblack'} ><FaMap title={student.address} className="icon" /></td>
                                             <td  className={theme==0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhone title={student.phone} className="icon" /></a></td>

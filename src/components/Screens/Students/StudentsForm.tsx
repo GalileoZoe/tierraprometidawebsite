@@ -74,10 +74,11 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
             <h2 className='title'>{onSave ? 'Registrar Usuario' : formData.name}</h2>
             <FaUser style={{ alignSelf: 'center' }} className='icon' />
             <form onSubmit={handleSubmit}>
-                <div style={{ display: 'flex', gap: 900 }}>
+                <div style={{ display: 'flex', gap: 690 }}>
                     <div>
-                        <label className='texts'>Ingreso:</label>
+                     
                         <input
+                            placeholder='Ingreso'
                             className='input'
                             type='date'
                             name='startdate'
@@ -88,7 +89,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     </div>
 
                     <div>
-                        <label className='texts'>Salida:</label>
+                 
                         <input
                             className='input'
                             type='date'
@@ -101,9 +102,9 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
 
                 <p className='texts'>Usuario</p>
                 <div style={{ display: 'flex', gap: 25 }}>
-                    <div>
-                        <label className='texts'>Nombres:</label>
+                  
                         <input
+                            placeholder='Nombre'
                             className='input'
                             type='text'
                             name='name'
@@ -111,11 +112,11 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         />
-                    </div>
+                 
 
-                    <div>
-                        <label className='texts'>Apellidos:</label>
+                 
                         <input
+                        placeholder='Apellidos:'
                             className='input'
                             type='text'
                             name='lastname'
@@ -123,22 +124,20 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         />
-                    </div>
+          
 
-                    <div>
-                        <label className='texts'>Edad:</label>
+                    
                         <input
-                            className='inputs'
+                            placeholder='Edad'
+                            className='input'
                             type='number'
                             name='age'
                             value={formData.age}
                             onChange={handleChange}
                             required
                         />
-                    </div>
+    
 
-                    <div>
-                        <label className='texts'>Género:</label>
                         <select
                             className='input'
                             name='gender'
@@ -146,27 +145,23 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         >
-                            <option value=''>Género</option>
+                            <option >Género</option>
                             <option value='Masculino'>Masculino</option>
                             <option value='Femenino'>Femenino</option>
                         </select>
-                    </div>
-
-                    <div>
-                        <label className='texts'>Estancia:</label>
-                        <input
-                            className='inputs'
-                            type='number'
+            
+                        <select
+                            className='input'
                             name='stay'
                             value={formData.stay}
                             onChange={handleChange}
                             required
-                        />
-                        <label className='texts'>Meses</label>
-                    </div>
+                        >
+                            <option >Estancia</option>
+                            <option value='4'>4 Meses</option>
+                            <option value='6'>6 Meses</option>
+                        </select>
 
-                    <div>
-                        <label className='texts'>Estado:</label>
                         <select
                             className='input'
                             name='status'
@@ -180,20 +175,12 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value='Egresado'>Egresado</option>
                         </select>
                     </div>
-                </div>
+                
 
-                <p className='texts'>Archivos</p>
-                <input
-                    type='file'
-                    multiple
-                    onChange={handleFileChange}
-                    accept='.png, .jpg, .jpeg, .pdf'
-                />
-                <p className='texts'>Historial Clínico</p>
+                               <p className='texts'>Historial Clínico</p>
 
                 <div style={{ display: 'flex', gap: 25 }} >
-                    <div>
-                        <label className='texts' >Sangre:</label>
+                
                         <select
                             className='input'
                             name='blood'
@@ -210,43 +197,30 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value='B-'>B-</option>
                             <option value='AB+'>AB+</option>
                             <option value='AB-'>AB-</option>
-                            {/* Añadir más opciones según sea necesario */}
                         </select>
-                    </div>
 
 
-                    <div style={{ display: 'flex' }} >
-
-
-                        <div>
-                            <label className='texts' >Enfermedades:</label>
                             <input
+                                placeholder='Enfermedades'
                                 className='input'
                                 type='text'
                                 name='disease'
                                 value={formData.disease}
                                 onChange={handleChange}
                             />
-                        </div>
+                    
 
-                        <div>
-                            <label className='texts' >Alergias:</label>
                             <input
+                                placeholder='Alergias'
                                 className='input'
                                 type='text'
                                 name='allergy'
                                 value={formData.allergy}
                                 onChange={handleChange}
                             />
-                        </div>
-                    </div>
+             
+                    
 
-
-
-
-
-                    <div>
-                        <label className='texts' >Estigma:</label>
                         <select
                             className='input'
                             name='stigma'
@@ -258,12 +232,9 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value='A'>A</option>
                             <option value='D'>D</option>
                             <option value='A/D'>A/D</option>
-                            {/* Añadir más opciones según sea necesario */}
+            
                         </select>
-                    </div>
 
-                    <div>
-                        <label className='texts' >Sustancia de Impacto:</label>
                         <select
                             className='input'
                             name='drug'
@@ -271,24 +242,24 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         >
-                            <option value=''>Sustancia</option>
+                            <option value=''>Sustancia de Impacto</option>
                             <option value='Cannabis'>Cannabis</option>
                             <option value='Alcohol'>Alcohol</option>
                             <option value='Metanfetamina'>Metanfetamina</option>
                             <option value='Heroina'>Heroína</option>
                             {/* Añadir más opciones según sea necesario */}
                         </select>
-                    </div>
+                 
 
                 </div>
 
                 <p className='texts'>Responsable</p>
 
-                <div style={{ display: 'flex' }} >
+                <div style={{ display: 'flex', gap:25 }} >
 
-                    <div>
-                        <label className='texts' >Responsable:</label>
+            
                         <input
+                            placeholder='Responsable'
                             className='input'
                             type='text'
                             name='tutor'
@@ -296,12 +267,11 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         />
-                    </div>
+                    
 
 
-                    <div>
-                        <label className='texts' >Correo Electrónico:</label>
                         <input
+                            placeholder='Correo Electrónico'
                             className='input'
                             type='email'
                             name='email'
@@ -310,23 +280,19 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             required
 
                         />
-                    </div>
-
-                    <div>
-                        <label className='texts' >Teléfono:</label>
+              
                         <input
+                            placeholder='Teléfono'
                             className='input'
-                            type='text'
+                            type='number'
                             name='phone'
                             value={formData.phone}
                             onChange={handleChange}
                             required
                         />
-                    </div>
-
-                    <div>
-                        <label className='texts' >Dirección:</label>
+                    
                         <input
+                            placeholder='Dirección'
                             className='input'
                             type='text'
                             name='address'
@@ -334,14 +300,32 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         />
-                    </div>
-                    <br />
+                    
+                                   </div>
+                                   
+                                   
+                    <p className='texts'>Archivos</p>
+
+                <input
+                    title='Subir Archivos del Usuario'
+                    placeholder='Archivos'
+                    className='button'
+                    type='file'
+                    multiple
+                    onChange={handleFileChange}
+                    accept='.png, .jpg, .jpeg, .pdf'
+                />
+
+                <br />
+                <br />
+
                     <div>
                         <button className='button' type='submit'>{onSave ? 'Guardar' : 'Guardar Cambios'}</button>
                         <button className='button' type='button' onClick={onClose}>Cancelar</button>
                     </div>
-                </div>
+ 
             </form>
         </div>
+
     );
 };  

@@ -551,6 +551,24 @@
   cursor: pointer;
 }
 
+.iconblack {
+  width: 1.5em;
+  height: 1.5em;
+  transition: all 0.8s ease-in-out;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+}
+
+.iconblack:hover {
+  width: 1.5em;
+  height: 1.5em;
+  transform: scale(1.1);
+  color: black;
+  text-align: center;
+  cursor: pointer;
+}
+
 .iconx {
   width: 4em;
   height: 4em;
@@ -734,7 +752,6 @@
   border-bottom: solid 2px #db1313;
   height: auto;
   width: auto;
-  color: #db1313;
 }
 
 .inputs {
@@ -743,7 +760,6 @@
   border-bottom: solid 2px #db1313;
   height: auto;
   width: 3em;
-  color: #db1313;
 }
 
 
@@ -776,6 +792,21 @@
 
 .title:hover {
   color: #920e0e;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.titleblack {
+  color: black;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+}
+
+.title:hover {
+  color: black;
   font-weight: 100;
   font-size: 2em;
   text-align: center;
