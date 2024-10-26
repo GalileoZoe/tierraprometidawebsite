@@ -38,7 +38,7 @@ export const LoginScreen: React.FC = () => {
 <br />
 <br />
                 <input
-                    className='inputred'
+                    className='inputredlogin'
                     value={state.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder='Correo Electrónico'
@@ -48,7 +48,7 @@ export const LoginScreen: React.FC = () => {
                 />
                 <br />
                 <input
-                    className='inputred'
+                    className='inputredlogin'
                     value={state.password}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                     placeholder='Contraseña'

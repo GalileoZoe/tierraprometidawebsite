@@ -79,7 +79,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                      
                         <input
                             placeholder='Ingreso'
-                            className='input'
+                            className='inputred'
                             type='date'
                             name='startdate'
                             value={formData.startdate}
@@ -91,7 +91,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     <div>
                  
                         <input
-                            className='input'
+                            className='inputred'
                             type='date'
                             name='enddate'
                             value={formData.enddate}
@@ -105,7 +105,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                   
                         <input
                             placeholder='Nombre'
-                            className='input'
+                            className='inputred'
                             type='text'
                             name='name'
                             value={formData.name}
@@ -117,7 +117,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                  
                         <input
                         placeholder='Apellidos:'
-                            className='input'
+                            className='inputred'
                             type='text'
                             name='lastname'
                             value={formData.lastname}
@@ -129,7 +129,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     
                         <input
                             placeholder='Edad'
-                            className='input'
+                            className='inputred'
                             type='number'
                             name='age'
                             value={formData.age}
@@ -139,7 +139,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
     
 
                         <select
-                            className='input'
+                            className='inputred'
                             name='gender'
                             value={formData.gender}
                             onChange={handleChange}
@@ -151,7 +151,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         </select>
             
                         <select
-                            className='input'
+                            className='inputred'
                             name='stay'
                             value={formData.stay}
                             onChange={handleChange}
@@ -163,7 +163,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         </select>
 
                         <select
-                            className='input'
+                            className='inputred'
                             name='status'
                             value={formData.status}
                             onChange={handleChange}
@@ -182,7 +182,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                 <div style={{ display: 'flex', gap: 25 }} >
                 
                         <select
-                            className='input'
+                            className='inputred'
                             name='blood'
                             value={formData.blood}
                             onChange={handleChange}
@@ -202,7 +202,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
 
                             <input
                                 placeholder='Enfermedades'
-                                className='input'
+                                className='inputred'
                                 type='text'
                                 name='disease'
                                 value={formData.disease}
@@ -212,7 +212,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
 
                             <input
                                 placeholder='Alergias'
-                                className='input'
+                                className='inputred'
                                 type='text'
                                 name='allergy'
                                 value={formData.allergy}
@@ -222,7 +222,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     
 
                         <select
-                            className='input'
+                            className='inputred'
                             name='stigma'
                             value={formData.stigma}
                             onChange={handleChange}
@@ -236,7 +236,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         </select>
 
                         <select
-                            className='input'
+                            className='inputred'
                             name='drug'
                             value={formData.drug}
                             onChange={handleChange}
@@ -261,7 +261,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
             
                         <input
                             placeholder='Responsable'
-                            className='input'
+                            className='inputred'
                             type='text'
                             name='tutor'
                             value={formData.tutor}
@@ -273,7 +273,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
 
                         <input
                             placeholder='Correo Electrónico'
-                            className='input'
+                            className='inputred'
                             type='email'
                             name='email'
                             value={formData.email}
@@ -284,7 +284,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
               
                         <input
                             placeholder='Teléfono'
-                            className='input'
+                            className='inputred'
                             type='text'
                             name='phone'
                             value={formData.phone}
@@ -294,7 +294,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                     
                         <input
                             placeholder='Dirección'
-                            className='input'
+                            className='inputred'
                             type='text'
                             name='address'
                             value={formData.address}

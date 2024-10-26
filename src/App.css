@@ -761,9 +761,23 @@
   color: #db1313;
   height: auto;
   width: auto;
-  padding: 10px;
 }
 .inputred::placeholder {
+
+  color: #db1313;
+
+}
+
+.inputredlogin {
+  border-radius: 20px;
+  background-color: transparent;
+  border: solid #db1313;
+  color: #db1313;
+  height: auto;
+  width: auto;
+  padding: 10px;
+}
+.inputredlogin::placeholder {
 
   color: #db1313;
 

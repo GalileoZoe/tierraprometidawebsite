@@ -3,7 +3,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft } from 'react-icons/fa';
+import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaBed, FaHome, FaDoorOpen, FaExternalLinkAlt, FaRegPlusSquare, FaTimesCircle, FaDoorClosed, FaPhoneAlt } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 import { StudentDetail } from './StudentDetail';
@@ -157,22 +157,43 @@ export const Students: React.FC = () => {
                                             
                                             <td  className={theme==0?'texts':'textblack'} >{student.age}</td>
                                             <td  className={theme==0?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
-                                            <td  className={theme==0?'texts':'textblack'} >{student.drug}</td>
-                                            <td  className={theme==0?'texts':'textblack'} >{student.stigma}</td>
-                                            <td  className={theme==0?'texts':'textblack'} >{student.tutor}</td>
+                                            <td  className={theme==0?'texts':'textblack'} >
+
+  
+                                            {(() => {
+            switch (student.drug) {
+                case 'Cannabis':
+                    return <FaCannabis title="Cannabis" className='icon' />;
+                case 'Alcohol':
+                    return <FaWineBottle title="Alcohol" className='icon' />;
+                case 'Metanfetamina':
+                    return <FaCube title="Metanfetamina" className='icon' />;
+                case 'Heroína':
+                    return <FaSyringe title="Heroína" className='icon' />;
+                case 'Cocaína':
+                    return <FaSnowflake title="Cocaína" className='icon' />;
+                case 'Anfetaminas':
+                    return <FaPills title="Anfetaminas" className='icon' />;
+            }
+        })()} 
+
+
+                                            </td>
+                                            <td  className={theme==0?'texts':'textblack'} title='Estigma' >{student.stigma}</td>
+                                            <td  className={theme==0?'texts':'textblack'} title={`Responsable de ${student.name}`} >{student.tutor}</td>
                                             <td  className={theme==0?'texts':'textblack'} ><FaMap title={student.address} className="icon" /></td>
-                                            <td  className={theme==0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhone title={student.phone} className="icon" /></a></td>
+                                            <td  className={theme==0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className="icon" /></a></td>
                                             <td  className={theme==0?'texts':'textblack'} >{student.startdate}</td>
-                                            <td  className={theme==0?'texts':'textblack'} ><FaClinicMedical title={`${student.stay} Meses`} className="icon" /></td>
-                                            <td  className={theme==0?'texts':'textblack'} ><FaSignOutAlt title={student.enddate} className="icon" /></td>
+                                            <td  className={theme==0?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className="icon" /></td>
+                                            <td  className={theme==0?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className="icon" /></td>
                                             <td  className={theme==0?'texts':'textblack'} >
                                                 {/* Agregar el ícono para mostrar archivos */}
                                                 <FaFileMedicalAlt className="icon"/>
                                             </td>
                                             <td  className={theme==0?'texts':'textblack'} >
-                                                <FaFolder className='iconfile' onClick={() => handleShowFiles(student)} />
-                                                <FaPen className='iconupdate' onClick={() => handleEdit(student)} />
-                                                <FaTrash  className='icon'  onClick={() => handleDelete(student)} />
+                                                <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
+                                                <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />
+                                                <FaTrash  className='icon' title={`Eliminar a ${student.name}`} onClick={() => handleDelete(student)} />
                                             </td>
                                         </tr>
                                     ))
