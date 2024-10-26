@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Student } from '../../../interfaces/Students';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
-import { FaUser } from 'react-icons/fa';
+import { FaFile, FaUser } from 'react-icons/fa';
 
 // Props del formulario de estudiantes
 interface StudentsFormProps {
@@ -246,8 +246,9 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value='Cannabis'>Cannabis</option>
                             <option value='Alcohol'>Alcohol</option>
                             <option value='Metanfetamina'>Metanfetamina</option>
-                            <option value='Heroina'>Heroína</option>
-                            {/* Añadir más opciones según sea necesario */}
+                            <option value='Heroína'>Heroína</option>
+                            <option value='Cocaína'>Cocaína</option>
+                            <option value='Anfetaminas'>Anfetaminas</option>
                         </select>
                  
 
@@ -284,7 +285,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         <input
                             placeholder='Teléfono'
                             className='input'
-                            type='number'
+                            type='text'
                             name='phone'
                             value={formData.phone}
                             onChange={handleChange}
@@ -305,17 +306,18 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                                    
                                    
                     <p className='texts'>Archivos</p>
-
+                <a className='icon' >
+                    <FaFile  />
                 <input
+                    
                     title='Subir Archivos del Usuario'
-                    placeholder='Archivos'
-                    className='button'
                     type='file'
                     multiple
+                    style={{color:'#db1313'}}
                     onChange={handleFileChange}
-                    accept='.png, .jpg, .jpeg, .pdf'
+                    accept='.png, .jpg, .pdf, .docx'
                 />
-
+                </a>
                 <br />
                 <br />
 

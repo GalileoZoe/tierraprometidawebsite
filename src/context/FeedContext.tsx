@@ -11,7 +11,7 @@ const FeedProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [feed, setFeed] = useState<number>(1);
 
   const changeFeed = (newFeed: number) => {
-    if ([1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11].includes(newFeed)) {
+    if ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13].includes(newFeed)) {
       setFeed(newFeed);
     } else {
       console.error('Invalid Feed value');

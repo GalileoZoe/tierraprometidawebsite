@@ -4,7 +4,7 @@ import { useFeed } from "../../context/FeedContext";
 import { useTheme } from "../../context/ThemeContext";
 import { FaMap, FaMapPin, FaWhatsapp } from "react-icons/fa";
 
-export const Location = () => {
+export const Location: React.FC = () => {
   const { feed, changeFeed } = useFeed();
   const { theme, changeTheme } = useTheme();
 

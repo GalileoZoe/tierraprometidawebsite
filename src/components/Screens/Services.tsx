@@ -48,7 +48,7 @@ export const Services = () => {
       case 6:
         return <Window
           tittle='Desarrollo Humano'
-          description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones, mediante el desarrollo de hábitos saludables y una mentalidad positiva.'
+          description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones mediante el desarrollo de hábitos saludables y una mentalidad positiva.'
           button='Más Información'
         />;
       case 7:

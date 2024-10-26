@@ -1,7 +1,7 @@
 import { title } from 'process'
 import React from 'react'
 import { useService } from '../../context/ServiceContext'
-import { FaAppleAlt,  FaFutbol, FaHeart, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
+import { FaAppleAlt,  FaFutbol, FaHeart, FaInfo, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
 
 interface WindowProps {
   action?: () => void,
@@ -49,12 +49,14 @@ export const Window: React.FC<WindowProps> = ({ action, button, href, tittle, de
       <div className='window'>
         <br />
         <FaWindowClose className='icon' style={{float:'right', paddingRight:'20px'}} onClick={() => changeService(0)} />
-        <h1 className='title'>{tittle}</h1>
+        <h1 onClick={() => changeService(0)} className='title'>{tittle}</h1>
        <Icons/>
         <p className="paragraph">
           {description}
         </p>
-        <a href={href} onClick={action} className="windowbutton">{button}</a>
+        <a href={href} onClick={action} className="icon"> <FaInfo/>
+        <br />
+         {button}</a>
         <br />
         <br />
       </div>

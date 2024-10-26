@@ -1,6 +1,6 @@
 import React from 'react';
 import { Student } from '../../../interfaces/Students';
-import { FaPhone, FaMap, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale, FaAlignLeft, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaTimes, FaTint, FaVirus, FaAllergies, FaClipboard } from 'react-icons/fa';
+import { FaPhone, FaMap, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale, FaAlignLeft, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaTimes, FaTint, FaVirus, FaAllergies, FaClipboard, FaCube, FaLightbulb, FaPills } from 'react-icons/fa';
 import '../../../App.css'
 
 
@@ -17,7 +17,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
             <div style={styles.modal}>
                 <p className="texts" style={{ marginTop: -20 }} >Usuario</p>
 
-                <div style={{display:'flex', gap:130}}>
+                <div style={{display:'flex', gap:140}}>
                     <p className='texts' title='Ingreso' >{student.startdate}</p>
                     <p className='texts' title='Estancia'>{student.stay ? `${student.stay} Meses` : 'No disponible'}</p>
                     <p className='texts' title='Egreso' > {student.enddate}</p>
@@ -49,24 +49,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                 <p className="texts" style={{ marginTop: -20 }} >Historial Clínico</p>
 
                 <div style={styles.infoRow}>
-                    <p>
-                        
-                    {(() => {
-        switch (student.drug) {
-            case 'Cannabis':
-                return <FaCannabis title="Cannabis" className='icon' />;
-            case 'Alcohol':
-                return <FaWineBottle title="Alcohol" className='icon' />;
-            case 'Metanfetamina':
-                return <FaSnowflake title="Metanfetamina" className='icon' />;
-            case 'Heroina':
-                return <FaSyringe title="Heroína" className='icon' />;
-            case 'Anfetaminas':
-                return <FaSyringe title="Heroína" className='icon' />;
-        }
-    })()}                
-                     </p>
-                    <p> {student.stigma} </p>
+                   
                 </div>
 
 
@@ -78,12 +61,32 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                 <FaFemale title={student.gender} className="icon" />
             }
         </p>
+        <p>
+                        
+                        {(() => {
+            switch (student.drug) {
+                case 'Cannabis':
+                    return <FaCannabis title="Cannabis" className='icon' />;
+                case 'Alcohol':
+                    return <FaWineBottle title="Alcohol" className='icon' />;
+                case 'Metanfetamina':
+                    return <FaCube title="Metanfetamina" className='icon' />;
+                case 'Heroína':
+                    return <FaSyringe title="Heroína" className='icon' />;
+                case 'Cocaína':
+                    return <FaSnowflake title="Cocaína" className='icon' />;
+                case 'Anfetaminas':
+                    return <FaPills title="Anfetaminas" className='icon' />;
+            }
+        })()}                
+                         </p>
                     <p><FaTint title='Grupo Sanguineo' className='icon' />  {student.blood}</p>
                     <p><FaVirus title='Enfermedades' className='icon' /> {student.disease} </p>
                     <p><FaAllergies title='Alergias' className='icon' /> {student.allergy} </p>
 
                 </div>
-                <p><FaClipboard title='Description' className='icon' /> {student.description} </p>
+                <p><FaClipboard title='Descripción' className='icon' /> {student.description} </p>
+                <p>{student.description} </p>
 
                 <p className="texts">Responsable</p>
                 <div style={styles.infoBlock}>

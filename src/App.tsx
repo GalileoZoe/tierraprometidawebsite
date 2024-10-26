@@ -7,6 +7,7 @@ import { Layout } from './components/Layout/Layout';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { SessionProvider } from './context/SessionContext';
 import { ServiceProvider } from './context/ServiceContext';
+import { AuthProvider } from './context/AuthContext';
 
 const Apps = () => {
   const { theme } = useTheme();
@@ -41,6 +42,7 @@ const Apps = () => {
 
 function App() {
   return (
+    <AuthProvider>
     <SessionProvider>
     <ThemeProvider>
       <FeedProvider>
@@ -50,6 +52,7 @@ function App() {
       </FeedProvider>
     </ThemeProvider>
     </SessionProvider>
+    </AuthProvider>
   );
 }
 
