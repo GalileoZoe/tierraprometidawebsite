@@ -39,7 +39,7 @@ export const useLogin = () => {
 
     const handleLogin = async () => {
         setLoading(true);
-        const apiUrl = 'http://172.21.176.1:3000/api/tierraprometida/v1/login';
+        const apiUrl = 'https://tierraprometida-production.up.railway.app/api/tierraprometida/v1/login';
 
         const dataBody = {
             email: state.email,
