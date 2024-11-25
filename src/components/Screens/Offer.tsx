@@ -11,7 +11,7 @@ export const Offer=()=>{
         <section>
             <div>
                 
-            <h1 className={theme==2?'titleRed':'title'}>Servicios</h1>
+            <h1 className={theme===2?'titleRed':'title'}>Servicios</h1>
      
             </div>
         </section>

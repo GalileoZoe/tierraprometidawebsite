@@ -33,7 +33,7 @@ export const NavBar: React.FC = () => {
         />
       </div>
       <ul className="navbaritems">
-      {feed==1?null:  <li>
+      {feed===1?null:  <li>
           <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(1)}
@@ -57,7 +57,7 @@ export const NavBar: React.FC = () => {
             Servicios
           </a>
         </li>
-        {session==1?
+        {session===1?
           <li>
           <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
@@ -93,7 +93,7 @@ export const NavBar: React.FC = () => {
           </a>
         </li>
         {/* <li>
-        <li className={theme === 2 ? 'navbaritemred' : 'navbaritem'} onClick={()=>{theme==1?changeTheme(0):changeTheme(1)}} ><FaStore className='icon'/></li>
+        <li className={theme === 2 ? 'navbaritemred' : 'navbaritem'} onClick={()=>{theme1?changeTheme(0):changeTheme(1)}} ><FaStore className='icon'/></li>
         
         </li> */}
 

@@ -73,7 +73,7 @@ export const Touch: React.FC<TouchProps> = ({
     cursor: cursor || 'pointer',
     border: border || 'none',
     borderColor: borderColor || 'none',
-    boxShadow: shadow=='shadow'? '0 4px 8px rgba(0, 0, 0, 0.1)':'none',
+    boxShadow: shadow==='shadow'? '0 4px 8px rgba(0, 0, 0, 0.1)':'none',
     marginTop,
     marginBottom,
     marginLeft,

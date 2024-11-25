@@ -39,7 +39,7 @@ export const Contact = () => {
 
       <div>
 
-        <h1 className={theme == 2 ? 'titleRed' : 'title'}>Contacto</h1>
+        <h1 className={theme===2 ? 'titleRed' : 'title'}>Contacto</h1>
 
 
    
