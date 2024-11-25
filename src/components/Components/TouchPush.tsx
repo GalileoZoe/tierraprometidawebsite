@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import '../../App.css';
 
 interface Image {
@@ -49,8 +49,8 @@ interface TouchPushProps {
 }
 
 const TouchPush: React.FC<TouchPushProps> = ({
-    title = "",
-    text = "",
+    title = '',
+    text = '',
     image = { src: '', alt: '' },
     imageWidth,
     imageHeight,
@@ -143,24 +143,24 @@ const TouchPush: React.FC<TouchPushProps> = ({
 
     return (
         <section>
-            <div className="container">
+            <div className='container'>
                 <a href={href} style={{ textDecoration: 'none',textAlign:'center' }}>
                     <div
-                        className="card"
+                        className='card'
                         style={cardStyle}
                         onClick={action}
                         onMouseEnter={(e) => Object.assign(e.currentTarget.style, cardHoverStyle)}
                         onMouseLeave={(e) => Object.assign(e.currentTarget.style, cardStyle)}
                     >
                         {imagePosition === 'above' && image && (
-                            <div className="card-images">
-                                <div className="imagecontainer">
-                                    <img src={image.src} alt={image.alt} className="imgimgsmall" style={imageStyle} />
+                            <div className='card-images'>
+                                <div className='imagecontainer'>
+                                    <img src={image.src} alt={image.alt} className='imgimgsmall' style={imageStyle} />
                                 </div>
                             </div>
                         )}
                         <h2
-                            className="cardh2"
+                            className='cardh2'
                             style={titleStyle}
                             onMouseEnter={(e) => Object.assign(e.currentTarget.style, titleHoverStyle)}
                             onMouseLeave={(e) => Object.assign(e.currentTarget.style, titleStyle)}
@@ -175,9 +175,9 @@ const TouchPush: React.FC<TouchPushProps> = ({
                             {text}
                         </p>
                         {imagePosition === 'below' && image && (
-                            <div className="card-images">
-                                <div className="imagecontainer">
-                                    <img src={image.src} alt={image.alt} className="imgimgsmall" style={imageStyle} />
+                            <div className='card-images'>
+                                <div className='imagecontainer'>
+                                    <img src={image.src} alt={image.alt} className='imgimgsmall' style={imageStyle} />
                                 </div>
                             </div>
                         )}

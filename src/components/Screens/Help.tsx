@@ -16,8 +16,8 @@ export const Help = () => {
 
     <p className='paragraph'>Gracias por formar parte de   </p>
 
-    <div className="item">
-        <img className="img" src={require('../../assets/logo-09.png')} />
+    <div className='item'>
+        <img className='img' src={require('../../assets/logo-09.png')} />
         <p>24 horas</p>
       </div> 
 

@@ -32,8 +32,8 @@ export const Footer: React.FC = () => {
     }, []);
 
     return (
-        <nav className="footer">
-            <ul className="footeritems">
+        <nav className='footer'>
+            <ul className='footeritems'>
                 <li
                     className={theme === 2 ? 'footeritemred' : 'footeritem'}
                     title='Modo Oscuro'

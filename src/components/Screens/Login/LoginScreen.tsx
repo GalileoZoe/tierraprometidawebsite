@@ -3,7 +3,7 @@ import { useLogin } from '../../../hooks/useLogin';
 import '../../../App.css';
 import { FaSign, FaSignInAlt } from 'react-icons/fa';
 
-const ActivityIndicator: React.FC<{ style?: React.CSSProperties, size?: number, color?: string }> = ({ style, size = 50, color = "black" }) => (
+const ActivityIndicator: React.FC<{ style?: React.CSSProperties, size?: number, color?: string }> = ({ style, size = 50, color = 'black' }) => (
     <div style={{ ...style, width: size, height: size, backgroundColor: color, borderRadius: '50%', opacity: 0.6 }} />
 );
 
@@ -18,16 +18,16 @@ export const LoginScreen: React.FC = () => {
 
     return (
         <section className='section'>
-              <div className="item">
-        <img className="img" src={require('../../../assets/logo-09.png')} />
+              <div className='item'>
+        <img className='img' src={require('../../../assets/logo-09.png')} />
         <p>24 horas</p>
         <br />
       </div>
 <br />
 
       <p className='title' >Iniciar Sesión</p>
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        { typeof request === "boolean" && !request && (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        { typeof request === 'boolean' && !request && (
     <p className='texts'>
         {'Contraseña incorrecta '}
         <br />
@@ -42,7 +42,7 @@ export const LoginScreen: React.FC = () => {
                     value={state.email}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder='Correo Electrónico'
-                    type="email"
+                    type='email'
                     disabled={loading}
                     required
                 />
@@ -52,7 +52,7 @@ export const LoginScreen: React.FC = () => {
                     value={state.password}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                     placeholder='Contraseña'
-                    type="password"
+                    type='password'
                     disabled={loading}
                     required
                 />

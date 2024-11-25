@@ -1,5 +1,5 @@
-import { AuthState } from "./AuthContext";
-import { Input } from "../hooks/useFormHookContext";
+import { AuthState } from './AuthContext';
+import { Input } from '../hooks/useFormHookContext';
 
 type AuthAction = 
     | { type: 'signIn' }                // Corregido de 'singIn' a 'signIn'
@@ -15,25 +15,25 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
                 ...state,
                 formData: action.payload,
             };
-        case "signIn":                      // Corregido de 'singIn' a 'signIn'
+        case 'signIn':                      // Corregido de 'singIn' a 'signIn'
             return {
                 ...state,
                 isLoggenIn: true,          // Corregido de 'isLoggenIn' a 'isLoggenIn'
-                username: "no_name_user_yet", // Cambiar si es necesario en tu lógica
+                username: 'no_name_user_yet', // Cambiar si es necesario en tu lógica
             };
-        case "logout":
+        case 'logout':
             return {
                 ...state,
                 isLoggenIn: false,         // Corregido de 'isLoggenIn' a 'isLoggenIn'
                 username: undefined,
                 favoriteImage: undefined,
             };
-        case "changeFavImage":
+        case 'changeFavImage':
             return {
                 ...state,
                 favoriteImage: action.payload,
             };
-        case "changeUserName":
+        case 'changeUserName':
             return {
                 ...state,
                 username: action.payload,

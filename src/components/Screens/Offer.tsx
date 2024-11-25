@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import '../../App.css';
-import { useTheme } from "../../context/ThemeContext";
+import { useTheme } from '../../context/ThemeContext';
 
 export const Offer=()=>{
 

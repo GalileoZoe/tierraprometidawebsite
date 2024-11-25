@@ -25,8 +25,8 @@ const StudentsFormFile: React.FC<StudentsFormFileProps> = ({ studentId, onClose 
         <div>
             <h2>Subir Archivo para el Estudiante {studentId}</h2>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Subir Archivo</button>
+                <input type='file' onChange={handleFileChange} />
+                <button type='submit'>Subir Archivo</button>
             </form>
             <button onClick={onClose}>Cerrar</button>
         </div>

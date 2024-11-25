@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import { useTheme } from "../../context/ThemeContext";
-import { FaInfoCircle } from "react-icons/fa";
-import { useFeed } from "../../context/FeedContext";
+import { useTheme } from '../../context/ThemeContext';
+import { FaInfoCircle } from 'react-icons/fa';
+import { useFeed } from '../../context/FeedContext';
 
 export const About = () => {
     const { theme } = useTheme();
@@ -29,9 +29,9 @@ export const About = () => {
         <section className='section'>
             <div className='about-header'>
 
-                <h1 className="title">Nosotros</h1>
+                <h1 className='title'>Nosotros</h1>
 
-    <img className="img" src={require('../../assets/logo-09.png')} />
+    <img className='img' src={require('../../assets/logo-09.png')} />
     <p className='item'>24 horas</p>
               
             </div>

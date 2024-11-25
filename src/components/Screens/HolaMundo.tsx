@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import '../../App.css';
 
 export const HolaMundo=()=>{
@@ -8,19 +8,19 @@ export const HolaMundo=()=>{
         <section>
             <div>
                 
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
-        <h1 className="title">Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
+        <h1 className='title'>Hola Mundo</h1>
             </div>
         </section>
     )

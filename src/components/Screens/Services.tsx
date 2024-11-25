@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import { useFeed } from "../../context/FeedContext";
-import { useTheme } from "../../context/ThemeContext";
-import { FaAdjust, FaApple, FaAppleAlt, FaBed, FaChess, FaChild, FaCoffee, FaComment, FaDice, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaHome, FaHotel, FaHotTub, FaIgloo, FaLeaf, FaMask, FaMedkit, FaMusic, FaNutritionix, FaPaintBrush, FaPhone, FaRegUser, FaSpa, FaSteam, FaStethoscope, FaUser, FaUserMd, FaUsers, FaWhatsapp } from "react-icons/fa";
-import { Window } from "../Components/Window";
-import { useService } from "../../context/ServiceContext";
+import { useFeed } from '../../context/FeedContext';
+import { useTheme } from '../../context/ThemeContext';
+import { FaAdjust, FaApple, FaAppleAlt, FaBed, FaChess, FaChild, FaCoffee, FaComment, FaDice, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaHome, FaHotel, FaHotTub, FaIgloo, FaLeaf, FaMask, FaMedkit, FaMusic, FaNutritionix, FaPaintBrush, FaPhone, FaRegUser, FaSpa, FaSteam, FaStethoscope, FaUser, FaUserMd, FaUsers, FaWhatsapp } from 'react-icons/fa';
+import { Window } from '../Components/Window';
+import { useService } from '../../context/ServiceContext';
 
 export const Services = () => {
 
@@ -106,7 +106,7 @@ Organizamos sesiones de arte, pintura, música en vivo y excursiones para foment
       <div>
 
         <h1 className={theme===2?'titleRed':'title'}>Servicios</h1>
-        <img className="img" src={require('../../assets/logo-09.png')} />
+        <img className='img' src={require('../../assets/logo-09.png')} />
         <p className='item'>24 horas</p>
 
         {service===0 ? <div>

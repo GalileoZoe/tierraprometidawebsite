@@ -1,7 +1,7 @@
-import { useReducer, useState, useContext } from "react";
-import { tierraprometidaApi } from "../api/tierraprometidaApi";
-import { RequestLogin } from "../interfaces/Login";
-import { AuthContext } from "../context/AuthContext";
+import { useReducer, useState, useContext } from 'react';
+import { tierraprometidaApi } from '../api/tierraprometidaApi';
+import { RequestLogin } from '../interfaces/Login';
+import { AuthContext } from '../context/AuthContext';
 
 export interface LoginData {
     email: string;
@@ -9,8 +9,8 @@ export interface LoginData {
 }
 
 const initialLoginData: LoginData = {
-    password: "",
-    email: "",
+    password: '',
+    email: '',
 };
 
 type Action = { type: 'handleInputChange', payload: { fieldName: keyof LoginData, value: string } };
@@ -34,7 +34,7 @@ export const useLogin = () => {
     const { singIn, changeUserName, changeFavImage } = useContext(AuthContext);
 
     const handleInputChange = (fieldName: keyof LoginData, value: string) => {
-        dispatch({ type: "handleInputChange", payload: { fieldName, value } });
+        dispatch({ type: 'handleInputChange', payload: { fieldName, value } });
     };
 
     const handleLogin = async () => {
@@ -58,7 +58,7 @@ export const useLogin = () => {
                 setRequest(null);
             }
         } catch (error) {
-            console.error("No se recibieron los parámetros solicitados:", error);
+            console.error('No se recibieron los parámetros solicitados:', error);
             setRequest(null);
         } finally {
             setLoading(false);

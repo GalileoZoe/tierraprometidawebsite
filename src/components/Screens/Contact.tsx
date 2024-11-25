@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import { useFeed } from "../../context/FeedContext";
-import { useTheme } from "../../context/ThemeContext";
-import {  FaCode,  FaComment,  FaEnvelope, FaFacebook,  FaMapPin,FaPhone,  FaTiktok, FaWhatsapp } from "react-icons/fa";
+import { useFeed } from '../../context/FeedContext';
+import { useTheme } from '../../context/ThemeContext';
+import {  FaCode,  FaComment,  FaEnvelope, FaFacebook,  FaMapPin,FaPhone,  FaTiktok, FaWhatsapp } from 'react-icons/fa';
 
 export const Contact = () => {
 
@@ -43,8 +43,8 @@ export const Contact = () => {
 
 
    
-        <div className="item">
-        <img className="img" src={require('../../assets/logo-09.png')} />
+        <div className='item'>
+        <img className='img' src={require('../../assets/logo-09.png')} />
         <p>24 horas</p>
       </div>
 

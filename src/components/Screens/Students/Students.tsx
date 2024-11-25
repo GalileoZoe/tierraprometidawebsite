@@ -20,7 +20,7 @@ export const Students: React.FC = () => {
     const {feed, changeFeed}=useFeed();
 
     const handleDelete = (student: Student) => {
-        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este estudiante?");
+        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
         if (confirmDelete) {
             deleteStudent(student);
         }
@@ -83,13 +83,13 @@ export const Students: React.FC = () => {
     }
 
     return (
-        <section className="section">
+        <section className='section'>
             <div>
-                <h1 className="title">Usuarios</h1>
-                <FaUser className="icon" />
+                <h1 className='title'>Usuarios</h1>
+                <FaUser className='icon' />
                 <br />
 
-                <a onClick={handleCreate} className="button" style={{float:'right'}} >
+                <a onClick={handleCreate} className='button' style={{float:'right'}} >
                     <FaUser style={{ marginLeft: 10 }} />
                     <FaPlus style={{ marginRight: 10 }} />
                 </a>
@@ -101,8 +101,8 @@ export const Students: React.FC = () => {
                 {isLoading ? (
                     <p>Cargando...</p>
                 ) : (
-                    <div className="tablemargin">
-                        <table className="table" style={{textAlign:'center'}}>
+                    <div className='tablemargin'>
+                        <table className='table' style={{textAlign:'center'}}>
                             <thead>
                                 <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
                                     <th className='tableheader' >No.</th>
@@ -133,7 +133,7 @@ export const Students: React.FC = () => {
                                                     document={<PDFDocument student={student} />}
                                                     fileName={`${student.name}_${student.lastname}.pdf`}
                                                 >
-                                                    <FaFilePdf className="icon" />
+                                                    <FaFilePdf className='icon' />
                                                 </PDFDownloadLink>
                                             </td>
                                             <td  className={theme===0?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
@@ -163,17 +163,17 @@ export const Students: React.FC = () => {
                                             {(() => {
             switch (student.drug) {
                 case 'Cannabis':
-                    return <FaCannabis title="Cannabis" className='icon' />;
+                    return <FaCannabis title='Cannabis' className='icon' />;
                 case 'Alcohol':
-                    return <FaWineBottle title="Alcohol" className='icon' />;
+                    return <FaWineBottle title='Alcohol' className='icon' />;
                 case 'Metanfetamina':
-                    return <FaCube title="Metanfetamina" className='icon' />;
+                    return <FaCube title='Metanfetamina' className='icon' />;
                 case 'Heroína':
-                    return <FaSyringe title="Heroína" className='icon' />;
+                    return <FaSyringe title='Heroína' className='icon' />;
                 case 'Cocaína':
-                    return <FaSnowflake title="Cocaína" className='icon' />;
+                    return <FaSnowflake title='Cocaína' className='icon' />;
                 case 'Anfetaminas':
-                    return <FaPills title="Anfetaminas" className='icon' />;
+                    return <FaPills title='Anfetaminas' className='icon' />;
             }
         })()} 
 
@@ -181,14 +181,14 @@ export const Students: React.FC = () => {
                                             </td>
                                             <td  className={theme===0?'texts':'textblack'} title='Estigma' >{student.stigma}</td>
                                             <td  className={theme===0?'texts':'textblack'} title={`Responsable de ${student.name}`} >{student.tutor}</td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaMap title={student.address} className="icon" /></td>
-                                            <td  className={theme===0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className="icon" /></a></td>
+                                            <td  className={theme===0?'texts':'textblack'} ><FaMap title={student.address} className='icon' /></td>
+                                            <td  className={theme===0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className='icon' /></a></td>
                                             <td  className={theme===0?'texts':'textblack'} >{student.startdate}</td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className="icon" /></td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className="icon" /></td>
+                                            <td  className={theme===0?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className='icon' /></td>
+                                            <td  className={theme===0?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className='icon' /></td>
                                             <td  className={theme===0?'texts':'textblack'} >
                                                 {/* Agregar el ícono para mostrar archivos */}
-                                                <FaFileMedicalAlt className="icon"/>
+                                                <FaFileMedicalAlt className='icon'/>
                                             </td>
                                             <td  className={theme===0?'texts':'textblack'} >
                                                 <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />

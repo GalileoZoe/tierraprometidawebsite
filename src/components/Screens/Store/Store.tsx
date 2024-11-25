@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import '../../../App.css';
 
 
@@ -8,7 +8,7 @@ export const Store =()=>{
     return(
 
 
-            <section className="section">
+            <section className='section'>
             
             
             <h1 className='title'>Tienda</h1>

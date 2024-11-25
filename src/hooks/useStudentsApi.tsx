@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { tierraprometidaApi } from "../api/tierraprometidaApi";
-import { Student } from "../interfaces/Students";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import { tierraprometidaApi } from '../api/tierraprometidaApi';
+import { Student } from '../interfaces/Students';
+import axios from 'axios';
 
 export const useStudentsApi = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,7 +15,7 @@ export const useStudentsApi = () => {
             const response = await tierraprometidaApi.get<Student[]>(apiUrl);
             setListStudents(response.data);
         } catch (error) {
-            console.error("Error loading students:", error);
+            console.error('Error loading students:', error);
         } finally {
             setIsLoading(false);
         }
@@ -29,9 +29,9 @@ export const useStudentsApi = () => {
             loadStudents();
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.error("Error creating student:", error.response?.data);
+                console.error('Error creating student:', error.response?.data);
             } else {
-                console.error("Error creating student:", error);
+                console.error('Error creating student:', error);
             }
         }
     };
@@ -43,7 +43,7 @@ export const useStudentsApi = () => {
             // Aquí también podrías manejar la carga de archivos si es necesario
             loadStudents(); // Recargar la lista después de actualizar
         } catch (error) {
-            console.error("Error updating student:", error);
+            console.error('Error updating student:', error);
         }
     };
 
@@ -53,7 +53,7 @@ export const useStudentsApi = () => {
             await tierraprometidaApi.delete(`${apiUrl}/${data._id}`);
             loadStudents(); // Recargar la lista después de eliminar
         } catch (error) {
-            console.error("Error deleting student:", error);
+            console.error('Error deleting student:', error);
         }
     };
 

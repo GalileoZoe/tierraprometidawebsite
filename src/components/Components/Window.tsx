@@ -51,10 +51,10 @@ export const Window: React.FC<WindowProps> = ({ action, button, href, tittle, de
         <FaWindowClose className='icon' style={{float:'right', paddingRight:'20px'}} onClick={() => changeService(0)} />
         <h1 onClick={() => changeService(0)} className='title'>{tittle}</h1>
        <Icons/>
-        <p className="paragraph">
+        <p className='paragraph'>
           {description}
         </p>
-        <a href={href} onClick={action} className="icon"> <FaInfo/>
+        <a href={href} onClick={action} className='icon'> <FaInfo/>
         <br />
          {button}</a>
         <br />

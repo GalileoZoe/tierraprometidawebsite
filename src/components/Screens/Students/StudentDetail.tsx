@@ -15,7 +15,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
     return (
         <section style={styles.section}>
             <div style={styles.modal}>
-                <p className="texts" style={{ marginTop: -20 }} >Usuario</p>
+                <p className='texts' style={{ marginTop: -20 }} >Usuario</p>
 
                 <div style={{display:'flex', gap:140}}>
                     <p className='texts' title='Ingreso' >{student.startdate}</p>
@@ -29,7 +29,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                     <h2 > {student.age}</h2>
                   
 
-                    <a href="">                 {(() => {
+                    <a>                 {(() => {
                         switch (student.status) {
                             case 'Baja':
                                 return <td title='Baja'> <FaAngleDown className='textred' /> </td>;
@@ -46,7 +46,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
 
                 </div>
 
-                <p className="texts" style={{ marginTop: -20 }} >Historial Clínico</p>
+                <p className='texts' style={{ marginTop: -20 }} >Historial Clínico</p>
 
                 <div style={styles.infoRow}>
                    
@@ -56,9 +56,9 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                 <div style={styles.infoRow}>
                 <p>
             {student.gender === 'Masculino' ? 
-                <FaMale title={student.gender} className="icon" />
+                <FaMale title={student.gender} className='icon' />
              : 
-                <FaFemale title={student.gender} className="icon" />
+                <FaFemale title={student.gender} className='icon' />
             }
         </p>
         <p>
@@ -66,17 +66,17 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                         {(() => {
             switch (student.drug) {
                 case 'Cannabis':
-                    return <FaCannabis title="Cannabis" className='icon' />;
+                    return <FaCannabis title='Cannabis' className='icon' />;
                 case 'Alcohol':
-                    return <FaWineBottle title="Alcohol" className='icon' />;
+                    return <FaWineBottle title='Alcohol' className='icon' />;
                 case 'Metanfetamina':
-                    return <FaCube title="Metanfetamina" className='icon' />;
+                    return <FaCube title='Metanfetamina' className='icon' />;
                 case 'Heroína':
-                    return <FaSyringe title="Heroína" className='icon' />;
+                    return <FaSyringe title='Heroína' className='icon' />;
                 case 'Cocaína':
-                    return <FaSnowflake title="Cocaína" className='icon' />;
+                    return <FaSnowflake title='Cocaína' className='icon' />;
                 case 'Anfetaminas':
-                    return <FaPills title="Anfetaminas" className='icon' />;
+                    return <FaPills title='Anfetaminas' className='icon' />;
             }
         })()}                
                          </p>
@@ -88,7 +88,7 @@ export const StudentDetail: React.FC<StudentDetailProps> = ({ student, onClose }
                 <p><FaClipboard title='Descripción' className='icon' /> {student.description} </p>
                 <p>{student.description} </p>
 
-                <p className="texts">Responsable</p>
+                <p className='texts'>Responsable</p>
                 <div style={styles.infoBlock}>
                     <p><strong className='icon' >Responsable:</strong> {student.tutor}</p>
                     <p><strong className='icon' >Dirección:</strong>  {student.address}</p>

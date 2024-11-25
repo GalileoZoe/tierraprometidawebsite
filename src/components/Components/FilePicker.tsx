@@ -10,7 +10,7 @@ export const FilePicker: React.FC = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
+      <input type='file' onChange={handleFileChange} />
       {selectedFile && <p>Archivo seleccionado: {selectedFile.name}</p>}
     </div>
   );

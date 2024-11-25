@@ -25,14 +25,14 @@ export const NavBar: React.FC = () => {
   const setTheme = (themeIndex: number) => () => changeTheme(themeIndex);
 
   return (
-    <nav className="navbar">
-      <div className="navbarlogo">
+    <nav className='navbar'>
+      <div className='navbarlogo'>
         <img
           src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
-          alt="Logo"
+          alt='Logo'
         />
       </div>
-      <ul className="navbaritems">
+      <ul className='navbaritems'>
       {feed===1?null:  <li>
           <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}

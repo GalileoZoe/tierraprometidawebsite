@@ -83,7 +83,7 @@ export const Feed: React.FC = () => {
           />
           <p className='item fade-in-element' style={{ color: '#fff' }}>24 horas</p>
 
-          <p className='text fade-in-element' style={{ color: '#fff' }}>" La Semilla Eres Tú "</p>
+          <p className='text fade-in-element' style={{ color: '#fff' }}>' La Semilla Eres Tú '</p>
 
           <div className='center fade-in-element'>
             <img

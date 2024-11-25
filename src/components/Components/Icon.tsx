@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import '../../App.css';
 
 interface IconProps {
@@ -14,7 +14,7 @@ export const Icon: React.FC<IconProps> = ({ alt,href, onClick, src }) => {
     return (
 
         <a href={href} onClick={onClick}>
-            {img ? <img className="icon" alt={alt} src={img} /> : <p className="button">{alt}</p> }
+            {img ? <img className='icon' alt={alt} src={img} /> : <p className='button'>{alt}</p> }
         </a>
     );
 };

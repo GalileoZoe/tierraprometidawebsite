@@ -33,16 +33,16 @@ export const StudentsFormReport: React.FC<StudentsFormReportProps> = ({ student,
             <textarea
                 value={reportText}
                 onChange={(e) => setReportText(e.target.value)}
-                placeholder="Escribe el reporte aquí..."
+                placeholder='Escribe el reporte aquí...'
             />
             <input
-                type="text"
+                type='text'
                 value={author}
                 onChange={(e) => setAuthor(e.target.value)}
-                placeholder="Autor del reporte"
+                placeholder='Autor del reporte'
             />
             <input
-                type="date"
+                type='date'
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
             />

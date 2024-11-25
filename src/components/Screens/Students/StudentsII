@@ -16,7 +16,7 @@ export const Students: React.FC = () => {
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
 
     const handleDelete = (student: Student) => {
-        const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este estudiante?");
+        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
         if (confirmDelete) {
             deleteStudent(student);
         }

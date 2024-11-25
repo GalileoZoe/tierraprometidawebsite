@@ -75,15 +75,10 @@ const StudentsFiles: React.FC<StudentsFilesProps> = ({ files, student,onClose })
         textAlign: 'center',
     };
 
-    const iconStyle: React.CSSProperties = {
-        fontSize: '40px', // Tamaño grande para los iconos
-        color: '#555',
-    };
-
     return (
-        <section className="section">
+        <section className='section'>
                         <h2 className='title' >Archivos de {student.name} {student.lastname}</h2>
-                        <FaArrowLeft onClick={onClose} className="button" style={{float:'left'}} />
+                        <FaArrowLeft onClick={onClose} className='button' style={{float:'left'}} />
                         <br />
                         <br />
         <div style={directoryStyle}>

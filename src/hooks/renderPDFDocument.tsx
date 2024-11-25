@@ -5,7 +5,7 @@ import { Student } from '../interfaces/Students';
 // Función que crea el documento PDF con la información del estudiante
 const renderPDFDocument = (student: Student) => (
     <Document>
-        <Page size="A4" style={styles.page}>
+        <Page size='A4' style={styles.page}>
             <View style={styles.section}>
                 <Text style={styles.title}>Expediente del Estudiante</Text>
                 <Text>Nombre: {student.name}</Text>
