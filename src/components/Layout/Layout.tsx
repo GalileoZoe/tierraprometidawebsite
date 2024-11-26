@@ -47,6 +47,6 @@ export const Layout: React.FC = () => {
         case 11:
             return <Help />;
         default:
-            return <section>Página Web No Disponible</section>;
+            return <section> <a href="https://wa.me/7221427901" onClick={()=>changeFeed(1)}>Página Web No Disponiblea </a></section>;
     }
 };

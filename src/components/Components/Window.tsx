@@ -1,4 +1,3 @@
-import { title } from 'process'
 import React from 'react'
 import { useService } from '../../context/ServiceContext'
 import { FaAppleAlt,  FaFutbol, FaHeart, FaInfo, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
