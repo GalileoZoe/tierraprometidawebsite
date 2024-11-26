@@ -76,7 +76,7 @@ export const Feed: React.FC = () => {
 
         <br />
 
-        <a onClick={() => changeFeed(6)}>
+        <a onClick={()=>changeFeed(6)}>
           <img
             src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
             alt='Logo Tierra Prometida'

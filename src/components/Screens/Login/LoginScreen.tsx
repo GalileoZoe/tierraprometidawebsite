@@ -1,42 +1,39 @@
 import React from 'react';
 import { useLogin } from '../../../hooks/useLogin';
 import '../../../App.css';
-import { FaSign, FaSignInAlt } from 'react-icons/fa';
+import { FaSignInAlt } from 'react-icons/fa';
 
-const ActivityIndicator: React.FC<{ style?: React.CSSProperties, size?: number, color?: string }> = ({ style, size = 50, color = 'black' }) => (
-    <div style={{ ...style, width: size, height: size, backgroundColor: color, borderRadius: '50%', opacity: 0.6 }} />
-);
 
 export const LoginScreen: React.FC = () => {
-    const { 
-        loading, 
-        state, 
-        handleInputChange, 
+    const {
+        loading,
+        state,
+        handleInputChange,
         handleLogin,
-        request 
+        request
     } = useLogin();
 
     return (
         <section className='section'>
-              <div className='item'>
-        <img className='img' src={require('../../../assets/logo-09.png')} />
-        <p>24 horas</p>
-        <br />
-      </div>
-<br />
+            <div className='item'>
+                <img className='img' src={require('../../../assets/logo-09.png')} />
+                <p>24 horas</p>
+                <br />
+            </div>
+            <br />
 
-      <p className='title' >Iniciar Sesión</p>
+            <p className='title' >Iniciar Sesión</p>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        { typeof request === 'boolean' && !request && (
-    <p className='texts'>
-        {'Contraseña incorrecta '}
-        <br />
-        {'Envío de datos faltantes'}
-    </p>
-)}
+                {typeof request === 'boolean' && !request && (
+                    <p className='texts'>
+                        {'Contraseña incorrecta '}
+                        <br />
+                        {'Envío de datos faltantes'}
+                    </p>
+                )}
 
-<br />
-<br />
+                <br />
+                <br />
                 <input
                     className='inputredlogin'
                     value={state.email}
@@ -61,9 +58,9 @@ export const LoginScreen: React.FC = () => {
                 <a
                     className='button'
                     onClick={handleLogin} >
-                      
-                        Iniciar Sesión
-                     
+
+                    Iniciar Sesión
+
                 </a>
                 <FaSignInAlt className='icon' />
             </div>

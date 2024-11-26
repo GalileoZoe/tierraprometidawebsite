@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import { useTheme } from '../../context/ThemeContext';
-import { useFeed } from '../../context/FeedContext';
 import { FaInfoCircle } from 'react-icons/fa';
 
 export const About = () => {
-    const { theme } = useTheme();
-    const {feed, changeFeed}=useFeed();
 
     // Estado para manejar el icono actual
     const [iconIndex, setIconIndex] = useState(0);
@@ -31,13 +27,13 @@ export const About = () => {
 
                 <h1 className='title'>Nosotros</h1>
 
-    <img className='img' src={require('../../assets/logo-09.png')} />
-    <p className='item'>24 horas</p>
-              
+                <img className='img' src={require('../../assets/logo-09.png')} />
+                <p className='item'>24 horas</p>
+
             </div>
 
             <div className='image-description'>
-          
+
                 <p className='textblack'>Clínica Profesional de Rehabilitación y Desarrollo Humano.</p>
             </div>
 
@@ -55,15 +51,14 @@ export const About = () => {
                     <p>Breve descripción de los valores.</p>
                 </div>
             </div>
-    <br />
-            {/* <img src={require('../../assets/logo-12.png')} alt='Descripción' className='imgs' /> */}
-           
-              <br />
+            <br />
+
+            <br />
 
             <a className='icon fade-in-element' title='Contacto'>
-                    <FaInfoCircle className='icon' />
-                    <p className='button'>Más Información</p>
-                </a>
+                <FaInfoCircle className='icon' />
+                <p className='button'>Más Información</p>
+            </a>
         </section>
     );
 }

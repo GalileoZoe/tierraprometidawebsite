@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthContext';
 export const Footer: React.FC = () => {
     const { theme, changeTheme } = useTheme();
     const { session, changeSession } = useSession();
-    const { feed, changeFeed } = useFeed();
+    const { changeFeed } = useFeed();
     const { authState, logout } = useContext(AuthContext);
     
     // Estado para manejar la conectividad

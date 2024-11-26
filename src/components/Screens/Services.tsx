@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
-import { FaAdjust, FaApple, FaAppleAlt, FaBed, FaChess, FaChild, FaCoffee, FaComment, FaDice, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaHome, FaHotel, FaHotTub, FaIgloo, FaLeaf, FaMask, FaMedkit, FaMusic, FaNutritionix, FaPaintBrush, FaPhone, FaRegUser, FaSpa, FaSteam, FaStethoscope, FaUser, FaUserMd, FaUsers, FaWhatsapp } from 'react-icons/fa';
+import { FaAppleAlt, FaComment, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaIgloo, FaMusic, FaPaintBrush, FaPhone, FaUser, FaUserMd, FaUsers, FaWhatsapp } from 'react-icons/fa';
 import { Window } from '../Components/Window';
 import { useService } from '../../context/ServiceContext';
 
 export const Services = () => {
 
-  const { feed, changeFeed } = useFeed();
-  const { theme, changeTheme } = useTheme();
+  const { changeFeed } = useFeed();
+  const { theme } = useTheme();
   const { service, changeService } = useService();
 
 

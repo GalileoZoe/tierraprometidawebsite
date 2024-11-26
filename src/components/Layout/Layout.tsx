@@ -15,7 +15,7 @@ import { useSession } from '../../context/SessionContext';
 
 export const Layout: React.FC = () => {
     const { feed, changeFeed } = useFeed();
-    const {session, changeSession}=useSession();
+    const {changeSession}=useSession();
     const { authState } = useContext(AuthContext);
 
     // Verificar autenticación y ajustar feed en consecuencia
