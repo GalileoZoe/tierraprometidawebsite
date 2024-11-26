@@ -15,21 +15,21 @@ import { useSession } from '../../context/SessionContext';
 
 export const Layout: React.FC = () => {
     const { feed, changeFeed } = useFeed();
-    const {changeSession}=useSession();
+    const { changeSession } = useSession();
     const { authState } = useContext(AuthContext);
 
     // Verificar autenticación y ajustar feed en consecuencia
     useEffect(() => {
         if (authState.isLoggenIn) {
-            changeFeed(1)
-            changeSession(1); 
+            changeFeed(1); // Cambiar feed a la pantalla principal
+            changeSession(1); // Cambiar sesión a activa
         }
-    }, [authState.isLoggenIn]);
+    }, [authState.isLoggenIn, changeFeed, changeSession]);
 
     // Renderizado de pantallas basado en feed
     switch (feed) {
         case 20:
-            return <section><h1 onClick={()=>changeFeed(1)}>Layout</h1></section>
+            return <section><h1 onClick={() => changeFeed(1)}>Layout</h1></section>;
         case 0:
             return <LoginScreen />;
         case 1:
@@ -49,6 +49,6 @@ export const Layout: React.FC = () => {
         case 11:
             return <Help />;
         default:
-            return <section> <a href="https://wa.me/7221427901" onClick={()=>changeFeed(1)}>Página Web No Disponiblea </a></section>;
+            return <section><a href="https://wa.me/7221427901" onClick={() => changeFeed(1)}>Página Web No Disponible</a></section>;
     }
 };
