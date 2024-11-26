@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
-import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
-import { FaMap, FaMapPin, FaWhatsapp } from 'react-icons/fa';
+import { FaMap, FaMapPin } from 'react-icons/fa';
 
 export const Location: React.FC = () => {
-  const { feed, changeFeed } = useFeed();
-  const { theme, changeTheme } = useTheme();
+  const { theme } = useTheme();
 
 
-
-  // Estado para manejar el icono actual
   const [iconIndex, setIconIndex] = useState(0);
 
-  // Array de íconos
   const icons = [
     <FaMap className='icon' />,
     <FaMapPin className='icon' />,
@@ -31,14 +26,8 @@ export const Location: React.FC = () => {
 
   return (
     <div className='section'>
-      {/* <a onClick={() => changeFeed(1)}>
-                <h1 className={theme === 2 ? 'titleRed' : 'title'}>Tierra Prometida</h1>
-            </a> */}
-
-
 
       <h1 className={theme===2 ? 'titleRed' : 'title'}>Ubicación</h1>
-
 
       <div className='item'>
         <img className='img' src={require('../../assets/logo-09.png')} />
@@ -51,8 +40,6 @@ export const Location: React.FC = () => {
           className='map fade-in-element'
         ></iframe>
       </div>
-
-
 
       <div>
         <p className='paragraph fade-in-element' >Calle Guadalupe Victoria 13, Dolores, 52010 Colonia Álvaro Obregón Tlalmimilolpan, México.</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Student } from '../../../interfaces/Students';
-import { FaPhone, FaMap, FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale, FaAlignLeft, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaTimes, FaTint, FaVirus, FaAllergies, FaClipboard, FaCube, FaLightbulb, FaPills } from 'react-icons/fa';
+import { FaCannabis, FaWineBottle, FaSnowflake, FaSyringe, FaFemale, FaMale,  FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaTimes, FaTint, FaVirus, FaAllergies, FaClipboard, FaCube,FaPills } from 'react-icons/fa';
 import '../../../App.css'
 
 

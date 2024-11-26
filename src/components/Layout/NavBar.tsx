@@ -6,23 +6,8 @@ import { useSession } from '../../context/SessionContext';
 
 export const NavBar: React.FC = () => {
   const { feed, changeFeed } = useFeed();
-  const {session, changeSession}= useSession();
-  const { theme, changeTheme } = useTheme();
-
-  const AppTheme = () => {
-    switch (theme) {
-      case 0:
-        return 'Tema Claro';
-      case 1:
-        return 'Tema Rojo';
-      case 2:
-        return 'Tema Oscuro';
-      default:
-        return 'App';
-    }
-  };
-
-  const setTheme = (themeIndex: number) => () => changeTheme(themeIndex);
+  const {session}= useSession();
+  const { theme } = useTheme();
 
   return (
     <nav className='navbar'>
@@ -92,11 +77,6 @@ export const NavBar: React.FC = () => {
             Ayuda
           </a>
         </li>
-        {/* <li>
-        <li className={theme === 2 ? 'navbaritemred' : 'navbaritem'} onClick={()=>{theme1?changeTheme(0):changeTheme(1)}} ><FaStore className='icon'/></li>
-        
-        </li> */}
-
     
       </ul>
     </nav>

@@ -4,7 +4,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { FaPhone, FaFacebook, FaWhatsapp, FaComment, FaEnvelope } from 'react-icons/fa';
 
 export const Feed: React.FC = () => {
-  const { feed, changeFeed } = useFeed();
+  const { changeFeed } = useFeed();
   const { theme } = useTheme();
 
   // Estado para manejar el icono actual

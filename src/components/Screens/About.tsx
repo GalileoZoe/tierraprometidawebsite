@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import { useTheme } from '../../context/ThemeContext';
-import { FaInfoCircle } from 'react-icons/fa';
 import { useFeed } from '../../context/FeedContext';
+import { FaInfoCircle } from 'react-icons/fa';
 
 export const About = () => {
     const { theme } = useTheme();
