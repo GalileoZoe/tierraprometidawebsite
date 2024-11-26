@@ -27,10 +27,10 @@ const Apps = () => {
 
   return (
     <div className={AppTheme()}>
-      <header className='App-header'>
+      <header className="App-header">
         <NavBar />
-        <main className='main-content'>
-          <div className='body'>
+        <main className="main-content">
+          <div className="body">
             <Layout />
           </div>
         </main>

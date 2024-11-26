@@ -16,7 +16,6 @@ const StudentsFormFile: React.FC<StudentsFormFileProps> = ({ studentId, onClose 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (file) {
-            // Lógica para enviar el archivo
             console.log(`Subiendo archivo para el estudiante con ID: ${studentId}`);
         }
     };

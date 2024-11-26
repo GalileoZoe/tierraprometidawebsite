@@ -3,11 +3,11 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaClinicMedical, FaFemale, FaMale, FaMap, FaPhone, FaSignOutAlt, FaFileAlt, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaBed, FaHome, FaDoorOpen, FaExternalLinkAlt, FaRegPlusSquare, FaTimesCircle, FaDoorClosed, FaPhoneAlt } from 'react-icons/fa';
+import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaMap, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaHome, FaDoorOpen, FaPhoneAlt } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 import { StudentDetail } from './StudentDetail';
-import StudentsFiles from './StudentsFiles'; // Importa el componente para mostrar archivos
+import StudentsFiles from './StudentsFiles'; 
 import { useFeed } from '../../../context/FeedContext';
 
 export const Students: React.FC = () => {
@@ -17,7 +17,7 @@ export const Students: React.FC = () => {
     const [isCreating, setIsCreating] = useState<boolean>(false); // Estado para crear nuevo estudiante
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
     const [selectedFiles, setSelectedFiles] = useState<Student | null>(null); // Estado para mostrar archivos
-    const {feed, changeFeed}=useFeed();
+    const { changeFeed}=useFeed();
 
     const handleDelete = (student: Student) => {
         const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
