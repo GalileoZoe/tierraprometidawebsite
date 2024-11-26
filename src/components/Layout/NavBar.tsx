@@ -19,63 +19,63 @@ export const NavBar: React.FC = () => {
       </div>
       <ul className='navbaritems'>
       {feed===1?null:  <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(1)}
           >
             Inicio
-          </a>
+          </button>
         </li>}
         <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(2)}
           >
             Nosotros
-          </a>
+          </button>
         </li>
         <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(3)}
           >
             Servicios
-          </a>
+          </button>
         </li>
         {session===1?
           <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(7)}
           >
             Usuarios
-          </a>
+          </button>
         </li>:null}
         <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(5)}
           >
             Ubicación
-          </a>
+          </button>
         </li>
         
         <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={() => changeFeed(6)}
           >
             Contacto
-          </a>
+          </button>
         </li>
         
         <li>
-          <a
+          <button
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
             onClick={()=>changeFeed(11)}
           >
             Ayuda
-          </a>
+          </button>
         </li>
     
       </ul>
