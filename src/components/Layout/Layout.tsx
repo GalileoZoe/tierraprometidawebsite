@@ -28,6 +28,8 @@ export const Layout: React.FC = () => {
 
     // Renderizado de pantallas basado en feed
     switch (feed) {
+        case 20:
+            return <section><h1 onClick={()=>changeFeed(1)}>Layout</h1></section>
         case 0:
             return <LoginScreen />;
         case 1:
