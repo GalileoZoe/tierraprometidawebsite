@@ -105,6 +105,11 @@ Organizamos sesiones de arte, pintura, música en vivo y excursiones para foment
 
       <div>
 
+        
+      <h1 className='title fade-in-element' style={{color:'transparent'}} >
+       Servicios | Centro de Rehabilitación | Tierra Prometida
+        </h1>
+
         <h1 className={theme===2?'titleRed':'title'}>Servicios</h1>
         <img className='img' src={require('../../assets/logo-09.png')} />
         <p className='item'>24 horas</p>

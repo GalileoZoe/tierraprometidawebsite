@@ -8,7 +8,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<number>(1);
+  const [theme, setTheme] = useState<number>(0);
 
   const changeTheme = (newTheme: number) => {
     if ([0, 1, 2].includes(newTheme)) {

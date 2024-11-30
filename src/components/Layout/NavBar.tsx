@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
@@ -6,78 +6,107 @@ import { useSession } from '../../context/SessionContext';
 
 export const NavBar: React.FC = () => {
   const { feed, changeFeed } = useFeed();
-  const {session}= useSession();
+  const { session } = useSession();
   const { theme } = useTheme();
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
   return (
-    <nav className='navbar'>
+    <nav className={theme===0 || feed===1?'navbartransparent':'navbar'}>
       <div className='navbarlogo'>
+        <a onClick={()=>changeFeed(1)} >
         <img
           src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
           alt='Logo'
         />
+        </a>
       </div>
-      <ul className='navbaritems'>
-      {feed===1?null:  <li>
-          <button
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(1)}
-          >
-            Inicio
-          </button>
-        </li>}
+      <button className='hamburger' onClick={toggleMenu} aria-label="Toggle menu">
+        ☰
+      </button>
+      <ul className={`navbaritems ${theme === 0 ? '' : 'navbaritemswhite'} ${isMenuOpen ? 'show' : ''}`}>
+        {feed !== 1 && (
+          <li>
+            <a
+              className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
+              onClick={() => {
+                changeFeed(1);
+                setMenuOpen(false);
+              }}
+            >
+              Inicio
+            </a>
+          </li>
+        )}
         <li>
-          <button
+          <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(2)}
+            onClick={() => {
+              changeFeed(2);
+              setMenuOpen(false);
+            }}
           >
             Nosotros
-          </button>
+          </a>
         </li>
         <li>
-          <button
+          <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(3)}
+            onClick={() => {
+              changeFeed(3);
+              setMenuOpen(false);
+            }}
           >
             Servicios
-          </button>
+          </a>
         </li>
-        {session===1?
+        {session === 1 && (
           <li>
-          <button
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(7)}
-          >
-            Usuarios
-          </button>
-        </li>:null}
+            <a
+              className={theme ===2 ? 'navbaritemred' : 'navbaritem'}
+              onClick={() => {
+                changeFeed(7);
+                setMenuOpen(false);
+              }}
+            >
+              Usuarios
+            </a>
+          </li>
+        )}
         <li>
-          <button
+          <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(5)}
+            onClick={() => {
+              changeFeed(5);
+              setMenuOpen(false);
+            }}
           >
             Ubicación
-          </button>
+          </a>
         </li>
-        
         <li>
-          <button
+          <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={() => changeFeed(6)}
+            onClick={() => {
+              changeFeed(6);
+              setMenuOpen(false);
+            }}
           >
             Contacto
-          </button>
+          </a>
         </li>
-        
         <li>
-          <button
+          <a
             className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            onClick={()=>changeFeed(11)}
+            onClick={() => {
+              changeFeed(11);
+              setMenuOpen(false);
+            }}
           >
             Ayuda
-          </button>
+          </a>
         </li>
-    
       </ul>
     </nav>
   );

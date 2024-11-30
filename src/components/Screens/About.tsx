@@ -25,6 +25,10 @@ export const About = () => {
         <section className='section'>
             <div className='about-header'>
 
+            <h1 className='title fade-in-element' style={{color:'transparent'}} >
+        Información | Centro de Rehabilitación | Tierra Prometida
+        </h1>
+
                 <h1 className='title'>Nosotros</h1>
 
                 <img className='img' src={require('../../assets/logo-09.png')} />
@@ -40,22 +44,23 @@ export const About = () => {
             <div className='cards-container'>
                 <div className='card'>
                     <h2>Misión</h2>
-                    <p>Breve descripción de la misión.</p>
+                    <p>Brindar atención profesional personalizada para la prevención y tratamiento de adicciones.</p>
                 </div>
                 <div className='card'>
                     <h2>Visión</h2>
-                    <p>Breve descripción de la visión.</p>
+                    <p>Ser una clínica líder en la prevención y liberación de adicciones,
+                         transformando vidas y reintegrando familias.</p>
                 </div>
                 <div className='card'>
                     <h2>Valores</h2>
-                    <p>Breve descripción de los valores.</p>
+                    <p>Respeto, Amor, Recuperación, Compañerismo, Salud, Humildad, Resiliencia, Disciplina.</p>
                 </div>
             </div>
             <br />
 
             <br />
 
-            <a className='icon fade-in-element' title='Contacto'>
+            <a href='https://wa.me/529624304734' className='icon fade-in-element' title='Contacto'>
                 <FaInfoCircle className='icon' />
                 <p className='button'>Más Información</p>
             </a>

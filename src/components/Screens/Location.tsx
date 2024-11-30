@@ -27,6 +27,11 @@ export const Location: React.FC = () => {
   return (
     <div className='section'>
 
+      
+<h1 className='title fade-in-element' style={{color:'transparent'}} >
+       Ubicación | Centro de Rehabilitación | Tierra Prometida
+        </h1>
+
       <h1 className={theme===2 ? 'titleRed' : 'title'}>Ubicación</h1>
 
       <div className='item'>

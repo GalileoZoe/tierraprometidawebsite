@@ -55,7 +55,9 @@ export const Feed: React.FC = () => {
         textAlign: 'center', // Alinea el texto horizontalmente
       }}
     >
-      {/* Capa de superposición con opacidad */}
+      
+
+
       <div
         style={{
           position: 'absolute',
@@ -71,13 +73,14 @@ export const Feed: React.FC = () => {
       {/* Contenido principal */}
       <div style={{ position: 'relative', zIndex: 2 }}>
         <h1 className='title fade-in-element' style={{color:'transparent'}} >
-          Tierra Prometida
+         Centro de Rehabilitación | Tierra Prometida
         </h1>
 
         <br />
 
         <a onClick={()=>changeFeed(6)}>
           <img
+            className='logotype'
             src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
             alt='Logo Tierra Prometida'
           />
@@ -92,7 +95,7 @@ export const Feed: React.FC = () => {
               alt='Logo Tierra Prometida'
             />
 
-            <p className='paragraph' style={{ color: '#fff' }}>Previniendo y liberando adicciones</p>
+            <h2 className='paragraph' style={{ color: '#fff' }}>Previniendo y liberando adicciones</h2>
 
             <br />
 

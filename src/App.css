@@ -141,6 +141,37 @@
   transform: scale(1.1);
 }
 
+@media(max-width:700px){
+.button {
+  background-color: #db1313;
+  color: #fff;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 1s ease-in-out;
+}
+
+.button:hover {
+  background-color: #db1313;
+  color: 'transparent';
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+}
 
 
 
@@ -716,6 +747,26 @@
   width: auto;
   height: 5em;
 }
+@media (max-width: 700px) {
+  .logo {
+    width: 2em;
+    height: 2em;
+  }
+}
+
+.logotype {
+  width: auto;
+  height: 5em;
+}
+@media (max-width: 700px) {
+  .logotype {
+    width: auto;
+    height: 3em;
+  }
+}
+
+
+
 
 /*  Map  */
 .map {
@@ -955,9 +1006,44 @@
   padding: 1em 0em 1em 0em;
 }
 
+.navbarblack {
+  width: 100%;
+  height: 2em;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1em 0em 1em 0em;
+}
+
+.navbartransparent {
+  width: 100%;
+  height: 2em;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1em 0em 1em 0em;
+}
+
 .navbarlogo img {
   height: 2em;
   padding-left: 10px;
+}
+
+@media(max-width:700px){
+.navbarlogo img {
+  height: 2em;
+  padding-left: 10px;
+}
 }
 
 .navbaritems {
@@ -1012,10 +1098,11 @@
 
 .navbaritemred {
   margin-left: 20px;
-  color: whitesmoke;
+  color: '#db1313';
   text-transform: uppercase;
   cursor: pointer;
   font-size: 1em;
+  background-color:'transparent';
   transition: color 0.3s ease;
 }
 
@@ -1104,3 +1191,151 @@
   text-decoration: none;
   transform: scale(1.1);
 }
+
+
+.navbaritems {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbaritems li a {
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+/* Hamburger menu styles */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #db1313;
+}
+
+/* Responsive styles */
+@media (max-width: 700px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbaritems {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color:#000000d7;
+    border: 1px solid #db1313;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+
+  .navbaritems.show {
+    display: flex;
+  }
+  .navbaritemswhite {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background-color:#ffffffd7;
+    border: 1px solid #db1313;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+
+  .navbaritemswhite.show {
+    display: flex;
+  }
+
+    .slider {
+      display: flex;
+      flex-direction: column;
+      overflow-y:scroll; /* Solo habilita el desplazamiento vertical */
+      overflow-x:hidden; /* Solo habilita el desplazamiento vertical */
+      max-height: 200vh; /* Limita la altura para hacerla desplazable */
+      width: 100%; /* Asegura que ocupe todo el ancho */
+    }
+
+    .cards-container{
+      display: flex;
+      flex-direction: column;
+      overflow-y:scroll; /* Solo habilita el desplazamiento vertical */
+      overflow-x:hidden; /* Solo habilita el desplazamiento vertical */
+      max-height: 200vh; /* Limita la altura para hacerla desplazable */
+      width: 100%; /* Asegura que ocupe todo el ancho */
+      text-align: center;
+      align-items: center;
+    }
+  
+    .item {
+      margin: 10px 0; /* Espaciado entre los íconos */
+      text-align: center;
+      width: 100%; /* Asegura que cada ícono ocupe todo el ancho */
+    }
+
+    .window{
+      width: 300px;
+    }
+
+    .map{
+      width: 300px;
+    }
+    .table {
+      width: 100%;
+      display: block;
+      overflow-x: auto; /* Permite el desplazamiento horizontal */
+      white-space: nowrap; /* Evita que el contenido se envuelva */
+  }
+
+  .table th, .table td {
+      padding: 8px; /* Reducir el espacio de las celdas */
+      font-size: 14px; /* Reducir el tamaño de la fuente */
+  }
+
+  /* Ocultar algunas columnas que no son esenciales en pantallas pequeñas */
+  .table th:nth-child(5), .table td:nth-child(5),
+  .table th:nth-child(7), .table td:nth-child(7),
+  .table th:nth-child(9), .table td:nth-child(9),
+  .table th:nth-child(11), .table td:nth-child(11),
+  .table th:nth-child(12), .table td:nth-child(12),
+  .table th:nth-child(13), .table td:nth-child(13),
+  .table th:nth-child(14), .table td:nth-child(14),
+  .table th:nth-child(15), .table td:nth-child(15) {
+      display: none; /* Ocultar columnas no esenciales */
+  }
+
+  .table th, .table td {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+  }
+
+  /* Ajuste de íconos */
+  .icon {
+      font-size: 16px;
+  }
+
+  .navbar{
+    background-color: whitesmoke;
+  }
+
+  .input-group {
+    flex-direction: row;
+}
+
+.inputred {
+    width: calc(50% - 10px);
+}
+
+  }
+

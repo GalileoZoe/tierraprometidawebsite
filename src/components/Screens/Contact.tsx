@@ -39,8 +39,11 @@ export const Contact = () => {
 
       <div>
 
-        <h1 className={theme===2 ? 'titleRed' : 'title'}>Contacto</h1>
+      <h1 className='title fade-in-element' style={{color:'transparent'}} >
+       Contacto | Centro de Rehabilitación | Tierra Prometida
+        </h1>
 
+        <h1 className={theme===2 ? 'titleRed' : 'title'}>Contacto</h1>
 
    
         <div className='item'>
