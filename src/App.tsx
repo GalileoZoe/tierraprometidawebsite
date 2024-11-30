@@ -15,9 +15,9 @@ const Apps = () => {
   const AppTheme = () => {
     switch (theme) {
       case 0:
-        return 'AppBlack';
-      case 1:
         return 'AppWhite';
+      case 1:
+        return 'AppBlack';
       case 2:
         return 'AppRed';
       default:
