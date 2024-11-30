@@ -25,7 +25,7 @@ export const NavBar: React.FC = () => {
       <button className='hamburger' onClick={toggleMenu} aria-label="Toggle menu">
         ☰
       </button>
-      <ul className={`navbaritems ${theme === 0 ? '' : 'navbaritemswhite'} ${isMenuOpen ? 'show' : ''}`}>
+      <ul className={`navbaritemswhite ${theme === 0 ? '' : 'navbaritems'} ${isMenuOpen ? 'show' : ''}`}>
         {feed !== 1 && (
           <li>
             <a
