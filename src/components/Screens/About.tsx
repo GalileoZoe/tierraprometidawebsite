@@ -60,7 +60,7 @@ export const About = () => {
 
             <br />
 
-            <a href='https://wa.me/529624304734' className='icon fade-in-element' title='Contacto'>
+            <a href='https://wa.me/9624304734' className='icon fade-in-element' title='Contacto'>
                 <FaInfoCircle className='icon' />
                 <p className='button'>Más Información</p>
             </a>
