@@ -58,11 +58,11 @@ export const Contact = () => {
         <ul className='slider'>
 
           <li className='item fade-in-element' title='Llamada' >
-            <a href='tel:+527281136945'><FaPhone className={theme === 2 ? 'iconred' : 'icon'} /></a>
+            <a href='tel:7281136945'><FaPhone className={theme === 2 ? 'iconred' : 'icon'} /></a>
             <p>Teléfono</p>
           </li>
           <li className='item fade-in-element' title='Mensaje' >
-          <a href='sms:+52529624304734'> <FaComment className={theme === 2 ? 'iconred' : 'icon'} /></a> 
+          <a href='sms:529624304734'> <FaComment className={theme === 2 ? 'iconred' : 'icon'} /></a> 
             <p>Mensaje</p>
           </li>
           <li className='item fade-in-element' title='Correo Electrónico' >
