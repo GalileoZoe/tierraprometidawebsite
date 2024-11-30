@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
                     title='Modo Oscuro'
                     onClick={theme ===0 ? () => changeTheme(1) : () => changeTheme(0)}
                 >
-                    {theme === 1 ? <FaToggleOff className='icon' /> : <FaToggleOn className='icon' />}
+                    {theme === 0 ? <FaToggleOff className='icon' /> : <FaToggleOn className='icon' />}
                 </li>
                 <li
                     className={theme === 2 ? 'footeritemred' : 'footeritem'}
