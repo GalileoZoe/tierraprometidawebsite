@@ -51,7 +51,7 @@ export const Location: React.FC = () => {
       </div>
       <a className='icon fade-in-element' title='Contacto' href='https://maps.app.goo.gl/qg6mNeMVLKEW3vDY7'>
         {icons[iconIndex]}
-        <p className='button'>Como Llegar</p>
+        <p className={theme===0?'button':'buttonblack'}>Como Llegar</p>
       </a>
     </div>
   );

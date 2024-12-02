@@ -85,9 +85,16 @@ export const Students: React.FC = () => {
     return (
         <section className='section'>
             <div>
+                <div className='marginvertical'>
+
                 <h1 className='title'>Usuarios</h1>
+
+                </div>
                 <FaUser className='icon' />
                 <br />
+
+
+                <div style={{margin:20}}>
 
                 <a onClick={handleCreate} className='button' style={{float:'right'}} >
                     <FaUser style={{ marginLeft: 10 }} />
@@ -96,12 +103,13 @@ export const Students: React.FC = () => {
                 <a onClick={()=>changeFeed(1)} style={{float:'left'}} >
                     <FaArrowLeft className='icon'/>
                 </a>
+                </div>
                 <br />
                 <br />
                 {isLoading ? (
                     <p>Cargando...</p>
                 ) : (
-                    <div className='tablemargin'>
+                    <div className='tablemargin' style={{margin:30}}>
                         <table className='table' style={{textAlign:'center'}}>
                             <thead>
                                 <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
@@ -127,8 +135,8 @@ export const Students: React.FC = () => {
                                 {listStudents.length > 0 ? (
                                     listStudents.map((student: Student) => (
                                         <tr key={student._id} style={{ textAlign: 'center', fontSize: '15px' }}>
-                                            <td  className={theme===0?'texts':'textblack'} >{student.number}</td>
-                                            <td  className={theme===0?'texts':'textblack'} >
+                                            <td  className={theme===1?'texts':'textblack'} >{student.number}</td>
+                                            <td  className={theme===1?'texts':'textblack'} >
                                                 <PDFDownloadLink
                                                     document={<PDFDocument student={student} />}
                                                     fileName={`${student.name}_${student.lastname}.pdf`}
@@ -136,7 +144,7 @@ export const Students: React.FC = () => {
                                                     <FaFilePdf className='icon' />
                                                 </PDFDownloadLink>
                                             </td>
-                                            <td  className={theme===0?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
+                                            <td  className={theme===1?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
                                                 {student.name} {student.lastname}
                                             </td>
                                      
@@ -155,9 +163,9 @@ export const Students: React.FC = () => {
     })()}
                                             
                                             
-                                            <td  className={theme===0?'texts':'textblack'} >{student.age}</td>
-                                            <td  className={theme===0?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
-                                            <td  className={theme===0?'texts':'textblack'} >
+                                            <td  className={theme===1?'texts':'textblack'} >{student.age}</td>
+                                            <td  className={theme===1?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
+                                            <td  className={theme===1?'texts':'textblack'} >
 
   
                                             {(() => {
@@ -179,18 +187,18 @@ export const Students: React.FC = () => {
 
 
                                             </td>
-                                            <td  className={theme===0?'texts':'textblack'} title='Estigma' >{student.stigma}</td>
-                                            <td  className={theme===0?'texts':'textblack'} title={`Responsable de ${student.name}`} >{student.tutor}</td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaMap title={student.address} className='icon' /></td>
-                                            <td  className={theme===0?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className='icon' /></a></td>
-                                            <td  className={theme===0?'texts':'textblack'} >{student.startdate}</td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className='icon' /></td>
-                                            <td  className={theme===0?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className='icon' /></td>
-                                            <td  className={theme===0?'texts':'textblack'} >
+                                            <td  className={theme===1?'texts':'textblack'} title='Estigma' >{student.stigma}</td>
+                                            <td  className={theme===1?'texts':'textblack'} title={`Responsable de ${student.name}`} >{student.tutor}</td>
+                                            <td  className={theme===1?'texts':'textblack'} ><FaMap title={student.address} className='icon' /></td>
+                                            <td  className={theme===1?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className='icon' /></a></td>
+                                            <td  className={theme===1?'texts':'textblack'} >{student.startdate}</td>
+                                            <td  className={theme===1?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className='icon' /></td>
+                                            <td  className={theme===1?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className='icon' /></td>
+                                            <td  className={theme===1?'texts':'textblack'} >
                                                 {/* Agregar el ícono para mostrar archivos */}
                                                 <FaFileMedicalAlt className='icon'/>
                                             </td>
-                                            <td  className={theme===0?'texts':'textblack'} >
+                                            <td  className={theme===1?'texts':'textblack'} >
                                                 <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
                                                 <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />
                                                 <FaTrash  className='icon' title={`Eliminar a ${student.name}`} onClick={() => handleDelete(student)} />
@@ -207,6 +215,7 @@ export const Students: React.FC = () => {
                     </div>
                 )}
             </div>
+            <div className='marginvertical'></div>
         </section>
     );
 };

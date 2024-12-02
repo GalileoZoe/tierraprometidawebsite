@@ -98,7 +98,7 @@ export const Contact = () => {
         <br />
     
         <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
-          <p className='button'>Contáctanos</p>
+          <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
         </a>
    
       </div>

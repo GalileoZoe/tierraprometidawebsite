@@ -84,7 +84,7 @@ export const Feed: React.FC = () => {
             src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
             alt='Logo Tierra Prometida'
           />
-          <p className='item fade-in-element' style={{ color: '#fff' }}>24 horas</p>
+          <p className='item fade-in-element'>24 horas</p>
 
           <p className='text fade-in-element' style={{ color: '#fff' }}>' La Semilla Eres Tú '</p>
 
@@ -102,7 +102,7 @@ export const Feed: React.FC = () => {
             <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
               {icons[iconIndex]}
 
-              <p className='button' style={{ color: '#fff' }}>Contactáctanos</p>
+              <p className={theme===0?'button':'buttonblack'}>Contactáctanos</p>
             </a>
           </div>
         </a>

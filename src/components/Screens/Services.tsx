@@ -167,7 +167,7 @@ Organizamos sesiones de arte, pintura, música en vivo y excursiones para foment
         <br />
         <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
           {icons[iconIndex]}
-          <p className='button'>Contáctanos</p>
+          <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
         </a>
 
 
