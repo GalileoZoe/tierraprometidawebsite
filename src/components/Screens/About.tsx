@@ -67,6 +67,8 @@ export const About = () => {
                 <FaInfoCircle className='icon' />
                 <p className={theme===0?'button':'buttonblack'}>Más Información</p>
             </a>
+
+            <div className='marginvertical'></div>
         </section>
     );
 }

@@ -102,6 +102,9 @@ export const Contact = () => {
         </a>
    
       </div>
+
+      <div className='marginvertical'></div>
+
     </section>
   )
 }
