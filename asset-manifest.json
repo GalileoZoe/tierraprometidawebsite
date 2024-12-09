@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/tierraprometidawebsite/static/css/main.dbb5f97d.css",
-    "main.js": "/tierraprometidawebsite/static/js/main.a5a82c48.js",
+    "main.js": "/tierraprometidawebsite/static/js/main.85ea1471.js",
     "static/js/453.6cdc9542.chunk.js": "/tierraprometidawebsite/static/js/453.6cdc9542.chunk.js",
     "static/media/img-00.png": "/tierraprometidawebsite/static/media/img-00.95f132025ec86464adc7.png",
     "static/media/img-02.png": "/tierraprometidawebsite/static/media/img-02.3184e9b7bd4ca4e5dac4.png",
@@ -23,11 +23,11 @@
     "static/media/logo-09.png": "/tierraprometidawebsite/static/media/logo-09.25cca8f63e0a2b156d6f.png",
     "index.html": "/tierraprometidawebsite/index.html",
     "main.dbb5f97d.css.map": "/tierraprometidawebsite/static/css/main.dbb5f97d.css.map",
-    "main.a5a82c48.js.map": "/tierraprometidawebsite/static/js/main.a5a82c48.js.map",
+    "main.85ea1471.js.map": "/tierraprometidawebsite/static/js/main.85ea1471.js.map",
     "453.6cdc9542.chunk.js.map": "/tierraprometidawebsite/static/js/453.6cdc9542.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dbb5f97d.css",
-    "static/js/main.a5a82c48.js"
+    "static/js/main.85ea1471.js"
   ]
 }
