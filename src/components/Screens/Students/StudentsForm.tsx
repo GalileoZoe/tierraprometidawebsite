@@ -200,6 +200,10 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value='Heroína'>Heroína</option>
                             <option value='Cocaína'>Cocaína</option>
                             <option value='Anfetaminas'>Anfetaminas</option>
+                            <option value='Anfetaminas'>Solvente</option>
+                            <option value='Anfetaminas'>Cocodril</option>
+                            <option value='Anfetaminas'>Codeina</option>
+                            <option value='Anfetaminas'>LSD</option>
                         </select>
 
 
