@@ -114,6 +114,8 @@
 .button {
   background-color: #db1313;
   color: #fff;
+  margin: 10px;
+  padding: 8px 15px;
   font-weight: 100;
   font-size: 1em;
   border: none;
@@ -129,6 +131,38 @@
 .button:hover {
   background-color: #db1313;
   color: 'transparent';
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+.buttons {
+  background-color: 'transparent';
+  color: #db1313;
+  margin: 10px;
+  padding: 8px 15px;
+  font-weight: 100;
+  font-size: 1em;
+  border: none;
+  width: max-content;
+  margin: auto;
+  border-radius: 20px;
+  padding: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 1s ease-in-out;
+}
+
+.buttons:hover {
+  background-color: 'transparent';
+  color: #db1313;
   font-weight: 100;
   font-size: 1em;
   border: none;
@@ -763,16 +797,16 @@
 }
 
 .iconred {
-  width: 2em;
-  height: 2em;
+  width: 1.8;
+  height: 1.8;
   transition: all 0.8s ease-in-out;
   color: snow;
   text-align: center;
 }
 
 .iconred:hover {
-  width: 2em;
-  height: 2em;
+  width: 1.8;
+  height: 1.8;
   transform: scale(1.1);
   color: snow;
   text-align: center;
@@ -1097,6 +1131,7 @@
 @media(max-width:700px){
 .navbarlogo img {
   height: 2em;
+
   padding-left: 10px;
 }
 }
@@ -1294,18 +1329,40 @@
   .navbaritems.show {
     display: flex;
   }
-  .navbaritemswhite {
+  .drawerwhite {
     display: none;
     flex-direction: column;
     gap: 10px;
     position: absolute;
-    top: 50px;
-    right: 10px;
-    background-color:#ffffffd7;
-    border: 1px solid #db1313;
+    top: 0px;
+    margin-top: 45px;
+    right: 0px;
+    background-color:whitesmoke;
+    border: none;
     padding: 10px;
-    border-radius: 4px;
+    /* border-radius: 4px; */
+    height: 100vh;
+    width: 150px;
+    row-gap: 20px;
   }
+  .drawer {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 0px;
+    margin-top: 45px;
+    right: 0px;
+    background-color: rgba(245, 245, 245, 0.171);
+    backdrop-filter: blur(5px); /* Efecto de desenfoque */
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con navegadores WebKit */
+    border: none;
+    padding: 10px;
+    height: 100vh;
+    width: 200px;
+    align-items: center;
+    row-gap: 20px;
+}
 
 
   .navbaritemswhite.show {
@@ -1393,4 +1450,29 @@
 }
 
   }
+
+
+
+  .form {
+    text-align: center;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+.inputred {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.inputsred {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 

@@ -2,20 +2,22 @@ import React, { useState } from 'react';
 import { Student } from '../../../interfaces/Students';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { FaFile, FaUser } from 'react-icons/fa';
+import { useFeed } from '../../../context/FeedContext';
 
 // Props del formulario de estudiantes
 interface StudentsFormProps {
-    student: Student; // El estudiante a editar o crear
-    onClose: () => void; // Función para cerrar el formulario
-    onSave?: (student: Student) => void; // Función opcional para crear estudiante
+    student: Student;
+    onClose: () => void;
+    onSave?: (student: Student) => void;
 }
 
 export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, onSave }) => {
-    const { updateStudent } = useStudentsApi(); // Hook para actualizar estudiante
-    const [formData, setFormData] = useState<Student>(student); // Estado local del formulario
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]); // Archivos seleccionados
+    const { updateStudent } = useStudentsApi();
+    const [formData, setFormData] = useState<Student>(student);
+    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [currentStep, setCurrentStep] = useState(1); // Controla el paso actual
+    const {changeFeed}=useFeed();
 
-    // Manejador de cambios en los campos de texto
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -24,15 +26,13 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
         }));
     };
 
-    // Manejador para la selección de archivos
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files) {
-            setSelectedFiles(Array.from(files)); // Convertir FileList a array
+            setSelectedFiles(Array.from(files));
         }
     };
 
-    // Función para convertir un archivo a base64
     const fileToBase64 = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -42,41 +42,38 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
         });
     };
 
-    // Manejador de envío del formulario
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        // Convertimos los archivos seleccionados a base64
         const mappedFiles = await Promise.all(selectedFiles.map(async file => ({
-            file: await fileToBase64(file), // Convertimos a base64
+            file: await fileToBase64(file),
             title: file.name,
-            date: new Date().toISOString(), // Convertimos la fecha a string (ISO)
+            date: new Date().toISOString(),
         })));
 
-        // Creamos un nuevo objeto `Student` con los archivos mapeados
         const updatedStudent: Student = {
             ...formData,
-            files: mappedFiles, // Agregamos los archivos convertidos
+            files: mappedFiles,
         };
 
         if (onSave) {
-            // Si `onSave` está definido, estamos creando un nuevo estudiante
             await onSave(updatedStudent);
         } else {
-            // Si no, estamos actualizando un estudiante existente
             await updateStudent(updatedStudent);
         }
         onClose();
     };
 
-    return (
-        <div style={{ textAlign: 'center' }} className='form'>
-            <h2 className='title'>{onSave ? 'Registrar Usuario' : formData.name}</h2>
-            <FaUser style={{ alignSelf: 'center' }} className='icon' />
-            <form onSubmit={handleSubmit}>
-                <div style={{ display: 'flex', gap: 690 }}>
+    const renderStep = () => {
+        switch (currentStep) {
+            case 1:
+                return (
                     <div>
-                     
+
+        
+             
+
+                        <h3 className='texts'>Usuario</h3>
+                        
                         <input
                             placeholder='Ingreso'
                             className='inputred'
@@ -85,249 +82,183 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             value={formData.startdate}
                             onChange={handleChange}
                             required
+                            
                         />
-                    </div>
-
-                    <div>
-                 
+                
                         <input
+                            placeholder='Egreso'
                             className='inputred'
                             type='date'
                             name='enddate'
                             value={formData.enddate}
                             onChange={handleChange}
                         />
-                    </div>
-                </div>
-
-                <p className='texts'>Usuario</p>
-                <div style={{ display: 'flex', gap: 25 }}>
-                  
                         <input
-                            placeholder='Nombre'
-                            className='inputred'
-                            type='text'
-                            name='name'
+                            placeholder="Nombre"
+                            className="inputred"
+                            type="text"
+                            name="name"
                             value={formData.name}
                             onChange={handleChange}
                             required
                         />
-                 
-
-                 
                         <input
-                        placeholder='Apellidos:'
-                            className='inputred'
-                            type='text'
-                            name='lastname'
+                            placeholder="Apellidos"
+                            className="inputred"
+                            type="text"
+                            name="lastname"
                             value={formData.lastname}
                             onChange={handleChange}
                             required
                         />
-          
-
-                    
                         <input
-                            placeholder='Edad'
-                            className='inputred'
-                            type='number'
-                            name='age'
+                            placeholder="Edad"
+                            className="inputred"
+                            type="number"
+                            name="age"
                             value={formData.age}
                             onChange={handleChange}
                             required
                         />
-    
-
                         <select
-                            className='inputred'
-                            name='gender'
+                            className="inputred"
+                            name="gender"
                             value={formData.gender}
                             onChange={handleChange}
                             required
                         >
-                            <option >Género</option>
-                            <option value='Masculino'>Masculino</option>
-                            <option value='Femenino'>Femenino</option>
-                        </select>
-            
-                        <select
-                            className='inputred'
-                            name='stay'
-                            value={formData.stay}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option >Estancia</option>
-                            <option value='4'>4 Meses</option>
-                            <option value='6'>6 Meses</option>
-                        </select>
-
-                        <select
-                            className='inputred'
-                            name='status'
-                            value={formData.status}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value=''>Estado</option>
-                            <option value='Baja'>Baja</option>
-                            <option value='En Tratamiento'>En Tratamiento</option>
-                            <option value='Egresado'>Egresado</option>
+                            <option value="">Género</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
                         </select>
                     </div>
-                
-
-                               <p className='texts'>Historial Clínico</p>
-
-                <div style={{ display: 'flex', gap: 25 }} >
-                
+                );
+            case 2:
+                return (
+                    <div>
+                        <h3>Historial Clínico</h3>
                         <select
-                            className='inputred'
-                            name='blood'
+                            className="inputred"
+                            name="blood"
                             value={formData.blood}
                             onChange={handleChange}
                             required
                         >
-                            <option value=''>Tipo de Sangre</option>
-                            <option value='O+'>O+</option>
-                            <option value='O-'>O-</option>
-                            <option value='A+'>A+</option>
-                            <option value='A-'>A-</option>
-                            <option value='B+'>B+</option>
-                            <option value='B-'>B-</option>
-                            <option value='AB+'>AB+</option>
-                            <option value='AB-'>AB-</option>
+                            <option value="">Tipo de Sangre</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
                         </select>
-
-
-                            <input
-                                placeholder='Enfermedades'
-                                className='inputred'
-                                type='text'
-                                name='disease'
-                                value={formData.disease}
-                                onChange={handleChange}
-                            />
-                    
-
-                            <input
-                                placeholder='Alergias'
-                                className='inputred'
-                                type='text'
-                                name='allergy'
-                                value={formData.allergy}
-                                onChange={handleChange}
-                            />
-             
-                    
-
-                        <select
-                            className='inputred'
-                            name='stigma'
-                            value={formData.stigma}
+                        <input
+                            placeholder="Enfermedades"
+                            className="inputred"
+                            type="text"
+                            name="disease"
+                            value={formData.disease}
                             onChange={handleChange}
                             required
-                        >
-                            <option value=''>Estigma</option>
-                            <option value='A'>A</option>
-                            <option value='D'>D</option>
-                            <option value='A/D'>A/D</option>
-            
-                        </select>
-
+                        />
+                        <input
+                            placeholder="Alergias"
+                            className="inputred"
+                            type="text"
+                            name="allergy"
+                            value={formData.allergy}
+                            onChange={handleChange}
+                            required
+                        />
                         <select
-                            className='inputred'
-                            name='drug'
+                            className="inputred"
+                            name="drug"
                             value={formData.drug}
                             onChange={handleChange}
                             required
                         >
-                            <option value=''>Sustancia de Impacto</option>
-                            <option value='Cannabis'>Cannabis</option>
-                            <option value='Alcohol'>Alcohol</option>
-                            <option value='Metanfetamina'>Metanfetamina</option>
-                            <option value='Heroína'>Heroína</option>
-                            <option value='Cocaína'>Cocaína</option>
-                            <option value='Anfetaminas'>Anfetaminas</option>
+                            <option value="">Sustancia de Impacto</option>
+                            <option value="Cannabis">Cannabis</option>
+                            <option value="Alcohol">Alcohol</option>
+                            <option value="Metanfetamina">Metanfetamina</option>
                         </select>
-                 
-
-                </div>
-
-                <p className='texts'>Responsable</p>
-
-                <div style={{ display: 'flex', gap:25 }} >
-
-            
+                    </div>
+                );
+            case 3:
+                return (
+                    <div>
+                        <h3>Datos del Responsable</h3>
                         <input
-                            placeholder='Responsable'
-                            className='inputred'
-                            type='text'
-                            name='tutor'
+                            placeholder="Responsable"
+                            className="inputsred"
+                            type="text"
+                            name="tutor"
                             value={formData.tutor}
                             onChange={handleChange}
                             required
                         />
-                    
-
-
                         <input
-                            placeholder='Correo Electrónico'
-                            className='inputred'
-                            type='email'
-                            name='email'
+                            placeholder="Correo Electrónico"
+                            className="inputsred"
+                            type="email"
+                            name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            required
-
                         />
-              
                         <input
-                            placeholder='Teléfono'
-                            className='inputred'
-                            type='text'
-                            name='phone'
+                            placeholder="Teléfono"
+                            className="inputred"
+                            type="text"
+                            name="phone"
                             value={formData.phone}
                             onChange={handleChange}
                             required
                         />
-                    
                         <input
-                            placeholder='Dirección'
-                            className='inputred'
-                            type='text'
-                            name='address'
+                            placeholder="Dirección"
+                            className="inputred"
+                            type="text"
+                            name="address"
                             value={formData.address}
                             onChange={handleChange}
                             required
                         />
-                    
-                                   </div>
-                                   
-                                   
-                    <p className='texts'>Archivos</p>
-                <a className='icon' >
-                    <FaFile  />
-                <input
-                    
-                    title='Subir Archivos del Usuario'
-                    type='file'
-                    multiple
-                    style={{color:'#db1313'}}
-                    onChange={handleFileChange}
-                    accept='.png, .jpg, .pdf, .docx'
-                />
-                </a>
-                <br />
-                <br />
-
-                    <div>
-                        <button className='button' type='submit'>{onSave ? 'Guardar' : 'Guardar Cambios'}</button>
-                        <button className='button' type='button' onClick={onClose}>Cancelar</button>
                     </div>
- 
+                );
+            default:
+                return null;
+        }
+    };
+
+    return (
+        <section className='section'>
+            
+<h2 className='title'>{onSave ? 'Registrar Usuario' : formData.name}</h2>
+            <FaUser style={{ alignSelf: 'center' }} className='icon' />
+        <div className="form">
+            <form onSubmit={handleSubmit}>
+                {renderStep()}
+                <div style={{gap:20}}>
+                    {currentStep===1&&
+                     <button type="button" className='buttons' onClick={() => changeFeed(1)}>
+                     Cancelar
+                 </button>}
+                    {currentStep > 1 && (
+                        <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep - 1)}>
+                            Atrás
+                        </button>
+                    )}
+                    {currentStep < 3 && (
+                        <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep + 1)}>
+                            Siguiente
+                        </button>
+                    )}
+                    {currentStep === 3 && <button className='button' type="submit">Guardar</button>}
+                </div>
             </form>
         </div>
-
+        </section>
     );
-};  
+};

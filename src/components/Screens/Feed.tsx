@@ -41,19 +41,7 @@ export const Feed: React.FC = () => {
 
   return (
     <section
-      className='feed'
-      style={{
-        position: 'relative',
-        backgroundImage: `url(${bgImages[bgIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        width: '100vw', // 100% del ancho de la ventana
-        height: '100vh', // 100% del alto de la ventana
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center', // Alinea el texto horizontalmente
-      }}
+      className='section'
     >
       
 

@@ -170,7 +170,7 @@ Organizamos sesiones de arte, pintura, música en vivo y excursiones para foment
           <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
         </a>
 
-        <div className='marginvertical'></div>
+            <div className='marginvertical'></div>
 
       </div>
     </section>

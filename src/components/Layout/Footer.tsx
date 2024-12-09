@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../../App.css';
 import { useTheme } from '../../context/ThemeContext';
 import { useSession } from '../../context/SessionContext';
-import { FaRegUser, FaSignInAlt, FaStore, FaToggleOff, FaToggleOn, FaUser, FaWifi } from 'react-icons/fa';
+import { FaRegUser, FaSignInAlt, FaSignOutAlt, FaStore, FaToggleOff, FaToggleOn, FaUser, FaWifi } from 'react-icons/fa';
 import { useFeed } from '../../context/FeedContext';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -49,23 +49,19 @@ export const Footer: React.FC = () => {
                     {session === 0 ? <FaRegUser className={theme === 2 ? 'iconred' : 'icon'} /> : <FaUser className={theme === 2 ? 'iconred' : 'icon'} />}
                 </li>
                 {session === 1 ? (
-                    <li className={theme === 2 ? 'footeritemred' : 'footeritem'} title='Tienda' onClick={() => changeFeed(10)}>
-                        <FaStore className={theme === 2 ? 'iconred' : 'icon'} />
-                    </li>
-                ) : null}
-                {authState.isLoggenIn ? (
                     <li
-                        className={theme === 2 ? 'footeritemred' : 'footeritem'}
-                        title='Cerrar Sesión'
-                        onClick={() => {
-                            logout(); // Invocación correcta de la función logout
-                            changeSession(0);
-                            changeFeed(1);
-                        }}
-                    >
-                        <FaSignInAlt className={theme === 2 ? 'iconred' : 'icon'} />
-                    </li>
+                    className={theme === 2 ? 'footeritemred' : 'footeritem'}
+                    title='Cerrar Sesión'
+                    onClick={() => {
+                        logout(); // Invocación correcta de la función logout
+                        changeSession(0);
+                        changeFeed(1);
+                    }}
+                >
+                    <FaSignInAlt className={theme === 2 ? 'iconred' : 'icon'} />
+                </li>
                 ) : null}
+               
                 {isOnline ? (
                     <li className={theme === 2 ? 'footeritemred' : 'footeritem'}>
                         <FaWifi className='icongreen' />

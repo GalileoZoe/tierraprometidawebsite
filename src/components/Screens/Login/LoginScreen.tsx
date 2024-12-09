@@ -62,7 +62,6 @@ export const LoginScreen: React.FC = () => {
                     Iniciar Sesión
 
                 </a>
-                <FaSignInAlt className='icon' />
             </div>
         </section>
     );
