@@ -16,7 +16,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
     const [formData, setFormData] = useState<Student>(student);
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
     const [currentStep, setCurrentStep] = useState(1); // Controla el paso actual
-    const {changeFeed}=useFeed();
+    const { changeFeed } = useFeed();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -69,11 +69,11 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                 return (
                     <div>
 
-        
-             
+
+
 
                         <h3 className='texts'>Usuario</h3>
-                        
+
                         <input
                             placeholder='Ingreso'
                             className='inputred'
@@ -82,9 +82,9 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             value={formData.startdate}
                             onChange={handleChange}
                             required
-                            
+
                         />
-                
+
                         <input
                             placeholder='Egreso'
                             className='inputred'
@@ -130,6 +130,20 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             <option value="">Género</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
+                        </select>
+
+
+                        <select
+                            className='inputred'
+                            name='status'
+                            value={formData.status}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value=''>Estado</option>
+                            <option value='Baja'>Baja</option>
+                            <option value='En Tratamiento'>En Tratamiento</option>
+                            <option value='Egresado'>Egresado</option>
                         </select>
                     </div>
                 );
@@ -179,10 +193,28 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         >
-                            <option value="">Sustancia de Impacto</option>
-                            <option value="Cannabis">Cannabis</option>
-                            <option value="Alcohol">Alcohol</option>
-                            <option value="Metanfetamina">Metanfetamina</option>
+                            <option value=''>Sustancia de Impacto</option>
+                            <option value='Cannabis'>Cannabis</option>
+                            <option value='Alcohol'>Alcohol</option>
+                            <option value='Metanfetamina'>Metanfetamina</option>
+                            <option value='Heroína'>Heroína</option>
+                            <option value='Cocaína'>Cocaína</option>
+                            <option value='Anfetaminas'>Anfetaminas</option>
+                        </select>
+
+
+                        <select
+                            className='inputred'
+                            name='stigma'
+                            value={formData.stigma}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value=''>Estigma</option>
+                            <option value='A'>A</option>
+                            <option value='D'>D</option>
+                            <option value='A/D'>A/D</option>
+
                         </select>
                     </div>
                 );
@@ -192,7 +224,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         <h3>Datos del Responsable</h3>
                         <input
                             placeholder="Responsable"
-                            className="inputsred"
+                            className="inputred"
                             type="text"
                             name="tutor"
                             value={formData.tutor}
@@ -201,7 +233,7 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                         />
                         <input
                             placeholder="Correo Electrónico"
-                            className="inputsred"
+                            className="inputred"
                             type="email"
                             name="email"
                             value={formData.email}
@@ -225,6 +257,21 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
                             onChange={handleChange}
                             required
                         />
+
+
+                        <p className='texts'>Archivos</p>
+                        <a className='icon' >
+                            <FaFile />
+                            <input
+
+                                title='Subir Archivos del Usuario'
+                                type='file'
+                                multiple
+                                style={{ color: '#db1313' }}
+                                onChange={handleFileChange}
+                                accept='.png, .jpg, .pdf, .docx'
+                            />
+                        </a>
                     </div>
                 );
             default:
@@ -234,31 +281,31 @@ export const StudentsForm: React.FC<StudentsFormProps> = ({ student, onClose, on
 
     return (
         <section className='section'>
-            
-<h2 className='title'>{onSave ? 'Registrar Usuario' : formData.name}</h2>
+
+            <h2 className='title'>{onSave ? 'Registrar Usuario' : formData.name}</h2>
             <FaUser style={{ alignSelf: 'center' }} className='icon' />
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                {renderStep()}
-                <div style={{gap:20}}>
-                    {currentStep===1&&
-                     <button type="button" className='buttons' onClick={() => changeFeed(1)}>
-                     Cancelar
-                 </button>}
-                    {currentStep > 1 && (
-                        <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep - 1)}>
-                            Atrás
-                        </button>
-                    )}
-                    {currentStep < 3 && (
-                        <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep + 1)}>
-                            Siguiente
-                        </button>
-                    )}
-                    {currentStep === 3 && <button className='button' type="submit">Guardar</button>}
-                </div>
-            </form>
-        </div>
+            <div className="form">
+                <form onSubmit={handleSubmit}>
+                    {renderStep()}
+                    <div style={{ gap: 20 }}>
+                        {currentStep === 1 &&
+                            <button type="button" className='buttons' onClick={() => changeFeed(1)}>
+                                Cancelar
+                            </button>}
+                        {currentStep > 1 && (
+                            <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep - 1)}>
+                                Atrás
+                            </button>
+                        )}
+                        {currentStep < 3 && (
+                            <button type="button" className='buttons' onClick={() => setCurrentStep(currentStep + 1)}>
+                                Siguiente
+                            </button>
+                        )}
+                        {currentStep === 3 && <button className='button' type="submit">Guardar</button>}
+                    </div>
+                </form>
+            </div>
         </section>
     );
 };

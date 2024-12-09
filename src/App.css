@@ -835,7 +835,7 @@
   width: auto;
   height: 5em;
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .logo {
     width: 2em;
     height: 2em;
@@ -846,7 +846,7 @@
   width: auto;
   height: 5em;
 }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .logotype {
     width: auto;
     height: 3em;
@@ -1307,7 +1307,7 @@
 }
 
 /* Responsive styles */
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .hamburger {
     display: block;
   }
