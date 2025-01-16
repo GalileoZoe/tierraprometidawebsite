@@ -24,7 +24,7 @@ export const LoginScreen: React.FC = () => {
           
             </div>
             <br />
-
+ 
             <p className='title' >Iniciar Sesión</p>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {typeof request === 'boolean' && !request && (

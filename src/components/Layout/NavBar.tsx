@@ -67,7 +67,7 @@ export const NavBar: React.FC = () => {
           <li>
             <a
               className={'navbaritem'}
-              style={feed === 4 ? { fontWeight:900} : undefined}
+              style={feed === 7? { fontWeight:900} : undefined}
               onClick={() => {
                 changeFeed(7);
                 setMenuOpen(false);

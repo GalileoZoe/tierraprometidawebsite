@@ -18,7 +18,14 @@ export const Services = () => {
       case 1:
         return <Window
           tittle='Temazcal'
-          description='Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios. ¡ Servicio abierto al público !.'
+          description={
+            <>
+              Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios.
+              <br />
+              ¡Servicio abierto al público!
+            </>
+            
+          }
           button='Más Información'
         />;
       case 2:
@@ -67,7 +74,7 @@ export const Services = () => {
         return <Window
           tittle='Eventos Culturales'
           description='
-Organizamos sesiones de arte, pintura, música en vivo y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables'
+Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables'
           button='Más Información'
         />
       default:

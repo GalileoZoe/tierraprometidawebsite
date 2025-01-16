@@ -3,7 +3,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaMap, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaHome, FaDoorOpen, FaPhoneAlt } from 'react-icons/fa';
+import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaMap, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaHome, FaDoorOpen, FaPhoneAlt, FaFlask } from 'react-icons/fa';
 import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
 import { StudentDetail } from './StudentDetail';
@@ -182,6 +182,8 @@ export const Students: React.FC = () => {
                     return <FaSnowflake title='Cocaína' className='icon' />;
                 case 'Anfetaminas':
                     return <FaPills title='Anfetaminas' className='icon' />;
+                case 'Solventes':
+                    return <FaFlask title='Solventes' className='icon' />;
             }
         })()} 
 

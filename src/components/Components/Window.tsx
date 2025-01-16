@@ -5,9 +5,9 @@ import { FaAppleAlt,  FaFutbol, FaHeart, FaInfo, FaMusic, FaPaintBrush, FaSpa, F
 interface WindowProps {
   action?: () => void,
   button?: string,
-  description?: string,
+  description?: any,
   href?: string,
-  icon?: ()=>void,
+  icon?: string,
   tittle?: string,
   image?: string,
 }
