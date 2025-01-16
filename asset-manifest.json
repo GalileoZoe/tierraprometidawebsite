@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/tierraprometidawebsite/static/css/main.dbb5f97d.css",
-    "main.js": "/tierraprometidawebsite/static/js/main.85ea1471.js",
+    "main.css": "/tierraprometidawebsite/static/css/main.215c9cb5.css",
+    "main.js": "/tierraprometidawebsite/static/js/main.5e9a97fb.js",
     "static/js/453.6cdc9542.chunk.js": "/tierraprometidawebsite/static/js/453.6cdc9542.chunk.js",
     "static/media/img-00.png": "/tierraprometidawebsite/static/media/img-00.95f132025ec86464adc7.png",
     "static/media/img-02.png": "/tierraprometidawebsite/static/media/img-02.3184e9b7bd4ca4e5dac4.png",
@@ -15,19 +15,21 @@
     "static/media/logo-02.png": "/tierraprometidawebsite/static/media/logo-02.a35183c1f41f1e970a9d.png",
     "static/media/logo-00.png": "/tierraprometidawebsite/static/media/logo-00.95b4966df2a5944df7a4.png",
     "static/media/logo-05.png": "/tierraprometidawebsite/static/media/logo-05.52a677a0aa58756edb64.png",
+    "static/media/muntains-02.png": "/tierraprometidawebsite/static/media/muntains-02.5a583c10cc09261122b1.png",
     "static/media/logo-06.png": "/tierraprometidawebsite/static/media/logo-06.e6a42cb3558298c731d0.png",
     "static/media/logo-08.png": "/tierraprometidawebsite/static/media/logo-08.9a88a1d4d51c8c182c19.png",
     "static/media/logo-15.png": "/tierraprometidawebsite/static/media/logo-15.e6d0743539974b6d0f49.png",
+    "static/media/logo-20.png": "/tierraprometidawebsite/static/media/logo-20.e6d0743539974b6d0f49.png",
     "static/media/logo-001.png": "/tierraprometidawebsite/static/media/logo-001.9bcb49c6866027553f8d.png",
     "static/media/logo-07.png": "/tierraprometidawebsite/static/media/logo-07.fa64d4d8518263f217c9.png",
     "static/media/logo-09.png": "/tierraprometidawebsite/static/media/logo-09.25cca8f63e0a2b156d6f.png",
     "index.html": "/tierraprometidawebsite/index.html",
-    "main.dbb5f97d.css.map": "/tierraprometidawebsite/static/css/main.dbb5f97d.css.map",
-    "main.85ea1471.js.map": "/tierraprometidawebsite/static/js/main.85ea1471.js.map",
+    "main.215c9cb5.css.map": "/tierraprometidawebsite/static/css/main.215c9cb5.css.map",
+    "main.5e9a97fb.js.map": "/tierraprometidawebsite/static/js/main.5e9a97fb.js.map",
     "453.6cdc9542.chunk.js.map": "/tierraprometidawebsite/static/js/453.6cdc9542.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dbb5f97d.css",
-    "static/js/main.85ea1471.js"
+    "static/css/main.215c9cb5.css",
+    "static/js/main.5e9a97fb.js"
   ]
 }
