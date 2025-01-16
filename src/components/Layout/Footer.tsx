@@ -34,13 +34,13 @@ export const Footer: React.FC = () => {
     return (
         <nav className='footer'>
             <ul className='footeritems'>
-                <li
+                {/* <li
                     className={theme === 2 ? 'footeritemred' : 'footeritem'}
                     title='Modo Oscuro'
                     onClick={theme ===0 ? () => changeTheme(1) : () => changeTheme(0)}
                 >
                     {theme === 0 ? <FaToggleOff className='icon' /> : <FaToggleOn className='icon' />}
-                </li>
+                </li> */}
                 <li
                     className={theme === 2 ? 'footeritemred' : 'footeritem'}
                     title='Iniciar Sesión'

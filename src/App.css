@@ -498,14 +498,14 @@
 
 .textss {
   color: #db1313;
-  font-weight: 100;
+  font-weight: 400;
   text-align: center;
   font-size: 0.7em;
 }
 
 .textss:hover {
   color: #db1313;
-  font-weight: 100;
+  font-weight: 500;
   text-align: center;
   font-size: 0.7em;
   cursor: pointer;
@@ -513,16 +513,14 @@
 
 .texts {
   color: #db1313;
-  font-weight: 100;
+  font-weight: 600;
   text-align: center;
   font-size: 1em;
 }
 
 .texts:hover {
   color: #db1313;
-  font-weight: 100;
   text-align: center;
-  font-size: 1em;
   cursor: pointer;
 }
 
@@ -630,8 +628,8 @@
 
 /*  Paragraph  */
 .paragraph {
-  color: #db1313;
-  font-weight: 100;
+  /* color: #db1313; */
+  font-weight: 400;
   text-align: center;
   font-size: 1.4em;
   transition: color 0.5s ease;
@@ -820,7 +818,7 @@
   text-transform: uppercase;
   cursor: pointer;
   transition: color 0.5s ease;
-  font-size: 1.1em;
+  font-size: 1em;
   text-decoration: none;
 }
 
@@ -954,18 +952,11 @@
 
 .title {
   color: #db1313;
-  font-weight: 100;
+  font-weight: 400;
   font-size: 2em;
   text-align: center;
 }
 
-.title:hover {
-  color: #920e0e;
-  font-weight: 100;
-  font-size: 2em;
-  text-align: center;
-  cursor: pointer;
-}
 
 .titleblack {
   color: black;
@@ -975,8 +966,6 @@
 }
 
 .title:hover {
-  color: black;
-  font-weight: 100;
   font-size: 2em;
   text-align: center;
   cursor: pointer;
@@ -1084,7 +1073,7 @@
 .navbar {
   width: 100%;
   height: 2em;
-  background: transparent;
+  background: #db1313;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1125,13 +1114,13 @@
 
 .navbarlogo img {
   height: 2em;
+  width: 10;
   padding-left: 10px;
 }
 
 @media(max-width:700px){
 .navbarlogo img {
   height: 2em;
-
   padding-left: 10px;
 }
 }
@@ -1145,16 +1134,17 @@
 
 .navbaritem {
   margin-left: 20px;
-  color: #db1313;
+  color: whitesmoke;
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 20px;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: color 0.8s ease;
+  font-weight:400;
 }
 
 .navbaritem:hover {
-  color: #720c0c;
+  font-weight:500;
 
 }
 
@@ -1184,6 +1174,8 @@
   cursor: pointer;
   font-size: 1em;
   transition: color 0.3s ease;
+  font-weight: '900';
+
 }
 
 .navbaritemred {
@@ -1194,6 +1186,7 @@
   font-size: 1em;
   background-color:'transparent';
   transition: color 0.3s ease;
+  font-weight: '900';
 }
 
 .navbaritemred:hover {
@@ -1287,12 +1280,6 @@
   list-style: none;
   display: flex;
   gap: 20px;
-}
-
-.navbaritems li a {
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 
@@ -1434,7 +1421,7 @@
 
   /* Ajuste de íconos */
   .icon {
-      font-size: 16px;
+      font-size: 1em;
   }
 
   .navbar{

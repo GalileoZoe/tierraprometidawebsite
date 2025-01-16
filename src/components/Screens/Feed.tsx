@@ -65,7 +65,7 @@ export const Feed: React.FC = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(7, 7, 7, 0.8)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(255, 255, 255, 0.7)', // Capa oscura con opacidad
           zIndex: 1, // Mantiene la capa detrás del contenido
         }}
       />
@@ -76,17 +76,14 @@ export const Feed: React.FC = () => {
          Centro de Rehabilitación | Tierra Prometida
         </h1>
 
-        <br />
-
         <a onClick={()=>changeFeed(6)}>
           <img
-            className='logotype'
             src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
             alt='Logo Tierra Prometida'
           />
           <p className='item fade-in-element'>24 horas</p>
 
-          <p className='text fade-in-element' style={{ color: '#fff' }}>' La Semilla Eres Tú '</p>
+          <p className='text fade-in-element'>' La Semilla Eres Tú '</p>
 
           <div className='center fade-in-element'>
             <img
@@ -95,9 +92,8 @@ export const Feed: React.FC = () => {
               alt='Logo Tierra Prometida'
             />
 
-            <h2 className='paragraph' style={{ color: '#fff' }}>Previniendo y liberando adicciones</h2>
+            <h2 className='paragraph'>Previniendo y liberando adicciones</h2>
 
-            <br />
 
             <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
               {icons[iconIndex]}

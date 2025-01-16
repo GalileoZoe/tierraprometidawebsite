@@ -23,10 +23,50 @@ export const Location: React.FC = () => {
     // Cleanup al desmontar el componente
     return () => clearInterval(interval);
   }, [icons.length]);
+const bgImages = [
+        require('../../assets/muntains-02.png'),
+      ];
+    
+      // Estado para manejar el índice de imagen de fondo
+      const [bgIndex, setBgIndex] = useState(0);
+    
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
+          setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
+        }, 2000);
+    
+        // Cleanup al desmontar el componente
+        return () => clearInterval(interval);
+      }, [icons.length, bgImages.length]);
+    
 
-  return (
-    <div className='section'>
-
+    return (
+        <section  className='feed'
+        style={{
+          position: 'relative',
+          backgroundImage: `url(${bgImages[bgIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          width: '100vw', // 100% del ancho de la ventana
+          height: '100vh', // 100% del alto de la ventana
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center', // Alinea el texto horizontalmente
+        }}>
+            
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+          zIndex: 1, // Mantiene la capa detrás del contenido
+        }}
+      >
       
 <h1 className='title fade-in-element' style={{color:'transparent'}} >
        Ubicación | Centro de Rehabilitación | Tierra Prometida
@@ -54,5 +94,6 @@ export const Location: React.FC = () => {
         <p className={theme===0?'button':'buttonblack'}>Como Llegar</p>
       </a>
     </div>
+    </section>
   );
 };

@@ -15,10 +15,13 @@ export const LoginScreen: React.FC = () => {
 
     return (
         <section className='section'>
+               <br />
+               <br />
+               <br />
             <div className='item'>
                 <img className='img' src={require('../../../assets/logo-09.png')} />
                 <p>24 horas</p>
-                <br />
+          
             </div>
             <br />
 
@@ -32,8 +35,6 @@ export const LoginScreen: React.FC = () => {
                     </p>
                 )}
 
-                <br />
-                <br />
                 <input
                     className='inputredlogin'
                     value={state.email}

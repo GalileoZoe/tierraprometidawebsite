@@ -18,14 +18,58 @@ export const About = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-        }, 2000);
+        });
 
         // Cleanup al desmontar el componente
         return () => clearInterval(interval);
     }, [icons.length]);
 
+      // Arreglo de imágenes de fondo
+      const bgImages = [
+        require('../../assets/muntains-02.png'),
+      ];
+    
+      // Estado para manejar el índice de imagen de fondo
+      const [bgIndex, setBgIndex] = useState(0);
+    
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
+          setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
+        }, 2000);
+    
+        // Cleanup al desmontar el componente
+        return () => clearInterval(interval);
+      }, [icons.length, bgImages.length]);
+    
+
     return (
-        <section className='section'>
+        <section  className='feed'
+        style={{
+          position: 'relative',
+          backgroundImage: `url(${bgImages[bgIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          width: '100vw', // 100% del ancho de la ventana
+          height: '100vh', // 100% del alto de la ventana
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center', // Alinea el texto horizontalmente
+        }}>
+            
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+          zIndex: 1, // Mantiene la capa detrás del contenido
+        }}
+      >
+          <div style={{ position: 'relative', zIndex: 2 }}></div>
             <div className='about-header'>
 
             <h1 className='title fade-in-element' style={{color:'transparent'}} >
@@ -41,13 +85,12 @@ export const About = () => {
 
             <div className='image-description'>
 
-                <p className='texts'>Clínica Profesional de Rehabilitación y Desarrollo Humano.</p>
+                <p className='paragraph'>Clínica Profesional de Rehabilitación y Desarrollo Humano.</p>
             </div>
-
             <div className='cards-container'>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Misión</h2>
-                    <p>Brindar atención profesional personalizada para la prevención y tratamiento de adicciones.</p>
+                    <p>Brindar atención profesional personalizada para el tratamiento y prevención de adicciones.</p>
                 </div>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Visión</h2>
@@ -61,14 +104,13 @@ export const About = () => {
             </div>
             <br />
 
-            <br />
-
             <a href='https://wa.me/529624304734' className='icon fade-in-element' title='Contacto'>
                 <FaInfoCircle className='icon' />
                 <p className={theme===0?'button':'buttonblack'}>Más Información</p>
             </a>
 
             <div className='marginvertical'></div>
+            </div>
         </section>
     );
 }

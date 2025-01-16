@@ -13,11 +13,11 @@ export const NavBar: React.FC = () => {
   const toggleMenu = () => setMenuOpen(!isMenuOpen);
 
   return (
-    <nav className={feed === 1 || theme === 1 ? 'navbartransparent' : 'navbar'}>
+    <nav className={ 'navbar'}>
       <div className='navbarlogo'>
         <a onClick={() => changeFeed(1)} >
           <img
-            src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
+            src={require(`../../assets/logo-20.png`)}
             alt='Logo'
           />
         </a>
@@ -26,10 +26,11 @@ export const NavBar: React.FC = () => {
         ☰
       </button>
       <ul className={`navbaritems ${feed === 1 ? 'drawer' : 'drawer'} ${isMenuOpen ? 'show' : ''}`}>
-        {feed !== 1 && (
+     
           <li>
             <a
-              className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
+              className={'navbaritem'}
+              style={feed === 1 ? { fontWeight:800} : undefined}
               onClick={() => {
                 changeFeed(1);
                 setMenuOpen(false);
@@ -38,11 +39,10 @@ export const NavBar: React.FC = () => {
               Inicio
             </a>
           </li>
-        )}
         <li>
           <a
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 2 ? { color:`${theme===0?'black':'white'}`} : undefined}
+            className={'navbaritem'}
+          style={feed === 2 ? { fontWeight:800} : undefined}
             onClick={() => {
               changeFeed(2);
               setMenuOpen(false);
@@ -53,8 +53,8 @@ export const NavBar: React.FC = () => {
         </li>
         <li>
           <a
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 3 ? { color:`${theme===0?'black':'white'}`} : undefined}
+            className={'navbaritem'}
+           style={feed === 3 ? { fontWeight:900} : undefined}
             onClick={() => {
               changeFeed(3);
               setMenuOpen(false);
@@ -66,8 +66,8 @@ export const NavBar: React.FC = () => {
         {session === 1 && (
           <li>
             <a
-              className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 7 ? { color:`${theme===0?'black':'white'}`} : undefined}
+              className={'navbaritem'}
+              style={feed === 4 ? { fontWeight:900} : undefined}
               onClick={() => {
                 changeFeed(7);
                 setMenuOpen(false);
@@ -79,8 +79,8 @@ export const NavBar: React.FC = () => {
         )}
         <li>
           <a
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 5 ? { color:`${theme===0?'black':'white'}`} : undefined}
+            className={'navbaritem'}
+            style={feed === 5 ? { fontWeight:900} : undefined}
             onClick={() => {
               changeFeed(5);
               setMenuOpen(false);
@@ -91,8 +91,8 @@ export const NavBar: React.FC = () => {
         </li>
         <li>
           <a
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 6 ? { color:`${theme===0?'black':'white'}`} : undefined}
+            className={'navbaritem'}
+            style={feed === 6 ? { fontWeight:900} : undefined}
             onClick={() => {
               changeFeed(6);
               setMenuOpen(false);
@@ -103,8 +103,8 @@ export const NavBar: React.FC = () => {
         </li>
         <li>
           <a
-            className={theme === 2 ? 'navbaritemred' : 'navbaritem'}
-            style={feed === 11 ? { color:`${theme===0?'black':'white'}`} : undefined}
+            className={'navbaritem'}
+            style={ feed === 11 ? { fontWeight:900} : undefined}
             onClick={() => {
               changeFeed(11);
               setMenuOpen(false);
