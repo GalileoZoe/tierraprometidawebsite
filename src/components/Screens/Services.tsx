@@ -137,6 +137,9 @@ const bgImages = [
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center', // Alinea el texto horizontalmente
+          overflowY: 'scroll',
+          scrollbarWidth:'none',
+          msOverflowStyle: 'none',
         }}>
             
       <div
@@ -145,9 +148,8 @@ const bgImages = [
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%',
           backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
-          zIndex: 1, // Mantiene la capa detrás del contenido
+          minHeight:'100%' // Mantiene la capa detrás del contenido
         }}
       >
 

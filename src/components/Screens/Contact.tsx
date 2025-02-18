@@ -51,31 +51,33 @@ const bgImages = [
     
 
     return (
-        <section  className='feed'
-        style={{
-          position: 'relative',
-          backgroundImage: `url(${bgImages[bgIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          width: '100vw', // 100% del ancho de la ventana
-          height: '100vh', // 100% del alto de la ventana
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center', // Alinea el texto horizontalmente
-        }}>
-            
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
-          zIndex: 1, // Mantiene la capa detrás del contenido
-        }}
-      >
+      <section  className='feed'
+      style={{
+        position: 'relative',
+        backgroundImage: `url(${bgImages[bgIndex]})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100vw', // 100% del ancho de la ventana
+        height: '100vh', // 100% del alto de la ventana
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center', // Alinea el texto horizontalmente
+        overflowY: 'scroll',
+        scrollbarWidth:'none',
+        msOverflowStyle: 'none',
+      }}>
+          
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+        minHeight:'100%' // Mantiene la capa detrás del contenido
+      }}
+    >
 
       <h1 className='title fade-in-element' style={{color:'transparent'}} >
        Contacto | Centro de Rehabilitación | Tierra Prometida
@@ -124,25 +126,15 @@ const bgImages = [
             <FaCode className={theme === 2 ? 'iconred' : 'icon'} />
             <p>Software</p>
           </li>
-          {/* <li className='item fade-in-element' title='Eventos Culturales' onClick={() => changeTheme(theme === 1 ? 0 : 1)}>
-            <FaMusic className={theme === 2 ? 'iconred' : 'icon'} />
-            <p>Eventos Culturales</p>
-          </li> */}
         </ul>
-
-        <div className='marginvertical'></div>
 
     
         <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
         {icons[iconIndex]}
           <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
         </a>
-   
       </div>
-
-      <div className='marginvertical'></div>
-
-    </section>
+      </section>
   )
 }
 

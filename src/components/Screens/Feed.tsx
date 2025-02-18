@@ -77,12 +77,20 @@ export const Feed: React.FC = () => {
         </h1>
 
         <a onClick={()=>changeFeed(6)}>
-          <img
-            src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
-            alt='Logo Tierra Prometida'
-          />
-          <p className='item fade-in-element'>24 horas</p>
-
+        {navigator.userAgent.toLowerCase().includes('mobi')  ? (
+   <div className='item'>
+   <img className='img' src={require('../../assets/logo-09.png')} alt='Logo Tierra Prometida' />
+   <p>24 horas</p>
+ </div>
+) : (
+   <>
+   <img
+     src={require(`../../assets/logo-0${theme === 2 ? '8' : '9'}.png`)}
+     alt='Logo Tierra Prometida'
+   />
+   <p className='item fade-in-element'>24 horas</p>
+ </>
+)}
           <p className='text fade-in-element'>' La Semilla Eres Tú '</p>
 
           <div className='center fade-in-element'>

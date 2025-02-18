@@ -16,16 +16,24 @@ export const NavBar: React.FC = () => {
     <nav className={ 'navbar'}>
       <div className='navbarlogo'>
         <a onClick={() => changeFeed(1)} >
-          <img
-            src={require(`../../assets/logo-20.png`)}
-            alt='Logo'
-          />
+      
+                  {navigator.userAgent.toLowerCase().includes('mobi')  ? (
+       <img
+       src={require(`../../assets/logo-20.png`)}
+       alt='Logo'
+     />
+) : (
+  <img
+  src={require(`../../assets/logo-20.png`)}
+  alt='Logo'
+/>
+)}
         </a>
       </div>
       <button className='hamburger' onClick={toggleMenu} aria-label="Toggle menu">
         ☰
       </button>
-      <ul className={`navbaritems ${feed === 1 ? 'drawer' : 'drawer'} ${isMenuOpen ? 'show' : ''}`}>
+      <ul className={`navbaritems ${'drawer'} ${isMenuOpen ? 'show' : ''}`}>
      
           <li>
             <a
