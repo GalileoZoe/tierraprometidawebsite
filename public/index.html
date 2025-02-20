@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
+    <!-- Configuración básica -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
+    <!-- Favicon y touch icon -->
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo12.png" />
 
@@ -16,7 +19,7 @@
       content="Centro de rehabilitación en Toluca especializado en adicciones, terapia psicológica y desintoxicación. Atención profesional y tratamientos personalizados." 
     />
 
-    <!-- Palabras clave optimizadas -->
+    <!-- Palabras clave (opcional, ya que Google no las usa directamente) -->
     <meta 
       name="keywords" 
       content="centro de rehabilitación en Toluca, clínica de rehabilitación en México, tratamiento de adicciones, terapia psicológica, desintoxicación, ayuda para adicciones, rehabilitación efectiva" 
@@ -31,7 +34,7 @@
     <meta property="og:title" content="Centro de Rehabilitación en Toluca | Tierra Prometida" />
     <meta property="og:description" content="Tratamientos especializados en adicciones y terapia psicológica en Toluca. Descubre nuestro enfoque profesional." />
     <meta property="og:image" content="%PUBLIC_URL%/logo12.png" />
-    <meta property="og:url" content="https://tupagina.com" />
+    <meta property="og:url" content="https://galileozoe.github.io/tierraprometidawebsite/" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Card optimizada -->
@@ -41,14 +44,28 @@
     <meta name="twitter:image" content="%PUBLIC_URL%/logo12.png" />
 
     <!-- Mejora de accesibilidad y SEO -->
-    <link rel="canonical" href="https://tupagina.com" />
+    <link rel="canonical" href="https://galileozoe.github.io/tierraprometidawebsite/" />
     <meta name="google-site-verification" content="TU_CODIGO_DE_VERIFICACION" />
+
+    <!-- Preconexión para mejorar el rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <!-- Archivo de manifiesto -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   </head>
   <body>
-    <noscript>Esta página requiere JavaScript para funcionar correctamente.</noscript>
+    <!-- Mensaje para usuarios sin JavaScript -->
+    <noscript>
+      <strong>
+        Lo sentimos, esta página requiere JavaScript para funcionar correctamente. Por favor, habilita JavaScript en tu navegador para continuar.
+      </strong>
+    </noscript>
+
+    <!-- Contenedor raíz de la aplicación React -->
     <div id="root"></div>
+
+    <!-- Carga diferida de scripts (si es necesario) -->
+    <script defer src="%PUBLIC_URL%/ruta/al/script.js"></script>
   </body>
 </html>
