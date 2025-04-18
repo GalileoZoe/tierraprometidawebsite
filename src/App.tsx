@@ -8,6 +8,7 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { SessionProvider } from './context/SessionContext';
 import { ServiceProvider } from './context/ServiceContext';
 import { AuthProvider } from './context/AuthContext';
+import { BackgroundProvider } from './context/BackgroundContext';
 
 const Apps = () => {
   const { theme } = useTheme();
@@ -47,7 +48,9 @@ function App() {
     <ThemeProvider>
       <FeedProvider>
         <ServiceProvider>
-        <Apps />
+          <BackgroundProvider>
+            <Apps />
+          </BackgroundProvider>
         </ServiceProvider>
       </FeedProvider>
     </ThemeProvider>

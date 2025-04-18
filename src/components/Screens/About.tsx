@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import { FaInfoCircle } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
+import { useBackground } from '../../context/BackgroundContext';
 
 export const About = () => {
 
     const {theme}=useTheme();
+    const { bgImages, bgIndex } = useBackground();
 
     // Estado para manejar el icono actual
     const [iconIndex, setIconIndex] = useState(0);
@@ -18,29 +20,11 @@ export const About = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-        });
+        }, 2000);
 
         // Cleanup al desmontar el componente
         return () => clearInterval(interval);
     }, [icons.length]);
-
-      // Arreglo de imágenes de fondo
-      const bgImages = [
-        require('../../assets/muntains-02.png'),
-      ];
-    
-      // Estado para manejar el índice de imagen de fondo
-      const [bgIndex, setBgIndex] = useState(0);
-    
-      useEffect(() => {
-        const interval = setInterval(() => {
-          setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-          setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
-        }, 2000);
-    
-        // Cleanup al desmontar el componente
-        return () => clearInterval(interval);
-      }, [icons.length, bgImages.length]);
     
 
     return (
@@ -67,7 +51,7 @@ export const About = () => {
           top: 0,
           left: 0,
           width: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Capa oscura con opacidad
           minHeight:'100%' // Mantiene la capa detrás del contenido
         }}
       >

@@ -108,6 +108,15 @@
 
 /* /////// Components /////// */
 
+.opacity{
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    width: '100%';
+    background-color: 'rgba(255, 255, 255, 0.5)';
+    min-height:'100%' ;
+}
+
 
 /*  Button  */
 
@@ -116,7 +125,7 @@
   color: #fff;
   margin: 10px;
   padding: 8px 15px;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -131,7 +140,7 @@
 .button:hover {
   background-color: #db1313;
   color: 'transparent';
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -148,7 +157,7 @@
   color: #db1313;
   margin: 10px;
   padding: 8px 15px;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -163,7 +172,7 @@
 .buttons:hover {
   background-color: 'transparent';
   color: #db1313;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -178,7 +187,7 @@
 .buttonblack {
   background-color: #db1313;
   color: black;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -193,7 +202,7 @@
 .buttonblack:hover {
   background-color: #db1313;
   color: 'transparent';
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -209,7 +218,7 @@
 .button {
   background-color: #db1313;
   color: #fff;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -224,7 +233,7 @@
 .button:hover {
   background-color: #db1313;
   color: 'transparent';
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -498,7 +507,7 @@
 
 .textss {
   color: #db1313;
-  font-weight: 400;
+  
   text-align: center;
   font-size: 0.7em;
 }
@@ -526,70 +535,70 @@
 
 .textblack {
   color: #000;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
 }
 
 .textblack:hover {
   color: #000;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
   cursor: pointer;
 }
 .textgreen {
   color: #32cd32;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
 }
 
 .textgreen:hover {
   color: #32cd32;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
   cursor: pointer;
 }
 .textgreens {
   color: #32cd32;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 0.6em;
 }
 
 .textgreens:hover {
   color: #32cd32;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 0.6em;
   cursor: pointer;
 }
 .textred {
   color: #db1313;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
 }
 
 .textred:hover {
   color: #db1313;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
   cursor: pointer;
 }
 .textwhite {
   color: snow;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
 }
 
 .textwhite:hover {
   color: snow;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
   cursor: pointer;
@@ -597,14 +606,14 @@
 
 .textblue {
   color: #0044ff;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
 }
 
 .textblue:hover {
   color: #0044ff;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 1em;
   cursor: pointer;
@@ -612,14 +621,14 @@
 
 .textblacks {
   color: #000;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 0.7em;
 }
 
 .textblacks:hover {
   color: #000;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 0.7em;
   cursor: pointer;
@@ -629,7 +638,7 @@
 /*  Paragraph  */
 .paragraph {
   /* color: #db1313; */
-  font-weight: 400;
+  
   text-align: center;
   font-size: 1.4em;
   transition: color 0.5s ease;
@@ -952,7 +961,7 @@
 
 .title {
   color: #db1313;
-  font-weight: 400;
+  
   font-size: 2em;
   text-align: center;
 }
@@ -960,7 +969,7 @@
 
 .titleblack {
   color: black;
-  font-weight: 100;
+ 
   font-size: 2em;
   text-align: center;
 }
@@ -973,14 +982,14 @@
 
 .titles {
   color: #db1313;
-  font-weight: 100;
+ 
   font-size: 1em;
   text-align: center;
 }
 
 .titles:hover {
   color: #920e0e;
-  font-weight: 100;
+ 
   font-size: 1em;
   text-align: center;
   cursor: pointer;
@@ -988,7 +997,7 @@
 
 .titleRed {
   color: whitesmoke;
-  font-weight: 100;
+ 
   font-size: 2em;
   text-align: center;
 }
@@ -996,7 +1005,7 @@
 
 .titleRed:hover {
   color: #db1313;
-  font-weight: 100;
+ 
   text-align: center;
   font-size: 2em;
   cursor: pointer;
@@ -1245,7 +1254,7 @@
 .windowbutton {
   background-color: #db1313;
   color: #fd5959;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -1260,7 +1269,7 @@
 .windowbutton:hover {
   background-color: #db1313;
   color: #fd5959;
-  font-weight: 100;
+ 
   font-size: 1em;
   border: none;
   width: max-content;
@@ -1360,7 +1369,6 @@
     .item {
       margin: 10px 0; /* Espaciado entre los íconos */
       text-align: center;
-      width: 100%; /* Asegura que cada ícono ocupe todo el ancho */
     }
 
     .window{

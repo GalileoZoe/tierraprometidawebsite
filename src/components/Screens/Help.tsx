@@ -1,26 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FaHeart } from 'react-icons/fa'
 import { useTheme } from '../../context/ThemeContext'
+import { useBackground } from '../../context/BackgroundContext'
 
 export const Help = () => {
 
-  const {theme}=useTheme();
-  
-const bgImages = [
-        require('../../assets/muntains-02.png'),
-      ];
-    
-      // Estado para manejar el índice de imagen de fondo
-      const [bgIndex, setBgIndex] = useState(0);
-    
-      useEffect(() => {
-        const interval = setInterval(() => {
-          setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
-        }, 2000);
-    
-        // Cleanup al desmontar el componente
-        return () => clearInterval(interval);
-      }, [bgImages.length]);
+  const { theme } = useTheme();
+  const { bgImages, bgIndex } = useBackground();
     
 
     return (
@@ -41,11 +27,11 @@ const bgImages = [
       <div
         style={{
           position: 'absolute',
-          top: 70,
+          
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Capa oscura con opacidad
           zIndex: 1, // Mantiene la capa detrás del contenido
         }}
       >

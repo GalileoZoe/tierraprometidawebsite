@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
+import { useBackground } from '../../context/BackgroundContext';
 import { FaAppleAlt, FaComment, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaIgloo, FaMusic, FaPaintBrush, FaPhone, FaUser, FaUserMd, FaUsers, FaWhatsapp } from 'react-icons/fa';
 import { Window } from '../Components/Window';
 import { useService } from '../../context/ServiceContext';
@@ -106,22 +107,17 @@ Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excu
   }, [icons.length]);
 
 
-const bgImages = [
-        require('../../assets/muntains-02.png'),
-      ];
+  // Usar el contexto global de fondo
+  const { bgImages, bgIndex } = useBackground();
     
-      // Estado para manejar el índice de imagen de fondo
-      const [bgIndex, setBgIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
+    }, 2000);
     
-      useEffect(() => {
-        const interval = setInterval(() => {
-          setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-          setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
-        }, 2000);
-    
-        // Cleanup al desmontar el componente
-        return () => clearInterval(interval);
-      }, [icons.length, bgImages.length]);
+    // Cleanup al desmontar el componente
+    return () => clearInterval(interval);
+  }, [icons.length]);
     
 
     return (
@@ -148,7 +144,7 @@ const bgImages = [
           top: 0,
           left: 0,
           width: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.5)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Capa oscura con opacidad
           minHeight:'100%' // Mantiene la capa detrás del contenido
         }}
       >

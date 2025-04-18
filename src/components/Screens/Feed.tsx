@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
+import { useBackground } from '../../context/BackgroundContext';
 import { FaPhone, FaFacebook, FaWhatsapp, FaComment, FaEnvelope } from 'react-icons/fa';
 
 export const Feed: React.FC = () => {
@@ -19,25 +20,17 @@ export const Feed: React.FC = () => {
     <FaEnvelope className='icon' />,
   ];
 
-  // Arreglo de imágenes de fondo
-  const bgImages = [
-    require('../../assets/img-00.png'),
-    require('../../assets/img-01.png'),
-    require('../../assets/img-02.png'),
-  ];
-
-  // Estado para manejar el índice de imagen de fondo
-  const [bgIndex, setBgIndex] = useState(0);
+  // Usar el contexto global de fondo
+  const { bgImages, bgIndex } = useBackground();
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-      setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length); // Cambia el fondo de imagen
     }, 2000);
 
     // Cleanup al desmontar el componente
     return () => clearInterval(interval);
-  }, [icons.length, bgImages.length]);
+  }, [icons.length]);
 
   return (
     <section
@@ -65,7 +58,7 @@ export const Feed: React.FC = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.7)', // Capa oscura con opacidad
+          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Capa oscura con opacidad
           zIndex: 1, // Mantiene la capa detrás del contenido
         }}
       />
