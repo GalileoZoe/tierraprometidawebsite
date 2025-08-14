@@ -9,6 +9,17 @@ export const Contact = () => {
 
   const { feed, changeFeed } = useFeed();
   const { theme, changeTheme } = useTheme();
+    const [isMobile, setIsMobile] = useState(false);
+
+      useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || navigator.userAgent.toLowerCase().includes('mobi'));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
 
   // Estado para manejar el icono actual
   const [iconIndex, setIconIndex] = useState(0);
@@ -78,8 +89,17 @@ export const Contact = () => {
         <p>24 horas</p>
       </div>
 
-     <div className='marginvertical'></div>
-        <ul className='slider'>
+     {!isMobile&&<div className='marginvertical'></div>}
+
+        <ul className='slider'
+        style={{
+           display: 'grid',
+              gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: isMobile ? '0.5rem' : '1rem',
+              transform: isMobile ? 'scale(0.9)' : 'scale(1)',
+              padding: isMobile ? '0.2rem' : '2rem',
+              maxHeight: isMobile ? 'calc(100vh - 300px)' : 'auto'
+            }}>
 
           <li className='item fade-in-element' title='Llamada' >
             <a href='tel:7281136945'><FaPhone className={theme === 2 ? 'iconred' : 'icon'} /></a>
@@ -115,10 +135,11 @@ export const Contact = () => {
           </li>
         </ul>
 
-    
-        <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
+             {!isMobile&&<div className='marginvertical'></div>}
+
+        <a className='icon fade-in-element' title='Contacto' href='https://wa.me/527221427901'>
         {icons[iconIndex]}
-          <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
+          <p className={theme===0?'button':'buttonblack'}>Contacto</p>
         </a>
       </div>
       </section>

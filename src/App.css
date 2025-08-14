@@ -274,6 +274,7 @@
   /* Sombra suave */
   width: 300px;
   /* Ancho de las tarjetas */
+  height: 150px;
 }
 
 .card h2 {
@@ -290,14 +291,10 @@
 .cardblack {
   background-color: #db1313;
   border:none;
-  /* Borde suave */
   border-radius: 8px;
-  /* Bordes redondeados */
   padding: 1em;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  /* Sombra suave */
   width: 300px;
-  /* Ancho de las tarjetas */
 }
 
 .cardblack h2 {
@@ -637,10 +634,8 @@
 
 /*  Paragraph  */
 .paragraph {
-  /* color: #db1313; */
-  
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.2em;
   transition: color 0.5s ease;
   cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaHeart } from 'react-icons/fa'
 import { useTheme } from '../../context/ThemeContext'
 import { useBackground } from '../../context/BackgroundContext'
@@ -7,6 +7,17 @@ export const Help = () => {
 
   const { theme } = useTheme();
   const { bgImages, bgIndex } = useBackground();
+    const [isMobile, setIsMobile] = useState(false);
+
+      useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || navigator.userAgent.toLowerCase().includes('mobi'));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
     
 
     return (
@@ -35,6 +46,8 @@ export const Help = () => {
           zIndex: 1, // Mantiene la capa detrás del contenido
         }}
       >
+
+        {isMobile&&<div className='marginvertical'></div>}
 
 
         <h1 className='title'>Ayuda</h1>

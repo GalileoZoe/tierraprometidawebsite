@@ -8,6 +8,17 @@ export const About = () => {
 
     const {theme}=useTheme();
     const { bgImages, bgIndex } = useBackground();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || navigator.userAgent.toLowerCase().includes('mobi'));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
 
     // Estado para manejar el icono actual
     const [iconIndex, setIconIndex] = useState(0);
@@ -56,18 +67,23 @@ export const About = () => {
         }}
       >
           <div style={{ position: 'relative', zIndex: 2 }}></div>
-            <div className='about-header'>
+         
 
-            <h1 className='title fade-in-element' style={{color:'transparent'}} >
+            {!isMobile? <h1 className='title fade-in-element' style={{color:'transparent'}} >
         Información | Centro de Rehabilitación | Tierra Prometida
-        </h1>
+        </h1>:
+        <>
+        <br/>
+        <br/>
+        </>
+        }
 
                 <h1 className='title'>Nosotros</h1>
 
                 <img className='img' src={require('../../assets/logo-09.png')} />
                 <p className='item'>24 horas</p>
 
-            </div>
+         
 
             <div className='image-description'>
 

@@ -3,185 +3,152 @@ import '../../App.css';
 import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useBackground } from '../../context/BackgroundContext';
-import { FaAppleAlt, FaComment, FaEnvelope, FaFacebook, FaFutbol, FaHeart, FaIgloo, FaMusic, FaPaintBrush, FaPhone, FaUser, FaUserMd, FaUsers, FaWhatsapp } from 'react-icons/fa';
+import {
+  FaAppleAlt, FaComment, FaEnvelope, FaFacebook, FaFutbol, FaHeart,
+  FaIgloo, FaMusic, FaPaintBrush, FaPhone, FaUser, FaUserGraduate,
+  FaUserMd, FaUsers, FaWhatsapp, FaSpa
+} from 'react-icons/fa';
 import { Window } from '../Components/Window';
 import { useService } from '../../context/ServiceContext';
 
 export const Services = () => {
-
   const { changeFeed } = useFeed();
   const { theme } = useTheme();
   const { service, changeService } = useService();
+  const { bgImages, bgIndex } = useBackground();
 
+  const [moreInfo, setMoreInfo] = useState(false);
+  const [iconIndex, setIconIndex] = useState(0);
 
-  const Services = () => {
+  // Detectar móvil
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || navigator.userAgent.toLowerCase().includes('mobi'));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const contactIcons = [
+    <FaPhone className='icon' />,
+    <FaComment className='icon' />,
+    <FaWhatsapp className='icon' />,
+    <FaFacebook className='icon' />,
+    <FaEnvelope className='icon' />
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIconIndex((prev) => (prev + 1) % contactIcons.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [contactIcons.length]);
+
+  const renderService = () => {
+    const baseProps = {
+      text: 'Hola Mundo',
+      button: 'Más Información',
+      showMoreInfo: true,
+      moreInfo,
+      setMoreInfo,
+    };
+
     switch (service) {
       case 1:
-        return <Window
-          tittle='Temazcal'
-          description={
-            <>
-              Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios.
-              <br />
-              ¡Servicio abierto al público!
-            </>
-            
-          }
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Temazcal' icon={<FaSpa className='icon' />} description='Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios.' />;
       case 2:
-        return <Window
-          tittle='Psicología'
-          description='Atención Psicológica Profesional. Sesiones individuales, grupales y familiares.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Psicología' icon={<FaUserMd className='icon' />} description='Atención Psicológica Profesional. Sesiones individuales, grupales y familiares.' />;
       case 3:
-        return <Window
-          tittle='Nutrición'
-          description='Dieta basada en alimentos frescos y naturales que ayudan en el proceso de desintoxicación del cuerpo, mejoran la salud física y brindan mayor energía; manteniendo un mejor estado de ánimo.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Nutrición' icon={<FaAppleAlt className='icon' />} description='Dieta basada en alimentos frescos y naturales que ayudan en el proceso de desintoxicación del cuerpo, mejoran la salud física y brindan mayor energía; manteniendo un mejor estado de ánimo.' />;
       case 4:
-        return <Window
-          tittle='Sesiones AL-ANON'
-          description='Estrategias para saber como lidiar con personas con conductas adictivas.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Sesiones AL-ANON' icon={<FaUsers className='icon' />} description='Estrategias para saber como lidiar con personas con conductas adictivas.' />;
       case 5:
-        return <Window
-          tittle='Desintoxicación'
-          description='Temazcal, Activación Física, Sesiones de Psicología,  Juntas de Recuperación y una Dieta Saludable para desintoxicar el cuerpo, el alma y la mente.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Desintoxicación' icon={<FaHeart className='icon' />} description='Temazcal, Activación Física, Sesiones de Psicología,  Juntas de Recuperación y una Dieta Saludable para desintoxicar el cuerpo, el alma y la mente.' />;
       case 6:
-        return <Window
-          tittle='Desarrollo Humano'
-          description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones mediante el desarrollo de hábitos saludables y una mentalidad positiva.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Desarrollo Humano' icon={<FaUser className='icon' />} description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones mediante el desarrollo de hábitos saludables y una mentalidad positiva.' />;
       case 7:
-        return <Window
-          tittle='Activación Física'
-          description='Favorece a la salud física y mental, al proceso de desintoxicación y la creación de habitos saludables.'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='Activación Neuromúscular' icon={<FaFutbol className='icon' />} description='Favorece a la salud física y mental, al proceso de desintoxicación y la creación de habitos saludables.' />;
       case 8:
-        return <Window
-          tittle='ArteTerapia'
-          description='Fomentamos actividades artisticas para estimular la creatividad y la expresión asertiva de emociones .'
-          button='Más Información'
-        />;
+        return <Window {...baseProps} tittle='ArteTerapia' icon={<FaPaintBrush className='icon' />} description='Fomentamos actividades artisticas para estimular la creatividad y la expresión asertiva de emociones.' />;
       case 9:
-        return <Window
-          tittle='Eventos Culturales'
-          description='
-Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables'
-          button='Más Información'
-        />
+        return <Window {...baseProps} tittle='Eventos Culturales' icon={<FaMusic className='icon' />} description='Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables.' />;
+      case 10:
+        return <Window {...baseProps} tittle='Educación Profesional' icon={<FaUserGraduate className='icon' />} description='Preparamos y entregamos certificados de Primaria, Secundaria y Preparatoria válidos por la SEP.' />;
       default:
         return null;
     }
   };
 
-  // Estado para manejar el icono actual
-  const [iconIndex, setIconIndex] = useState(0);
-
-  // Array de íconos
-  const icons = [
-    <FaPhone className='icon' />,
-    <FaComment className='icon' />,
-    <FaWhatsapp className='icon' />,
-    <FaFacebook className='icon' />,
-    <FaEnvelope className='icon' />,
-    // <FaTiktok className='icon' />,
-    // <FaCode className='icon' />,
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-    }, 2000);
-
-    // Cleanup al desmontar el componente
-    return () => clearInterval(interval);
-  }, [icons.length]);
-
-
-  // Usar el contexto global de fondo
-  const { bgImages, bgIndex } = useBackground();
-    
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIconIndex((prevIndex) => (prevIndex + 1) % icons.length);
-    }, 2000);
-    
-    // Cleanup al desmontar el componente
-    return () => clearInterval(interval);
-  }, [icons.length]);
-    
-
-    return (
-        <section  className='feed'
-        style={{
-          position: 'relative',
-          backgroundImage: `url(${bgImages[bgIndex]})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          width: '100vw', // 100% del ancho de la ventana
-          height: '100vh', // 100% del alto de la ventana
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center', // Alinea el texto horizontalmente
-          overflowY: 'scroll',
-          scrollbarWidth:'none',
-          msOverflowStyle: 'none',
-        }}>
-            
+  return (
+    <section
+      className='feed'
+      style={{
+        position: 'relative',
+        backgroundImage: `url(${bgImages[bgIndex]})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: isMobile ? 'flex-start' : 'center',
+        textAlign: 'center',
+        overflowY: isMobile ? 'auto' : 'scroll',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none',
+        padding: isMobile ? '1rem' : '0'
+      }}
+    >
       <div
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Capa oscura con opacidad
-          minHeight:'100%' // Mantiene la capa detrás del contenido
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          minHeight: '100%',
         }}
       >
-
-        
-      <h1 className='title fade-in-element' style={{color:'transparent'}} >
-       Servicios | Centro de Rehabilitación | Tierra Prometida
-        </h1>
-
-        <h1 className={theme===2?'titleRed':'title'}>Servicios</h1>
-        <img className='img' src={require('../../assets/logo-09.png')} />
-        <p className='item'>24 horas</p>
-
+        <br />
         <br />
 
-        {service===0 ? <div>
-          <ul className='slider'>
-
+        <h1 className={theme === 2 ? 'titleRed' : 'title'}>Servicios</h1>
+        <img className='img' src={require('../../assets/logo-09.png')} />
+        <p className='item'>24 horas</p>
+        {service === 0 ? (
+          <ul
+            className='slider'
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(150px, 1fr))',
+              gap: isMobile ? '0.5rem' : '1rem',
+              transform: isMobile ? 'scale(0.9)' : 'scale(1)',
+              padding: isMobile ? '0.5rem' : '2rem',
+              maxHeight: isMobile ? 'calc(100vh - 200px)' : 'auto'
+            }}
+          >
             <li className='item fade-in-element' title='Psicología' onClick={() => changeService(2)}>
               <FaUserMd className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Psicología{'\n'}Profesional</p>
+            </li>
+            <li className='item fade-in-element' title='Educación' onClick={() => changeService(10)}>
+              <FaUserGraduate className={theme === 2 ? 'iconred' : 'icon'} />
+              <p>Educación</p>
             </li>
             <li className='item fade-in-element' title='Nutrición' onClick={() => changeService(3)}>
               <FaAppleAlt className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Nutrición</p>
             </li>
-
             <li className='item fade-in-element' title='Temazcal' onClick={() => changeService(1)}>
               <FaIgloo className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Temazcal</p>
             </li>
-
             <li className='item fade-in-element' title='AL-ANON' onClick={() => changeService(4)}>
               <FaUsers className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Sesiones AL-ANON</p>
             </li>
-
             <li className='item fade-in-element' title='Desintoxicación' onClick={() => changeService(5)}>
               <FaHeart className={theme === 2 ? 'iconred' : 'icon'} />
               <p>Desintoxicación</p>
@@ -203,19 +170,19 @@ Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excu
               <p>Eventos {'\n'} Culturales</p>
             </li>
           </ul>
-        </div> :
-          <div>
-            <Services />
-          </div>}
-      <div className='marginvertical'></div>
+        ) : (
+          <div>{renderService()}</div>
+        )}
+
+        {!isMobile&&<div className='marginvertical'></div>}
+
         <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
-          {icons[iconIndex]}
-          <p className={theme===0?'button':'buttonblack'}>Contáctanos</p>
+          {contactIcons[iconIndex]}
+          <p className={theme === 0 ? 'button' : 'buttonblack'}>Contáctanos</p>
         </a>
 
-            <div className='marginvertical'></div>
-
+        {!isMobile&&<div className='marginvertical'></div>}
       </div>
     </section>
-  )
-}
+  );
+};

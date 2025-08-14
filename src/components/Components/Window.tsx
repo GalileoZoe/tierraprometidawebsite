@@ -1,64 +1,72 @@
-import React from 'react'
-import { useService } from '../../context/ServiceContext'
-import { FaAppleAlt,  FaFutbol, FaHeart, FaInfo, FaMusic, FaPaintBrush, FaSpa, FaUser, FaUserMd, FaUsers, FaWindowClose } from 'react-icons/fa';
+import React from 'react';
+import { FaInfo, FaWindowClose } from 'react-icons/fa';
+import { useService } from '../../context/ServiceContext';
 
 interface WindowProps {
-  action?: () => void,
-  button?: string,
-  description?: any,
-  href?: string,
-  icon?: string,
-  tittle?: string,
-  image?: string,
+  action?: () => void;
+  button?: string;
+  text?: string;
+  description?: string;
+  href?: string;
+  icon?: React.ReactNode;
+  tittle?: string;
+  image?: string;
+  onButtonClick?: () => void;
+  showMoreInfo?: boolean;
+  moreInfo?: boolean;
+  setMoreInfo?: (value: boolean) => void;
 }
 
-export const Window: React.FC<WindowProps> = ({ action, button, href, tittle, description }) => {
+export const Window: React.FC<WindowProps> = ({
+  action,
+  text,
+  button,
+  href,
+  tittle,
+  description,
+  onButtonClick,
+  showMoreInfo,
+  icon,
+  moreInfo,
+  setMoreInfo,
+}) => {
+  const { changeService } = useService();
 
-  const { service, changeService } = useService();
-
-  const Icons = () => {
-    switch (service) {
-      case 0:
-        return null ;
-      case 1:
-        return  <FaSpa className='icon' onClick={() => changeService(0)} />;
-      case 2:
-        return  <FaUserMd className='icon' onClick={() => changeService(0)} />;
-      case 3:
-        return  <FaAppleAlt className='icon' onClick={() => changeService(0)} />;
-      case 4:
-        return  <FaUsers className='icon' onClick={() => changeService(0)} />;
-      case 5:
-        return  <FaHeart className='icon' onClick={() => changeService(0)} />;
-      case 6:
-        return  <FaUser className='icon' onClick={() => changeService(0)} />;
-      case 7:
-        return  <FaFutbol className='icon' onClick={() => changeService(0)} />;
-      case 8:
-        return  <FaPaintBrush className='icon' onClick={() => changeService(0)} />;
-      case 9:
-        return  <FaMusic className='icon' onClick={() => changeService(0)} />;
-      default:
-        return null;
+  const toggleMoreInfo = () => {
+    if (setMoreInfo && typeof moreInfo === 'boolean') {
+      setMoreInfo(!moreInfo);
     }
   };
 
   return (
+    <div className='window'>
+      <br />
+      <FaWindowClose
+        className='icon'
+        style={{ float: 'right', paddingRight: '20px' }}
+        onClick={() => changeService(0)}
+      />
+      <h1 className='title'>{tittle}</h1>
 
-      <div className='window'>
-        <br />
-        <FaWindowClose className='icon' style={{float:'right', paddingRight:'20px'}} onClick={() => changeService(0)} />
-        <h1 onClick={() => changeService(0)} className='title'>{tittle}</h1>
-       <Icons/>
-        <p className='paragraph'>
-          {description}
-        </p>
-        <a href={href} onClick={action} className='icon'> <FaInfo/>
-        <br />
-         {button}</a>
-        <br />
-        <br />
-      </div>
+      {icon && (
+        <span className='icon' onClick={() => changeService(0)}>
+          {icon}
+        </span>
+      )}
 
-  )
-}
+      <p className='paragraph'>{text}</p>
+
+      {showMoreInfo && (
+        <a onClick={toggleMoreInfo} className='icon'>
+          <FaInfo />
+          <br />
+          {moreInfo ? 'Menos Información' : 'Más Información'}
+        </a>
+      )}
+
+      {showMoreInfo && moreInfo && (
+        <p className='paragraph'>{description}</p>
+      )}
+    </div>
+  );
+};
