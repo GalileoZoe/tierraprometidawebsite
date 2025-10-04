@@ -128,6 +128,7 @@ export const Students: React.FC = () => {
                                     <th className='tableheader' >Estancia</th>
                                     <th className='tableheader' >Egreso</th>
                                     <th className='tableheader' >Reportes</th>
+                                    <th className='tableheader' >Tienda</th>
                                     <th className='tableheader' >Opciones</th>
                                 </tr>
                             </thead>
@@ -200,6 +201,8 @@ export const Students: React.FC = () => {
                                                 {/* Agregar el ícono para mostrar archivos */}
                                                 <FaFileMedicalAlt className='icon'/>
                                             </td>
+                                             <td  className={theme===1?'texts':'textblack'} title={`Sldo disponible en Tienda de ${student.name}`} >{student.check}</td>
+
                                             <td  className={theme===1?'texts':'textblack'} >
                                                 <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
                                                 <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />

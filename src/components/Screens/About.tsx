@@ -96,12 +96,12 @@ export const About = () => {
                 </div>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Visión</h2>
-                    <p>Ser una clínica líder en la prevención y liberación de adicciones,
+                    <p>Ser líderes en la prevención y liberación de adicciones,
                          transformando vidas y reintegrando familias.</p>
                 </div>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Valores</h2>
-                    <p>Respeto, Amor, Recuperación, Compañerismo, Salud, Humildad, Resiliencia, Disciplina.</p>
+                    <p>Respeto, Amor, Recuperación,Salud, Humildad, Resiliencia, Disciplina.</p>
                 </div>
             </div>
             <br />

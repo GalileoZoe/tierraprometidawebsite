@@ -11,8 +11,8 @@ export interface File {
 }
 
 export interface Student {
+    _id?: string | number;
     number?: string;
-    _id?: number | string;
     name?: string;
     lastname?: string;
     username?: string;
@@ -36,6 +36,13 @@ export interface Student {
     description?: string;
     startdate?: string;
     enddate?: string;
+    service?: string;
+    experience?: string;
+    psychology?: string;
+    sessions?: string;
+    check?: number;
+    medicine?: string;
     status?: string;
     reports?: Report[];
+    softdelete?: boolean; // 🔹 Nuevo campo para soft delete
 }

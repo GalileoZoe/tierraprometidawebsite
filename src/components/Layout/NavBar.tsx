@@ -11,7 +11,8 @@ import {
   FaCalendarAlt,
   FaMapMarkerAlt,
   FaEnvelope,
-  FaQuestionCircle
+  FaQuestionCircle,
+  FaUserAlt
 } from 'react-icons/fa';
 
 export const NavBar: React.FC = () => {
@@ -35,6 +36,7 @@ export const NavBar: React.FC = () => {
   }, []);
 
   const menuItems = [
+    { id: 0, label: 'Iniciar Sesión', icon: <FaUserAlt/> },
     { id: 1, label: 'Inicio', icon: <FaHome /> },
     { id: 2, label: 'Nosotros', icon: <FaInfoCircle /> },
     { id: 3, label: 'Servicios', icon: <FaCog /> },
@@ -104,17 +106,20 @@ export const NavBar: React.FC = () => {
               left: isMenuOpen ? 0 : '-300px',
               width: '280px',
               height: '100vh',
-              background: 'rgba(255, 255, 255, 0.6)',
+              background: 'transparent',
               backdropFilter: 'blur(10px)',
               zIndex: 999,
               transition: 'left 0.3s ease',
               padding: '20px 0',
               boxShadow: '2px 0 10px rgba(0, 0, 0, 0.3)',
               display: 'flex',
-              flexDirection: 'column'
+              flexDirection: 'column',
+              overflowY: 'auto', 
             }}
           >
             {/* Header */}
+              <div className="marginvertical"></div>
+
             <div
               style={{
                 display: 'flex',
@@ -125,9 +130,9 @@ export const NavBar: React.FC = () => {
               }}
             >
               <img
-                src={require('../../assets/logo-20.png')}
+                src={require('../../assets/logo-00.png')}
                 alt="Logo"
-                style={{ width: '60px', height: '60px' }}
+                style={{ width: '100px', height: '100px' }}
               />
             </div>
 
@@ -172,8 +177,7 @@ export const NavBar: React.FC = () => {
             <div
               style={{
                 marginTop: 'auto',
-                padding: '20px',
-                borderTop: '1px solid rgba(255,255,255,0.1)',
+                paddingBottom: '3em',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
@@ -185,9 +189,9 @@ export const NavBar: React.FC = () => {
             
               <code
                 style={{
-                  fontSize: 'em',
+                  fontSize: '1em',
                   background: 'rgba(255,255,255,0.1)',
-                  padding: '4px 6px',
+                  // padding: '4px 6px',
                   borderRadius: '4px'
                 }}
               >
@@ -196,7 +200,7 @@ export const NavBar: React.FC = () => {
                   <img
                 src={require('../../assets/galileozoe-00.png')}
                 alt="Logo GZ (Developer)"
-                style={{ width: '8em', height: 'auto', borderRadius: '6px' }}
+                style={{ width: '8em', height: 'auto' }}
               />
             </div>
           </div>

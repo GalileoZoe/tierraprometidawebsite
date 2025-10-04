@@ -49,7 +49,7 @@ export const Contact = () => {
     
 
     return (
-      <section  className='feed'
+      <section id='contact'  className='feed'
       style={{
         position: 'relative',
         backgroundImage: `url(${bgImages[bgIndex]})`,
@@ -76,11 +76,12 @@ export const Contact = () => {
         minHeight:'100%' // Mantiene la capa detrás del contenido
       }}
     >
-
+      {!isMobile?
       <h1 className='title fade-in-element' style={{color:'transparent'}} >
        Contacto | Centro de Rehabilitación | Tierra Prometida
-        </h1>
-
+        </h1>:
+     <div className='marginvertical'></div>
+      }
         <h1 className={theme===2 ? 'titleRed' : 'title'}>Contacto</h1>
 
    
@@ -137,7 +138,7 @@ export const Contact = () => {
 
              {!isMobile&&<div className='marginvertical'></div>}
 
-        <a className='icon fade-in-element' title='Contacto' href='https://wa.me/527221427901'>
+        <a className='icon fade-in-element' title='Contacto' href='https://wa.me/5272214279011'>
         {icons[iconIndex]}
           <p className={theme===0?'button':'buttonblack'}>Contacto</p>
         </a>

@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import { tierraprometidaApi } from '../api/tierraprometidaApi';
-import { Student } from '../interfaces/Students';
+import { Student, File, Report } from '../interfaces/Students';
 import axios from 'axios';
 
 export const useStudentsApi = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [listStudents, setListStudents] = useState<Student[]>([]);
-    const apiUrl: string = 'https://tierraprometida-production.up.railway.app/api/tierraprometida/v1/students';
+    const apiUrl: string = 'http://localhost:3000/api/tierraprometida/v1/students';
 
+    // -----------------------------
     // Cargar estudiantes desde la API
+    // -----------------------------
     const loadStudents = async () => {
         setIsLoading(true);
         try {
             const response = await tierraprometidaApi.get<Student[]>(apiUrl);
-            setListStudents(response.data);
+            // Filtrar estudiantes que no estén soft deleted
+            const activeStudents = response.data.filter(s => !s.softdelete);
+            setListStudents(activeStudents);
         } catch (error) {
             console.error('Error loading students:', error);
         } finally {
@@ -21,11 +25,13 @@ export const useStudentsApi = () => {
         }
     };
 
-    // Crear un nuevo estudiante en la API
-    const createStudent = async (data: Student, files?: File[]) => {
+    // -----------------------------
+    // Crear un nuevo estudiante
+    // -----------------------------
+    const createStudent = async (data: Student, files?: File[], reports?: Report[]) => {
         try {
-            await tierraprometidaApi.post(apiUrl, data);
-            // Aquí podrías manejar la carga de archivos si es necesario
+            const payload = { ...data, files, reports };
+            await tierraprometidaApi.post(apiUrl, payload);
             loadStudents();
         } catch (error) {
             if (axios.isAxiosError(error)) {
@@ -36,27 +42,46 @@ export const useStudentsApi = () => {
         }
     };
 
-    // Actualizar un estudiante existente en la API
-    const updateStudent = async (data: Student, files?: File[]) => {
+    // -----------------------------
+    // Actualizar un estudiante existente
+    // -----------------------------
+    const updateStudent = async (data: Student, files?: File[], reports?: Report[]) => {
         try {
-            await tierraprometidaApi.put(`${apiUrl}/${data._id}`, data);
-            // Aquí también podrías manejar la carga de archivos si es necesario
+            const payload = { ...data, files, reports };
+            await tierraprometidaApi.put(`${apiUrl}/${data._id}`, payload);
             loadStudents(); // Recargar la lista después de actualizar
         } catch (error) {
-            console.error('Error updating student:', error);
+            if (axios.isAxiosError(error)) {
+                console.error('Error updating student:', error.response?.data);
+            } else {
+                console.error('Error updating student:', error);
+            }
         }
     };
 
-    // Eliminar un estudiante en la API
-    const deleteStudent = async (data: Student) => {
+    // -----------------------------
+    // Eliminar un estudiante permanentemente
+    // -----------------------------
+    const deleteStudent = async (student: Student) => {
         try {
-            await tierraprometidaApi.delete(`${apiUrl}/${data._id}`);
-            loadStudents(); // Recargar la lista después de eliminar
+            await tierraprometidaApi.delete(`${apiUrl}/${student._id}`);
+            loadStudents();
         } catch (error) {
             console.error('Error deleting student:', error);
         }
     };
 
+    // -----------------------------
+    // Soft delete (marcar como eliminado)
+    // -----------------------------
+    const softDeleteStudent = async (student: Student) => {
+        try {
+            await tierraprometidaApi.put(`${apiUrl}/soft/${student._id}`);
+            loadStudents();
+        } catch (error) {
+            console.error('Error soft deleting student:', error);
+        }
+    };
 
     useEffect(() => {
         loadStudents();
@@ -69,5 +94,6 @@ export const useStudentsApi = () => {
         createStudent,
         updateStudent,
         deleteStudent,
+        softDeleteStudent, // <-- añadido
     };
 };

@@ -16,12 +16,10 @@ export const Services = () => {
   const { theme } = useTheme();
   const { service, changeService } = useService();
   const { bgImages, bgIndex } = useBackground();
-
   const [moreInfo, setMoreInfo] = useState(false);
   const [iconIndex, setIconIndex] = useState(0);
-
-  // Detectar móvil
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768 || navigator.userAgent.toLowerCase().includes('mobi'));
@@ -48,7 +46,6 @@ export const Services = () => {
 
   const renderService = () => {
     const baseProps = {
-      text: 'Hola Mundo',
       button: 'Más Información',
       showMoreInfo: true,
       moreInfo,
@@ -57,25 +54,105 @@ export const Services = () => {
 
     switch (service) {
       case 1:
-        return <Window {...baseProps} tittle='Temazcal' icon={<FaSpa className='icon' />} description='Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Temazcal"
+            icon={<FaSpa className="icon" />}
+            description="Favorece al proceso de desintoxicación y beneficia a la salud física y mental de los usuarios."
+            text="El Temazcal es una tradición ancestral que combina el calor del vapor con plantas medicinales para purificar el cuerpo y la mente, promoviendo la relajación y el bienestar integral."
+          />
+        );
       case 2:
-        return <Window {...baseProps} tittle='Psicología' icon={<FaUserMd className='icon' />} description='Atención Psicológica Profesional. Sesiones individuales, grupales y familiares.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Psicología"
+            icon={<FaUserMd className="icon" />}
+            description="Atención Psicológica Profesional. Sesiones individuales, grupales y familiares."
+            text="Ofrecemos atención psicológica profesional para ayudarte a manejar emociones, superar desafíos y mejorar tu calidad de vida a través de terapias personalizadas."
+          />
+        );
       case 3:
-        return <Window {...baseProps} tittle='Nutrición' icon={<FaAppleAlt className='icon' />} description='Dieta basada en alimentos frescos y naturales que ayudan en el proceso de desintoxicación del cuerpo, mejoran la salud física y brindan mayor energía; manteniendo un mejor estado de ánimo.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Nutrición"
+            icon={<FaAppleAlt className="icon" />}
+            description="Dieta basada en alimentos frescos y naturales que ayudan en el proceso de desintoxicación del cuerpo, mejoran la salud física y brindan mayor energía; manteniendo un mejor estado de ánimo."
+            text="Nuestro enfoque nutricional se centra en planes alimenticios equilibrados, ricos en nutrientes esenciales, diseñados para desintoxicar el cuerpo y mejorar tu energía y estado de ánimo."
+          />
+        );
       case 4:
-        return <Window {...baseProps} tittle='Sesiones AL-ANON' icon={<FaUsers className='icon' />} description='Estrategias para saber como lidiar con personas con conductas adictivas.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Sesiones AL-ANON"
+            icon={<FaUsers className="icon" />}
+            description="Estrategias para saber cómo lidiar con personas con conductas adictivas."
+            text="Las sesiones AL-ANON están diseñadas para familiares y amigos de personas con adicciones, ofreciendo herramientas y apoyo para manejar situaciones difíciles y fomentar un entorno de recuperación."
+          />
+        );
       case 5:
-        return <Window {...baseProps} tittle='Desintoxicación' icon={<FaHeart className='icon' />} description='Temazcal, Activación Física, Sesiones de Psicología,  Juntas de Recuperación y una Dieta Saludable para desintoxicar el cuerpo, el alma y la mente.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Desintoxicación"
+            icon={<FaHeart className="icon" />}
+            description="Temazcal, Activación Física, Sesiones de Psicología, Juntas de Recuperación y una Dieta Saludable para desintoxicar el cuerpo, el alma y la mente."
+            text="Nuestro programa de desintoxicación integral combina terapias físicas, emocionales y nutricionales para ayudarte a liberar toxinas y recuperar el equilibrio en tu vida."
+          />
+        );
       case 6:
-        return <Window {...baseProps} tittle='Desarrollo Humano' icon={<FaUser className='icon' />} description='Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones mediante el desarrollo de hábitos saludables y una mentalidad positiva.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Desarrollo Humano"
+            icon={<FaUser className="icon" />}
+            description="Se impulsa a los usuarios a alcanzar su máximo potencial, cultivando una personalidad feliz y libre de adicciones mediante el desarrollo de hábitos saludables y una mentalidad positiva."
+            text="Promovemos el crecimiento personal a través de talleres y actividades que fortalecen la autoestima, la resiliencia y la capacidad de tomar decisiones saludables para una vida plena."
+          />
+        );
       case 7:
-        return <Window {...baseProps} tittle='Activación Neuromúscular' icon={<FaFutbol className='icon' />} description='Favorece a la salud física y mental, al proceso de desintoxicación y la creación de habitos saludables.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Activación Neuromúscular"
+            icon={<FaFutbol className="icon" />}
+            description="Favorece a la salud física y mental, al proceso de desintoxicación y la creación de hábitos saludables."
+            text="La activación neuromuscular mejora la conexión entre mente y cuerpo, optimizando el rendimiento físico y mental, y facilitando la adopción de hábitos saludables."
+          />
+        );
       case 8:
-        return <Window {...baseProps} tittle='ArteTerapia' icon={<FaPaintBrush className='icon' />} description='Fomentamos actividades artisticas para estimular la creatividad y la expresión asertiva de emociones.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="ArteTerapia"
+            icon={<FaPaintBrush className="icon" />}
+            description="Fomentamos actividades artísticas para estimular la creatividad y la expresión asertiva de emociones."
+            text="La ArteTerapia utiliza el arte como herramienta terapéutica para explorar emociones, reducir el estrés y fomentar la autoexpresión, promoviendo el bienestar emocional y la creatividad."
+          />
+        );
       case 9:
-        return <Window {...baseProps} tittle='Eventos Culturales' icon={<FaMusic className='icon' />} description='Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte. Recibimos visitas de artistas, conferencistas y profesionales que comparten su experiencia con el fin de impartir formas de recreación saludables.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Eventos Culturales"
+            icon={<FaMusic className="icon" />}
+            description="Organizamos sesiones de arte, pintura y música en vivo, así como viajes y excursiones para fomentar el desarrollo de una personalidad libre de adicciones y promover el aprecio por la cultura y el arte."
+            text="Los eventos culturales incluyen talleres de arte, conciertos, excursiones y charlas con artistas, diseñados para enriquecer tu vida y fomentar un estilo de vida libre de adicciones."
+          />
+        );
       case 10:
-        return <Window {...baseProps} tittle='Educación Profesional' icon={<FaUserGraduate className='icon' />} description='Preparamos y entregamos certificados de Primaria, Secundaria y Preparatoria válidos por la SEP.' />;
+        return (
+          <Window
+            {...baseProps}
+            tittle="Educación Profesional"
+            icon={<FaUserGraduate className="icon" />}
+            description="Preparamos y entregamos certificados de Primaria, Secundaria y Preparatoria válidos por la SEP."
+            text="Ofrecemos programas educativos certificados por la SEP para que puedas completar tu formación académica y abrir nuevas oportunidades laborales y personales."
+          />
+        );
       default:
         return null;
     }
@@ -113,9 +190,8 @@ export const Services = () => {
       >
         <br />
         <br />
-
         <h1 className={theme === 2 ? 'titleRed' : 'title'}>Servicios</h1>
-        <img className='img' src={require('../../assets/logo-09.png')} />
+        <img className='img' src={require('../../assets/logo-09.png')} alt="Logo" />
         <p className='item'>24 horas</p>
         {service === 0 ? (
           <ul
@@ -126,7 +202,10 @@ export const Services = () => {
               gap: isMobile ? '0.5rem' : '1rem',
               transform: isMobile ? 'scale(0.9)' : 'scale(1)',
               padding: isMobile ? '0.5rem' : '2rem',
-              maxHeight: isMobile ? 'calc(100vh - 200px)' : 'auto'
+              maxHeight: isMobile ? 'calc(100vh - 200px)' : 'auto',
+              alignItems: 'center',
+              justifyContent: 'between',
+
             }}
           >
             <li className='item fade-in-element' title='Psicología' onClick={() => changeService(2)}>
@@ -173,15 +252,12 @@ export const Services = () => {
         ) : (
           <div>{renderService()}</div>
         )}
-
-        {!isMobile&&<div className='marginvertical'></div>}
-
+        {!isMobile && <div className='marginvertical'></div>}
         <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
           {contactIcons[iconIndex]}
           <p className={theme === 0 ? 'button' : 'buttonblack'}>Contáctanos</p>
         </a>
-
-        {!isMobile&&<div className='marginvertical'></div>}
+        {!isMobile && <div className='marginvertical'></div>}
       </div>
     </section>
   );
