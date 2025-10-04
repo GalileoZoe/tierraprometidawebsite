@@ -9,6 +9,7 @@ import { SessionProvider } from './context/SessionContext';
 import { ServiceProvider } from './context/ServiceContext';
 import { AuthProvider } from './context/AuthContext';
 import { BackgroundProvider } from './context/BackgroundContext';
+import { IDProvider } from './context/IDContext'; // <-- Importar IDProvider
 
 const Apps = () => {
   const { theme } = useTheme();
@@ -43,19 +44,22 @@ const Apps = () => {
 
 function App() {
   return (
+    <IDProvider> {/* <-- Agregado IDProvider */}
     <AuthProvider>
-    <SessionProvider>
-    <ThemeProvider>
-      <FeedProvider>
-        <ServiceProvider>
-          <BackgroundProvider>
-            <Apps />
-          </BackgroundProvider>
-        </ServiceProvider>
-      </FeedProvider>
-    </ThemeProvider>
-    </SessionProvider>
+      <SessionProvider>
+        <ThemeProvider>
+          <FeedProvider>
+            <ServiceProvider>
+              <BackgroundProvider>
+                  <Apps />
+              
+              </BackgroundProvider>
+            </ServiceProvider>
+          </FeedProvider>
+        </ThemeProvider>
+      </SessionProvider>
     </AuthProvider>
+    </IDProvider>
   );
 }
 

@@ -11,7 +11,7 @@ export interface File {
 }
 
 export interface Student {
-    _id?: string | number;
+    _id?: string | undefined;
     number?: string;
     name?: string;
     lastname?: string;

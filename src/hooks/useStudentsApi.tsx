@@ -15,7 +15,6 @@ export const useStudentsApi = () => {
         setIsLoading(true);
         try {
             const response = await tierraprometidaApi.get<Student[]>(apiUrl);
-            // Filtrar estudiantes que no estén soft deleted
             const activeStudents = response.data.filter(s => !s.softdelete);
             setListStudents(activeStudents);
         } catch (error) {
@@ -49,7 +48,7 @@ export const useStudentsApi = () => {
         try {
             const payload = { ...data, files, reports };
             await tierraprometidaApi.put(`${apiUrl}/${data._id}`, payload);
-            loadStudents(); // Recargar la lista después de actualizar
+            loadStudents();
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.error('Error updating student:', error.response?.data);
@@ -94,6 +93,6 @@ export const useStudentsApi = () => {
         createStudent,
         updateStudent,
         deleteStudent,
-        softDeleteStudent, // <-- añadido
+        softDeleteStudent,
     };
 };

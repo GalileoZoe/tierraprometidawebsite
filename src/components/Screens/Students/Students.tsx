@@ -3,224 +3,145 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
 import { Student } from '../../../interfaces/Students';
-import { FaFilePdf, FaFileMedicalAlt, FaPen, FaTrash, FaPlus, FaUser, FaFemale, FaMale, FaMap, FaFolder, FaAngleDown, FaAngleUp, FaCircle, FaArrowLeft, FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaHome, FaDoorOpen, FaPhoneAlt, FaFlask } from 'react-icons/fa';
-import { StudentsForm } from './StudentsForm';
 import { useTheme } from '../../../context/ThemeContext';
-import { StudentDetail } from './StudentDetail';
-import StudentsFiles from './StudentsFiles'; 
 import { useFeed } from '../../../context/FeedContext';
+import { useID } from '../../../context/IDContext';
+import { StudentsForm } from './StudentsForm';
+import { StudentDetail } from './StudentDetail';
+import StudentsFiles from './StudentsFiles';
+import { 
+    FaUser, FaPlus, FaArrowLeft, FaFilePdf, FaFolder, FaPen, FaTrash, 
+    FaFemale, FaMale, FaMap, FaPhoneAlt, FaHome, FaDoorOpen, FaFileMedicalAlt,
+    FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaFlask,
+    FaCircle, FaAngleDown, FaAngleUp
+} from 'react-icons/fa';
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
-    const { theme} = useTheme();
+    const { theme } = useTheme();
+    const { changeFeed } = useFeed();
+    const { selectedStudent, setSelectedStudent } = useID();
+
     const [editingStudent, setEditingStudent] = useState<Student | null>(null);
-    const [isCreating, setIsCreating] = useState<boolean>(false); // Estado para crear nuevo estudiante
-    const [selectedStudent, setSelectedStudent] = useState<Student | null>(null); // Estado para el detalle
-    const [selectedFiles, setSelectedFiles] = useState<Student | null>(null); // Estado para mostrar archivos
-    const { changeFeed}=useFeed();
+    const [isCreating, setIsCreating] = useState(false);
+    const [selectedDetail, setSelectedDetail] = useState<Student | null>(null);
+    const [selectedFiles, setSelectedFiles] = useState<Student | null>(null);
 
     const handleDelete = (student: Student) => {
-        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
-        if (confirmDelete) {
-            deleteStudent(student);
-        }
+        if (window.confirm(`¿Estás seguro de eliminar a ${student.name}?`)) deleteStudent(student);
     };
 
-    const handleEdit = (student: Student) => {
-        setEditingStudent(student);
+    const handleEdit = (student: Student) => setEditingStudent(student);
+    const handleCreate = () => { setEditingStudent(null); setIsCreating(true); };
+    const handleCloseForm = () => { setEditingStudent(null); setIsCreating(false); };
+    const handleOpenDetail = (student: Student) => setSelectedDetail(student);
+    const handleCloseDetail = () => setSelectedDetail(null);
+    const handleShowFiles = (student: Student) => setSelectedFiles(student);
+    const handleCloseFiles = () => setSelectedFiles(null);
+
+    const handleOpenPayments = (student: Student) => {
+        setSelectedStudent(student);
+        changeFeed(8);
     };
 
-    const handleCreate = () => {
-        setEditingStudent(null); // Limpiar cualquier edición previa
-        setIsCreating(true); // Activar creación
-    };
-
-    const handleCloseForm = () => {
-        setEditingStudent(null);
-        setIsCreating(false); // Desactivar creación al cerrar formulario
-    };
-
-    const handleOpenDetail = (student: Student) => {
-        setSelectedStudent(student); // Mostrar el detalle del estudiante
-    };
-
-    const handleCloseDetail = () => {
-        setSelectedStudent(null); // Cerrar el detalle
-    };
-
-    const handleShowFiles = (student: Student) => {
-        setSelectedFiles(student); // Mostrar archivos del estudiante
-    };
-
-    const handleCloseFiles = () => {
-        setSelectedFiles(null); // Cerrar el componente de archivos
-    };
-
-    if (selectedStudent) {
-        return (
-            <StudentDetail student={selectedStudent} onClose={handleCloseDetail} />
-        );
-    }
-
-    if (selectedFiles) {
-        return (
-            <StudentsFiles
-                files={selectedFiles?.files || []} // Asegúrate de pasar un array vacío si no hay archivos
-                student={selectedFiles} // Asegúrate de pasar el estudiante seleccionado
-                onClose={handleCloseFiles}
-            />
-        );
-    }
-
-    if (editingStudent || isCreating) {
-        return (
-            <StudentsForm
-                student={editingStudent || { name: '', lastname: '', username: '', age: '', email: '', phone: '', address: '', drug: '', description: '', status: '', startdate: '', enddate: '' }}
-                onClose={handleCloseForm}
-                onSave={isCreating ? createStudent : undefined} // Si estamos creando, usa createStudent
-            />
-        );
-    }
+    if (selectedDetail) return <StudentDetail student={selectedDetail} onClose={handleCloseDetail} />;
+    if (selectedFiles) return <StudentsFiles files={selectedFiles.files || []} student={selectedFiles} onClose={handleCloseFiles} />;
+    if (editingStudent || isCreating) return (
+        <StudentsForm
+            student={editingStudent || { name: '', lastname: '', username: '', age: '', email: '', phone: '', address: '', drug: '', description: '', status: '', startdate: '', enddate: '' }}
+            onClose={handleCloseForm}
+            onSave={isCreating ? createStudent : undefined}
+        />
+    );
 
     return (
         <section className='section'>
-            <div>
-                <div className='marginvertical'>
-
+            <div className='marginvertical'>
                 <h1 className='title'>Usuarios</h1>
-
-                </div>
                 <FaUser className='icon' />
-                <br />
-
-
-                <div style={{margin:20}}>
-
-                <a onClick={handleCreate} className='button' style={{float:'right'}} >
-                    <FaUser style={{ marginLeft: 10 }} />
-                    <FaPlus style={{ marginRight: 10 }} />
-                </a>
-                <a onClick={()=>changeFeed(1)} style={{float:'left'}} >
-                    <FaArrowLeft className='icon'/>
-                </a>
+                <div style={{ margin: 20 }}>
+                    <a onClick={handleCreate} className='button' style={{ float: 'right' }}>
+                        <FaUser style={{ marginLeft: 10 }} />
+                        <FaPlus style={{ marginRight: 10 }} />
+                    </a>
+                    <a onClick={() => changeFeed(1)} style={{ float: 'left' }}>
+                        <FaArrowLeft className='icon' />
+                    </a>
                 </div>
-                <br />
-                <br />
-                {isLoading ? (
-                    <p>Cargando...</p>
-                ) : (
-                    <div className='tablemargin' style={{margin:30}}>
-                        <table className='table' style={{textAlign:'center'}}>
-                            <thead>
-                                <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
-                                    <th className='tableheader' >No.</th>
-                                    <th className='tableheader' >PDF</th>
-                                    <th className='tableheader' >Usuario</th>
-                                    <th className='tableheader' ></th>
-                                    <th className='tableheader' >Edad</th>
-                                    <th className='tableheader' >Género</th>
-                                    <th className='tableheader' >Sustancia de Impacto</th>
-                                    <th className='tableheader' ></th>
-                                    <th className='tableheader' >Responsable</th>
-                                    <th className='tableheader' >Dirección</th>
-                                    <th className='tableheader' >Teléfono</th>
-                                    <th className='tableheader' >Ingreso</th>
-                                    <th className='tableheader' >Estancia</th>
-                                    <th className='tableheader' >Egreso</th>
-                                    <th className='tableheader' >Reportes</th>
-                                    <th className='tableheader' >Tienda</th>
-                                    <th className='tableheader' >Opciones</th>
-                                </tr>
-                            </thead>
-                            <tbody >
-                                {listStudents.length > 0 ? (
-                                    listStudents.map((student: Student) => (
-                                        <tr key={student._id} style={{ textAlign: 'center', fontSize: '15px' }}>
-                                            <td  className={theme===1?'texts':'textblack'} >{student.number}</td>
-                                            <td  className={theme===1?'texts':'textblack'} >
-                                                <PDFDownloadLink
-                                                    document={<PDFDocument student={student} />}
-                                                    fileName={`${student.name}_${student.lastname}.pdf`}
-                                                >
-                                                    <FaFilePdf className='icon' />
-                                                </PDFDownloadLink>
-                                            </td>
-                                            <td  className={theme===1?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
-                                                {student.name} {student.lastname}
-                                            </td>
-                                     
-                                            
-                                            {(() => {
-        switch (student.status) {
-            case 'Baja':
-                return    <td title='Baja'> <FaAngleDown className='textred' /> </td>;
-            case 'En Tratamiento':
-                return    <td title='En Tratamiento' > <FaCircle className='textgreens' /></td>;
-            case 'Egresado':
-                return   <td title='Egresado' > <FaAngleUp className='textgreen' /></td>;
-            default:
-                return <section>Status No Disponible</section>;
-        }
-    })()}
-                                            
-                                            
-                                            <td  className={theme===1?'texts':'textblack'} >{student.age}</td>
-                                            <td  className={theme===1?'texts':'textblack'} >{student.gender === 'Femenino' ? <FaFemale title='Femenino' className='icon' /> : <FaMale title='Masculino' className='icon' />}</td>
-                                            <td  className={theme===1?'texts':'textblack'} >
-
-  
-                                            {(() => {
-            switch (student.drug) {
-                case 'Cannabis':
-                    return <FaCannabis title='Cannabis' className='icon' />;
-                case 'Alcohol':
-                    return <FaWineBottle title='Alcohol' className='icon' />;
-                case 'Metanfetamina':
-                    return <FaCube title='Metanfetamina' className='icon' />;
-                case 'Heroína':
-                    return <FaSyringe title='Heroína' className='icon' />;
-                case 'Cocaína':
-                    return <FaSnowflake title='Cocaína' className='icon' />;
-                case 'Anfetaminas':
-                    return <FaPills title='Anfetaminas' className='icon' />;
-                case 'Solventes':
-                    return <FaFlask title='Solventes' className='icon' />;
-            }
-        })()} 
-
-
-                                            </td>
-                                            <td  className={theme===1?'texts':'textblack'} title='Estigma' >{student.stigma}</td>
-                                            <td  className={theme===1?'texts':'textblack'} title={`Responsable de ${student.name}`} >{student.tutor}</td>
-                                            <td  className={theme===1?'texts':'textblack'} ><FaMap title={student.address} className='icon' /></td>
-                                            <td  className={theme===1?'texts':'textblack'} ><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} className='icon' /></a></td>
-                                            <td  className={theme===1?'texts':'textblack'} >{student.startdate}</td>
-                                            <td  className={theme===1?'texts':'textblack'} ><FaHome title={`${student.stay} Meses`} className='icon' /></td>
-                                            <td  className={theme===1?'texts':'textblack'} ><FaDoorOpen title={student.enddate} className='icon' /></td>
-                                            <td  className={theme===1?'texts':'textblack'} >
-                                                {/* Agregar el ícono para mostrar archivos */}
-                                                <FaFileMedicalAlt className='icon'/>
-                                            </td>
-                                             <td  className={theme===1?'texts':'textblack'} title={`Sldo disponible en Tienda de ${student.name}`} >{student.check}</td>
-
-                                            <td  className={theme===1?'texts':'textblack'} >
-                                                <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
-                                                <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />
-                                                <FaTrash  className='icon' title={`Eliminar a ${student.name}`} onClick={() => handleDelete(student)} />
-                                            </td>
-                                        </tr>
-                                    ))
-                                ) : (
-                                    <tr>
-                                        <td colSpan={7}>No hay usuarios</td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
             </div>
-            <div className='marginvertical'></div>
+
+            {isLoading ? <p>Cargando...</p> : (
+                <div className='tablemargin' style={{ margin: 30 }}>
+                    <table className='table' style={{ textAlign: 'center' }}>
+                        <thead>
+                            <tr style={{ textAlign: 'center', position: 'sticky', top: 0, backgroundColor: 'transparent', zIndex: 1 }}>
+                                <th className='tableheader'>No.</th>
+                                <th className='tableheader'>PDF</th>
+                                <th className='tableheader'>Usuario</th>
+                                <th className='tableheader'>Status</th>
+                                <th className='tableheader'>Edad</th>
+                                <th className='tableheader'>Género</th>
+                                <th className='tableheader'>Sustancia</th>
+                                <th className='tableheader'>Estigma</th>
+                                <th className='tableheader'>Responsable</th>
+                                <th className='tableheader'>Dirección</th>
+                                <th className='tableheader'>Teléfono</th>
+                                <th className='tableheader'>Ingreso</th>
+                                <th className='tableheader'>Estancia</th>
+                                <th className='tableheader'>Egreso</th>
+                                <th className='tableheader'>Reportes</th>
+                                <th className='tableheader'>Tienda</th>
+                                <th className='tableheader'>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {listStudents.length > 0 ? listStudents.map(student => (
+                                <tr key={student._id} style={{ textAlign: 'center', fontSize: '15px' }}>
+                                    <td className={theme===1?'texts':'textblack'}>{student.number}</td>
+                                    <td className={theme===1?'texts':'textblack'}>
+                                        <PDFDownloadLink document={<PDFDocument student={student} />} fileName={`${student.name}_${student.lastname}.pdf`}>
+                                            <FaFilePdf className='icon' title={`PDF de ${student.name}`} />
+                                        </PDFDownloadLink>
+                                    </td>
+                                    <td className={theme===1?'texts':'textblack'} title={`Información de ${student.name}`} onClick={() => handleOpenDetail(student)}>
+                                        {student.name} {student.lastname}
+                                    </td>
+                                    <td className={theme===1?'texts':'textblack'}>
+                                        {student.status === 'Baja' ? <FaAngleDown className='textred' title='Baja' /> :
+                                         student.status === 'En Tratamiento' ? <FaCircle className='textgreens' title='En Tratamiento' /> :
+                                         student.status === 'Egresado' ? <FaAngleUp className='textgreen' title='Egresado' /> : <span>Status No Disponible</span>}
+                                    </td>
+                                    <td className={theme===1?'texts':'textblack'}>{student.age}</td>
+                                    <td className={theme===1?'texts':'textblack'}>{student.gender === 'Femenino' ? <FaFemale title='Femenino' /> : <FaMale title='Masculino' />}</td>
+                                    <td className={theme===1?'texts':'textblack'}>
+                                        {student.drug === 'Cannabis' ? <FaCannabis title='Cannabis' /> :
+                                         student.drug === 'Alcohol' ? <FaWineBottle title='Alcohol' /> :
+                                         student.drug === 'Metanfetamina' ? <FaCube title='Metanfetamina' /> :
+                                         student.drug === 'Heroína' ? <FaSyringe title='Heroína' /> :
+                                         student.drug === 'Cocaína' ? <FaSnowflake title='Cocaína' /> :
+                                         student.drug === 'Anfetaminas' ? <FaPills title='Anfetaminas' /> :
+                                         student.drug === 'Solventes' ? <FaFlask title='Solventes' /> : null}
+                                    </td>
+                                    <td className={theme===1?'texts':'textblack'} title='Estigma'>{student.stigma}</td>
+                                    <td className={theme===1?'texts':'textblack'} title={`Responsable de ${student.name}`}>{student.tutor}</td>
+                                    <td className={theme===1?'texts':'textblack'}><FaMap title={student.address} /></td>
+                                    <td className={theme===1?'texts':'textblack'}><a href={`tel:+52${student.phone}`}><FaPhoneAlt title={student.phone} /></a></td>
+                                    <td className={theme===1?'texts':'textblack'}>{student.startdate}</td>
+                                    <td className={theme===1?'texts':'textblack'}><FaHome title={`${student.stay} Meses`} /></td>
+                                    <td className={theme===1?'texts':'textblack'}><FaDoorOpen title={student.enddate} /></td>
+                                    <td className={theme===1?'texts':'textblack'}><FaFileMedicalAlt title={`Reportes de ${student.name}`} /></td>
+                                    <td className={theme===1?'texts':'textblack'} onClick={() => handleOpenPayments(student)} style={{ cursor: 'pointer' }} title={`Saldo disponible en Tienda de ${student.name}`}>{student.check}</td>
+                                    <td className={theme===1?'texts':'textblack'}>
+                                        <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
+                                        <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />
+                                        <FaTrash className='icon' title={`Eliminar a ${student.name}`} onClick={() => handleDelete(student)} />
+                                    </td>
+                                </tr>
+                            )) : <tr><td colSpan={17}>No hay usuarios</td></tr>}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </section>
     );
 };

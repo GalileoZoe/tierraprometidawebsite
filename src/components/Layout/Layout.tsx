@@ -13,6 +13,7 @@ import { Help } from '../Screens/Help';
 import { LoginScreen } from '../Screens/Login/LoginScreen';
 import { useSession } from '../../context/SessionContext';
 import { Events } from '../Screens/Events';
+import { Payments } from '../Screens/Payments/Payments';
 
 export const Layout: React.FC = () => {
     const { feed, changeFeed } = useFeed();
@@ -45,6 +46,8 @@ export const Layout: React.FC = () => {
             return <Contact />;
         case 7:
             return <Students />;
+        case 8:
+            return <Payments/>;
         case 10:
             return <Store />;
         case 11:
