@@ -1,73 +1,69 @@
-import React,{ createContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useReducer, ReactNode, useEffect } from 'react';
 import { authReducer } from './authReducer';
 import { Input } from '../hooks/useFormHookContext';
 
-// Definir como va trabajar la información en el context
-export interface AuthState{
+export interface AuthState {
     isLoggenIn: boolean;
-    username?: string | undefined;
-    favoriteImage?: string | undefined;
+    username?: string;
+    favoriteImage?: string;
+    rol?: 'Administrador' | 'Usuario';
+    email?: string;
     formData: Input[];
 }
 
-// Definir estado inicial
-export const AuthInicialState:AuthState = {
-    isLoggenIn: false,
-    username: undefined,
-    favoriteImage: undefined,
-    formData: [],
-}
+// Leer desde localStorage si existe
+const storedAuth = localStorage.getItem('authState');
+export const AuthInicialState: AuthState = storedAuth 
+    ? JSON.parse(storedAuth)
+    : {
+        isLoggenIn: false,
+        username: undefined,
+        favoriteImage: undefined,
+        rol: undefined,
+        email: undefined,
+        formData: [],
+    };
 
-// Tipo de context que manejaran otros components
-export interface AuthContextProps{
+export interface AuthContextProps {
     authState: AuthState;
-    singIn: () => void;
-    changeUserName: ( userName: string ) => void;
+    signIn: (rol?: 'Administrador' | 'Usuario', email?: string) => void;
+    changeUserName: (userName: string) => void;
     logout: () => void;
-    changeFavImage: ( sourceImage: string ) => void;
-    formData: ( data: Input[] ) => void;
+    changeFavImage: (sourceImage: string) => void;
+    setFormData: (data: Input[]) => void;
 }
 
-// Crear context
-export const AuthContext = createContext( {} as AuthContextProps );
+export const AuthContext = createContext({} as AuthContextProps);
 
-export const AuthProvider = ( { children }: {children: ReactNode} ) => { 
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+    const [authState, dispatch] = useReducer(authReducer, AuthInicialState);
 
-    // Parte reducer, implementar hasta que ya se tenga todo el useContext
-    const [ authState, dispatch ] = useReducer(authReducer, AuthInicialState);
+    // Guardar en localStorage cada vez que cambia authState
+    useEffect(() => {
+        localStorage.setItem('authState', JSON.stringify(authState));
+    }, [authState]);
 
-    const singIn = () => {
-        dispatch({type: 'signIn'});
-    }
+    const signIn = (rol?: 'Administrador' | 'Usuario', email?: string) => {
+        dispatch({ type: 'signIn', payload: { rol, email } });
+    };
 
-    const logout = () => {
-        dispatch({type: 'logout'});
-    }
+    const logout = () => dispatch({ type: 'logout' });
+    const changeFavImage = (sourceImage: string) => dispatch({ type: 'changeFavImage', payload: sourceImage });
+    const changeUserName = (userName: string) => dispatch({ type: 'changeUserName', payload: userName });
+    const setFormData = (data: Input[]) => dispatch({ type: 'setFormData', payload: data });
 
-    const changeFavImage = ( sourceImage: string ) => {
-        dispatch({type:'changeFavImage', payload: sourceImage});
-    }
-
-    const changeUserName = ( userName: string ) => {
-        dispatch({type:'changeUserName', payload: userName});
-    }
-
-    const formData = ( data: Input[] ) => {
-        dispatch({ type: 'setFormData', payload: data });
-    }
-
-    return(
+    return (
         <AuthContext.Provider
             value={{
                 authState,
-                singIn,
-                changeFavImage,
-                logout,
+                signIn,
                 changeUserName,
-                formData
+                logout,
+                changeFavImage,
+                setFormData
             }}
         >
-            { children }
+            {children}
         </AuthContext.Provider>
     );
-}
+};

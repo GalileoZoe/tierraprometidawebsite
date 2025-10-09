@@ -88,11 +88,13 @@ export const About = () => {
             <div className='image-description'>
 
                 <p className='paragraph'>Centro de Rehabilitación y Desarrollo Humano.</p>
+                <br />
             </div>
             <div className='cards-container'>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Misión</h2>
                     <p>Brindar atención profesional personalizada para el tratamiento y prevención de adicciones.</p>
+                    <br />
                 </div>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Visión</h2>
@@ -101,7 +103,8 @@ export const About = () => {
                 </div>
                 <div className={theme===0?'card':'cardblack'}>
                     <h2 className='title'>Valores</h2>
-                    <p>Respeto, Amor, Recuperación,Salud, Humildad, Resiliencia, Disciplina.</p>
+                    <p>Respeto, Amor, Recuperación, Salud, Servicio, Humildad, Resiliencia, Disciplina.</p>
+                    <br />
                 </div>
             </div>
             <br />

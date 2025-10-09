@@ -63,7 +63,7 @@ const formReducer = (state: FormData, action: Action): FormData => {
 
 export const useFormHookContext = (): UseFormContext => {
     const [state, dispatch] = useReducer(formReducer, initialStateForm);
-    const { authState, formData } = useContext(AuthContext);
+    const { authState, setFormData } = useContext(AuthContext);
 
     const handleInputChange = (fieldName: keyof Input, value: string): void => {
         dispatch({ type: 'handleInputChange', payload: { fieldName, value } });
@@ -71,7 +71,7 @@ export const useFormHookContext = (): UseFormContext => {
 
     const handleSubmit = (): void => {
         dispatch({ type: 'handleSubmit' });
-        formData([...authState.formData, state.input]);
+        setFormData([...authState.formData, state.input]);
         dispatch({ type: 'resetForm' });
     };
 

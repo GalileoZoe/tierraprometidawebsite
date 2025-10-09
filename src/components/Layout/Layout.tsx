@@ -10,10 +10,11 @@ import { Services } from '../Screens/Services';
 import { Students } from '../Screens/Students/Students';
 import { Store } from '../Screens/Store/Store';
 import { Help } from '../Screens/Help';
-import { LoginScreen } from '../Screens/Login/LoginScreen';
+import { Login } from '../Screens/Login/Login';
 import { useSession } from '../../context/SessionContext';
 import { Events } from '../Screens/Events';
 import { Payments } from '../Screens/Payments/Payments';
+import { LoginRegister } from '../Screens/Login/LoginRegister';
 
 export const Layout: React.FC = () => {
     const { feed, changeFeed } = useFeed();
@@ -31,7 +32,7 @@ export const Layout: React.FC = () => {
     // Renderizado de pantallas basado en feed
     switch (feed) {
         case 0:
-            return <LoginScreen />;
+            return <Login/>;
         case 1:
             return <Feed />;
         case 2:
@@ -52,6 +53,8 @@ export const Layout: React.FC = () => {
             return <Store />;
         case 11:
             return <Help />;
+        case 12:
+            return <LoginRegister />;
         default:
             return <section><a href="https://wa.me/7221427901" onClick={() => changeFeed(1)}>Página Web No Disponible</a></section>;
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { PDFDocument } from '../../Components/PDFDocument';
@@ -13,19 +13,21 @@ import {
     FaUser, FaPlus, FaArrowLeft, FaFilePdf, FaFolder, FaPen, FaTrash, 
     FaFemale, FaMale, FaMap, FaPhoneAlt, FaHome, FaDoorOpen, FaFileMedicalAlt,
     FaCannabis, FaCube, FaPills, FaSnowflake, FaSyringe, FaWineBottle, FaFlask,
-    FaCircle, FaAngleDown, FaAngleUp
+    FaCircle, FaAngleDown, FaAngleUp,FaMoneyBill
 } from 'react-icons/fa';
+import { AuthContext } from '../../../context/AuthContext';
 
 export const Students: React.FC = () => {
     const { isLoading, listStudents, deleteStudent, createStudent } = useStudentsApi();
     const { theme } = useTheme();
     const { changeFeed } = useFeed();
     const { selectedStudent, setSelectedStudent } = useID();
-
     const [editingStudent, setEditingStudent] = useState<Student | null>(null);
     const [isCreating, setIsCreating] = useState(false);
     const [selectedDetail, setSelectedDetail] = useState<Student | null>(null);
     const [selectedFiles, setSelectedFiles] = useState<Student | null>(null);
+    const { authState } = useContext(AuthContext);
+
 
     const handleDelete = (student: Student) => {
         if (window.confirm(`¿Estás seguro de eliminar a ${student.name}?`)) deleteStudent(student);
@@ -90,14 +92,17 @@ export const Students: React.FC = () => {
                                 <th className='tableheader'>Estancia</th>
                                 <th className='tableheader'>Egreso</th>
                                 <th className='tableheader'>Reportes</th>
-                                <th className='tableheader'>Tienda</th>
+                                <th className='tableheader'>Pagos</th>
                                 <th className='tableheader'>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {listStudents.length > 0 ? listStudents.map(student => (
+                            {listStudents.length > 0 
+  ? listStudents
+      .filter(student => authState.rol === 'Usuario' ? student.email === authState.email : true)
+      .map(student => (
                                 <tr key={student._id} style={{ textAlign: 'center', fontSize: '15px' }}>
-                                    <td className={theme===1?'texts':'textblack'}>{student.number}</td>
+                                    <td className={theme===1?'texts':'textblack'}>{student._id}</td>
                                     <td className={theme===1?'texts':'textblack'}>
                                         <PDFDownloadLink document={<PDFDocument student={student} />} fileName={`${student.name}_${student.lastname}.pdf`}>
                                             <FaFilePdf className='icon' title={`PDF de ${student.name}`} />
@@ -130,7 +135,13 @@ export const Students: React.FC = () => {
                                     <td className={theme===1?'texts':'textblack'}><FaHome title={`${student.stay} Meses`} /></td>
                                     <td className={theme===1?'texts':'textblack'}><FaDoorOpen title={student.enddate} /></td>
                                     <td className={theme===1?'texts':'textblack'}><FaFileMedicalAlt title={`Reportes de ${student.name}`} /></td>
-                                    <td className={theme===1?'texts':'textblack'} onClick={() => handleOpenPayments(student)} style={{ cursor: 'pointer' }} title={`Saldo disponible en Tienda de ${student.name}`}>{student.check}</td>
+                                    <td 
+                                    className={theme===1?'texts':'textblack'}
+                                    onClick={() => handleOpenPayments(student)}
+                                    style={{ cursor: 'pointer' }} 
+                                    title={`Estado de Pagos de ${student.name}`}>
+                                    <FaMoneyBill title={student.name} />
+                                    </td>
                                     <td className={theme===1?'texts':'textblack'}>
                                         <FaFolder className='iconfile' title={`Archivos de ${student.name}`} onClick={() => handleShowFiles(student)} />
                                         <FaPen className='iconupdate' title={`Editar Información de ${student.name}`} onClick={() => handleEdit(student)} />

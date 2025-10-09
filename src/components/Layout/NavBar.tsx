@@ -36,7 +36,7 @@ export const NavBar: React.FC = () => {
   }, []);
 
   const menuItems = [
-    { id: 0, label: 'Iniciar Sesión', icon: <FaUserAlt/> },
+    ...(session === 0 ? [{id: 0, label: 'Iniciar Sesión', icon: <FaUserAlt/> }] : []),
     { id: 1, label: 'Inicio', icon: <FaHome /> },
     { id: 2, label: 'Nosotros', icon: <FaInfoCircle /> },
     { id: 3, label: 'Servicios', icon: <FaCog /> },

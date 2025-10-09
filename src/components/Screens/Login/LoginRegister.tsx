@@ -1,43 +1,51 @@
 import React from 'react';
 import { useLogin } from '../../../hooks/useLogin';
 import '../../../App.css';
-import { FaSignInAlt } from 'react-icons/fa';
 
-
-export const LoginScreen: React.FC = () => {
+export const LoginRegister: React.FC = () => {
     const {
         loading,
         state,
         handleInputChange,
-        handleLogin,
+        registerLogin,
         request
     } = useLogin();
 
     return (
         <section className='section'>
-               <br />
-               <br />
-               <br />
+            <br />
+            <br />
+            <br />
             <div className='item'>
-                <img className='img' src={require('../../../assets/logo-09.png')} />
+                <img className='img' src={require('../../../assets/logo-09.png')} alt="logo" />
                 <p>24 horas</p>
-          
             </div>
             <br />
- 
-            <p className='title' >Iniciar Sesión</p>
+
+            <p className='title'>Registrar Usuario</p>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 {typeof request === 'boolean' && !request && (
                     <p className='texts'>
-                        {'Contraseña incorrecta '}
+                        {'No se pudo registrar el usuario '}
                         <br />
-                        {'Envío de datos faltantes'}
+                        {'Revise los datos ingresados'}
                     </p>
                 )}
 
                 <input
                     className='inputredlogin'
-                    value={state.email}
+                    value={state.username || ''}
+                    onChange={(e) => handleInputChange('username', e.target.value)}
+                    placeholder='Nombre de Usuario'
+                    type='text'
+                    disabled={loading}
+                    required
+                />
+                <br />
+
+                <input
+                    className='inputredlogin'
+                    value={state.email || ''}
                     onChange={(e) => handleInputChange('email', e.target.value)}
                     placeholder='Correo Electrónico'
                     type='email'
@@ -45,9 +53,10 @@ export const LoginScreen: React.FC = () => {
                     required
                 />
                 <br />
+
                 <input
                     className='inputredlogin'
-                    value={state.password}
+                    value={state.password || ''}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                     placeholder='Contraseña'
                     type='password'
@@ -55,13 +64,24 @@ export const LoginScreen: React.FC = () => {
                     required
                 />
                 <br />
+
+                <input
+                    className='inputredlogin'
+                    value={'Usuario'}
+                    onChange={(e) => handleInputChange('rol', e.target.value)}
+                    placeholder='Rol (opcional)'
+                    type='text'
+                    disabled={loading}
+                />
                 <br />
+                <br />
+
                 <a
                     className='button'
-                    onClick={handleLogin} >
-
-                    Iniciar Sesión
-
+                    onClick={registerLogin}
+                    style={{ cursor: 'pointer' }}
+                >
+                    Registrar Usuario
                 </a>
             </div>
         </section>
