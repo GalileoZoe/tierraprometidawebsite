@@ -65,7 +65,7 @@ export const Footer: React.FC = () => {
                     onClick={() => {
                         logout(); // Invocación correcta de la función logout
                         changeSession(0);
-                        goToFeed;
+                        goToFeed();
                     }}
                 >
                     <FaSignInAlt className={theme === 2 ? 'iconred' : 'icon'} />
