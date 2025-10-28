@@ -10,7 +10,8 @@ export const Payments: React.FC = () => {
   const navigate = useNavigate();
 
   const { getStudentById } = useStudentsApi(); // función para obtener student por id
-  const [student, setStudent] = useState<{ name: string; lastname: string } | null>(null);
+  const [student, setStudent] = useState<{ name?: string; lastname?: string } | null>(null);
+
 
   const {
     payments,
@@ -23,50 +24,70 @@ export const Payments: React.FC = () => {
   } = usePaymentsApi(id);
 
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editData, setEditData] = useState<Partial<Payment>>({});
-  const [newPayment, setNewPayment] = useState<{ concept: string; amount: number; method: string }>({
-    concept: '',
-    amount: 0,
-    method: ''
-  });
+const [editData, setEditData] = useState<Partial<Payment>>({});
+const [newPayment, setNewPayment] = useState<Partial<Payment>>({});
 
   // Cargar datos del estudiante al inicio
   useEffect(() => {
     if (!id) return;
     const fetchStudent = async () => {
       const data = await getStudentById(id);
-      setStudent(data ? { name: data.name, lastname: data.lastname } : null);
+      setStudent(data ? { name: data.name || '', lastname: data.lastname || '' } : null);
+
     };
     fetchStudent();
   }, [id]);
 
   if (!id) return <p>No se ha seleccionado ningún estudiante.</p>;
 
-  const handleSaveEdit = (id: string) => {
-    if (!editData.concept || !editData.amount || !editData.method) {
-      alert('Completa todos los campos para guardar.');
-      return;
-    }
-    updatePayment(id, editData);
-    setEditingId(null);
-    setEditData({});
+ const handleSaveEdit = (id: string) => {
+  if (!editData.concept || !editData.amount || !editData.method) {
+    alert('Completa todos los campos para guardar.');
+    return;
+  }
+
+  // Crear objeto tipado
+  const updated: Payment = {
+    _id: id,
+    student: '', // si tu API requiere student puedes poner el id del estudiante
+    concept: editData.concept,
+    amount: editData.amount,
+    method: editData.method,
+    status: editData.status || 'pending',
+    softdelete: false,
+    deletedAt: null,
+    createdAt: '', // solo para tipado, backend normalmente ignora
+    updatedAt: '',
   };
 
-  const handleCreatePayment = () => {
-    if (!newPayment.amount || !newPayment.method || !newPayment.concept) {
-      alert('Completa todos los campos antes de crear el pago.');
-      return;
-    }
+  updatePayment(id, updated);
+  setEditingId(null);
+  setEditData({});
+};
 
-    createPayment({
-      concept: newPayment.concept,
-      amount: newPayment.amount,
-      method: newPayment.method,
-      status: 'pending'
-    });
+const handleCreatePayment = () => {
+  if (!newPayment.amount || !newPayment.method || !newPayment.concept) {
+    alert('Completa todos los campos antes de crear el pago.');
+    return;
+  }
 
-    setNewPayment({ concept: '', amount: 0, method: '' });
+  const created: Payment = {
+    _id: undefined, // Mongo lo genera
+    student: id!,   // id del estudiante actual
+    concept: newPayment.concept,
+    amount: newPayment.amount,
+    method: newPayment.method,
+    status: 'pending',
+    softdelete: false,
+    deletedAt: null,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
+
+  createPayment(created);
+  setNewPayment({ concept: '', amount: 0, method: '' });
+};
+
 
   return (
     <section className="section">
