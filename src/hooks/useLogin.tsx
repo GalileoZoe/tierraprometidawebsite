@@ -43,7 +43,7 @@ export const useLogin = () => {
     // LOGIN
     const handleLogin = async () => {
         setLoading(true);
-        const apiUrl = 'http://localhost:3000/api/tierraprometida/v1/login';
+        const apiUrl = 'http://192.168.100.13:3000/api/tierraprometida/v1/login';
 
         const dataBody = {
             email: state.email,
@@ -76,7 +76,7 @@ export const useLogin = () => {
     // REGISTER
     const registerLogin = async () => {
         setLoading(true);
-        const apiUrl = 'http://localhost:3000/api/tierraprometida/v1/login/register';
+        const apiUrl = 'http://192.168.100.13:3000/api/tierraprometida/v1/login/register';
 
         const dataBody = {
             photo: state.photo,

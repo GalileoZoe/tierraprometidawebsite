@@ -1,15 +1,16 @@
-import React from 'react';
-import './App.css';
-import { NavBar } from './components/Layout/NavBar';
-import { Footer } from './components/Layout/Footer';
-import { FeedProvider } from './context/FeedContext';
-import { Layout } from './components/Layout/Layout';
-import { ThemeProvider, useTheme } from './context/ThemeContext';
-import { SessionProvider } from './context/SessionContext';
-import { ServiceProvider } from './context/ServiceContext';
-import { AuthProvider } from './context/AuthContext';
-import { BackgroundProvider } from './context/BackgroundContext';
-import { IDProvider } from './context/IDContext'; // <-- Importar IDProvider
+import React from "react";
+import "./App.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { NavBar } from "./components/Layout/NavBar";
+import { Footer } from "./components/Layout/Footer";
+import { Layout } from "./components/Layout/Layout";
+import { ThemeProvider, useTheme } from "./context/ThemeContext";
+import { FeedProvider } from "./context/FeedContext";
+import { SessionProvider } from "./context/SessionContext";
+import { ServiceProvider } from "./context/ServiceContext";
+import { AuthProvider } from "./context/AuthContext";
+import { BackgroundProvider } from "./context/BackgroundContext";
+import { IDProvider } from "./context/IDContext";
 
 const Apps = () => {
   const { theme } = useTheme();
@@ -17,13 +18,13 @@ const Apps = () => {
   const AppTheme = () => {
     switch (theme) {
       case 0:
-        return 'AppWhite';
+        return "AppWhite";
       case 1:
-        return 'AppBlack';
+        return "AppBlack";
       case 2:
-        return 'AppRed';
+        return "AppRed";
       default:
-        return 'App'; 
+        return "App";
     }
   };
 
@@ -40,27 +41,26 @@ const Apps = () => {
       </header>
     </div>
   );
-}
+};
 
-function App() {
+export default function App() {
   return (
-    <IDProvider> {/* <-- Agregado IDProvider */}
-    <AuthProvider>
-      <SessionProvider>
-        <ThemeProvider>
-          <FeedProvider>
-            <ServiceProvider>
-              <BackgroundProvider>
-                  <Apps />
-              
-              </BackgroundProvider>
-            </ServiceProvider>
-          </FeedProvider>
-        </ThemeProvider>
-      </SessionProvider>
-    </AuthProvider>
+    <IDProvider>
+      <AuthProvider>
+        <SessionProvider>
+          <ThemeProvider>
+            <FeedProvider>
+              <ServiceProvider>
+                <BackgroundProvider>
+                  <Router>
+                    <Apps />
+                  </Router>
+                </BackgroundProvider>
+              </ServiceProvider>
+            </FeedProvider>
+          </ThemeProvider>
+        </SessionProvider>
+      </AuthProvider>
     </IDProvider>
   );
 }
-
-export default App;

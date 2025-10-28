@@ -6,7 +6,7 @@ import axios from 'axios';
 export const useStudentsApi = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [listStudents, setListStudents] = useState<Student[]>([]);
-    const apiUrl: string = 'http://localhost:3000/api/tierraprometida/v1/students';
+    const apiUrl: string = 'http://192.168.100.13:3000/api/tierraprometida/v1/students';
 
     // -----------------------------
     // Cargar estudiantes desde la API
@@ -21,6 +21,19 @@ export const useStudentsApi = () => {
             console.error('Error loading students:', error);
         } finally {
             setIsLoading(false);
+        }
+    };
+
+    // -----------------------------
+    // Obtener estudiante por ID
+    // -----------------------------
+    const getStudentById = async (id: string): Promise<Student | null> => {
+        try {
+            const response = await tierraprometidaApi.get<Student>(`${apiUrl}/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error(`Error fetching student with id ${id}:`, error);
+            return null;
         }
     };
 
@@ -90,6 +103,7 @@ export const useStudentsApi = () => {
         isLoading,
         listStudents,
         loadStudents,
+        getStudentById, // <--- agregado
         createStudent,
         updateStudent,
         deleteStudent,

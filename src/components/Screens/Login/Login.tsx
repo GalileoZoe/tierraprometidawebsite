@@ -3,8 +3,11 @@ import { useLogin } from '../../../hooks/useLogin';
 import '../../../App.css';
 import { AuthContext } from '../../../context/AuthContext';
 import { useFeed } from '../../../context/FeedContext';
+import { useNavigate } from 'react-router-dom';
 
 export const Login: React.FC = () => {
+
+      const navigate = useNavigate(); 
     const {
         loading,
         state,
@@ -14,7 +17,12 @@ export const Login: React.FC = () => {
     } = useLogin();
 
     const { authState } = useContext(AuthContext);
-    const { changeFeed } = useFeed();
+
+
+      // 🔹 Funciones de navegación
+  const goToLRegister = () => navigate('/register');
+
+
 
     return (
         <section className='section'>
@@ -67,11 +75,10 @@ export const Login: React.FC = () => {
 
                 <br />
 
-                {/* 👇 Botón que lleva al registro */}
                 <a
                     className='button'
                     style={{ backgroundColor: '#555', marginTop: '10px' }}
-                    onClick={() => changeFeed(12)}
+                    onClick={goToLRegister}
                 >
                     Registrarse
                 </a>

@@ -34,8 +34,8 @@ export interface Student {
     file?: string;
     files?: File[];
     description?: string;
-    startdate?: string;
-    enddate?: string;
+    startdate: string;
+    enddate: string;
     service?: string;
     experience?: string;
     psychology?: string;

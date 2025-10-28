@@ -91,20 +91,20 @@ export const About = () => {
                 <br />
             </div>
             <div className='cards-container'>
-                <div className={theme===0?'card':'cardblack'}>
-                    <h2 className='title'>Misión</h2>
+                <div className={'card'}>
+                    <h2 className='cardtitle'>Misión</h2>
                     <p>Brindar atención profesional personalizada para el tratamiento y prevención de adicciones.</p>
-                    <br />
+                    
                 </div>
-                <div className={theme===0?'card':'cardblack'}>
-                    <h2 className='title'>Visión</h2>
+                <div className={'card'}>
+                    <h2 className='cardtitle'>Visión</h2>
                     <p>Ser líderes en la prevención y liberación de adicciones,
                          transformando vidas y reintegrando familias.</p>
+                         
                 </div>
-                <div className={theme===0?'card':'cardblack'}>
-                    <h2 className='title'>Valores</h2>
+                <div className={'card'}>
+                    <h2 className='cardtitle'>Valores</h2>
                     <p>Respeto, Amor, Recuperación, Salud, Servicio, Humildad, Resiliencia, Disciplina.</p>
-                    <br />
                 </div>
             </div>
             <br />

@@ -265,19 +265,34 @@
 
 .card {
   background-color: #db1313;
-  border:none;
+  border: none;
   border-radius: 8px;
   padding: 1em;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 300px;
-  height: 150px;
+  height: 200px; /* default para desktop */
   padding-top: 0;
 }
+
 
 .card h2 {
   margin-bottom: 1em;
   color: whitesmoke ;
 }
+
+/* Para móviles */
+@media (max-width: 800px) {
+  .card {
+    height: 150px;
+  }
+
+  
+.card h2 {
+  margin-bottom: 0.5em;
+  color: whitesmoke ;
+}
+}
+
 
 .card p {
   color: whitesmoke;
@@ -950,6 +965,13 @@
   text-align: center;
 }
 
+.cardtitle {
+  color: #db1313;
+  
+  font-size: 2em;
+  text-align: center;
+}
+
 
 .titleblack {
   color: black;
@@ -1407,6 +1429,14 @@
 
 .inputred {
     width: calc(50% - 10px);
+}
+
+.card{
+  height: 100px;
+}
+
+.cardtitle{
+  font-size: 1em;
 }
 
   }

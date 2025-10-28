@@ -5,12 +5,22 @@ import { useSession } from '../../context/SessionContext';
 import { FaRegUser, FaSignInAlt, FaSignOutAlt, FaStore, FaToggleOff, FaToggleOn, FaUser, FaWifi } from 'react-icons/fa';
 import { useFeed } from '../../context/FeedContext';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
     const { theme, changeTheme } = useTheme();
     const { session, changeSession } = useSession();
-    const { changeFeed } = useFeed();
     const { authState, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+      // 🔹 Funciones de navegación
+  const goToContact = () => navigate('/contact');
+  const goToAbout = () => navigate('/about');
+  const goToServices = () => navigate('/services');
+  const goToHelp = () => navigate('/help');
+  const goToLogin = () => navigate('/login');
+  const goToFeed = () => navigate('/feed');
+
     
     // Estado para manejar la conectividad
     const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
@@ -44,7 +54,7 @@ export const Footer: React.FC = () => {
                 <li
                     className={theme === 2 ? 'footeritemred' : 'footeritem'}
                     title='Iniciar Sesión'
-                    onClick={() => changeFeed(0)}
+                    onClick={goToLogin}
                 >
                     {session === 0 ? <FaRegUser className={theme === 2 ? 'iconred' : 'icon'} /> : <FaUser className={theme === 2 ? 'iconred' : 'icon'} />}
                 </li>
@@ -55,7 +65,7 @@ export const Footer: React.FC = () => {
                     onClick={() => {
                         logout(); // Invocación correcta de la función logout
                         changeSession(0);
-                        changeFeed(1);
+                        goToFeed;
                     }}
                 >
                     <FaSignInAlt className={theme === 2 ? 'iconred' : 'icon'} />

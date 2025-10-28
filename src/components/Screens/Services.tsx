@@ -46,7 +46,7 @@ export const Services = () => {
 
   const renderService = () => {
     const baseProps = {
-      button: 'Más Información',
+      button: '. . .',
       showMoreInfo: true,
       moreInfo,
       setMoreInfo,
@@ -80,7 +80,7 @@ export const Services = () => {
             tittle="Nutrición"
             icon={<FaAppleAlt className="icon" />}
             description="Dieta basada en alimentos frescos y naturales que ayudan en el proceso de desintoxicación del cuerpo, mejoran la salud física y brindan mayor energía; manteniendo un mejor estado de ánimo."
-            text="Nuestro enfoque nutricional se centra en planes alimenticios equilibrados, ricos en nutrientes esenciales, diseñados para desintoxicar el cuerpo y mejorar tu energía y estado de ánimo."
+            text="Plan alimenticio equilibrado, rico en nutrientes esenciales, diseñado para desintoxicar el cuerpo y mejorar tu energía y estado de ánimo."
           />
         );
       case 4:
@@ -159,38 +159,41 @@ export const Services = () => {
   };
 
   return (
-    <section
-      className='feed'
-      style={{
-        position: 'relative',
-        backgroundImage: `url(${bgImages[bgIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        width: '100vw',
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: isMobile ? 'flex-start' : 'center',
-        textAlign: 'center',
-        overflowY: isMobile ? 'auto' : 'scroll',
-        scrollbarWidth: 'none',
-        msOverflowStyle: 'none',
-        padding: isMobile ? '1rem' : '0'
-      }}
-    >
-      <div
+        <section
+        className='feed'
         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          minHeight: '100%',
+          position: 'relative',
+          backgroundImage: `url(${bgImages[bgIndex]})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: isMobile ? 'flex-start' : 'center',
+          textAlign: 'center',
+          overflowY: isMobile ? 'auto' : 'scroll',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          padding: isMobile ? '1rem' : '0'
         }}
       >
-        <br />
-        <br />
-        <h1 className={theme === 2 ? 'titleRed' : 'title'}>Servicios</h1>
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            minHeight: '100%',
+          }}
+        >
+          <div className='about-header'>
+            <h1 className='title fade-in-element' style={{ color: 'transparent' }}>
+              Eventos | Tierra Prometida
+            </h1>
+            <h1 className='title'>Servicios</h1>
+          </div>
         <img className='img' src={require('../../assets/logo-09.png')} alt="Logo" />
         <p className='item'>24 horas</p>
         {service === 0 ? (

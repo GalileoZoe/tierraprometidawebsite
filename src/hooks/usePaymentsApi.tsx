@@ -1,29 +1,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Payment } from '../interfaces/Payment';
-import { useID } from '../context/IDContext';
 
-// Tipado del body que se manda en create/update
-export interface PaymentRequest {
-  concept: string;
-  amount: number;
-  method: string;
-  status?: 'pending' | 'completed';
-}
-
-export const usePaymentsApi = () => {
-  const { selectedStudent } = useID();
+export const usePaymentsApi = (studentId?: string) => {
   const [payments, setPayments] = useState<Payment[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const apiUrl = 'http://localhost:3000/api/tierraprometida/v1/payments';
+  const apiUrl = 'http://192.168.100.13:3000/api/tierraprometida/v1/payments';
 
+  // Cargar pagos del estudiante
   const loadPayments = async () => {
-    if (!selectedStudent) return;
+    if (!studentId) return;
     setIsLoading(true);
     try {
-      const { data } = await axios.get<Payment[]>(`${apiUrl}?student=${selectedStudent._id}`);
-      setPayments(data.filter((p) => !p.deletedAt)); // filtra eliminados
+      const { data } = await axios.get<Payment[]>(`${apiUrl}?student=${studentId}`);
+      setPayments(data.filter((p) => !p.deletedAt));
     } catch (error) {
       console.error('Error loading payments:', error);
     } finally {
@@ -31,38 +22,37 @@ export const usePaymentsApi = () => {
     }
   };
 
-  const createPayment = async (data: PaymentRequest) => {
-    if (!selectedStudent) return;
+  // Crear pago
+  const createPayment = async (payment: Omit<Payment, '_id' | 'createdAt' | 'deletedAt'>) => {
     try {
-      await axios.post(apiUrl, {
-        ...data,
-        student: selectedStudent._id,
-      });
+      await axios.post(apiUrl, { ...payment, student: studentId });
       await loadPayments();
     } catch (error) {
       console.error('Error creating payment:', error);
     }
   };
 
-  const updatePayment = async (paymentId: string, updatedData: Partial<PaymentRequest>) => {
+  // Editar pago (PUT completo)
+  const updatePayment = async (paymentId: string, payment: Omit<Payment, '_id' | 'createdAt' | 'deletedAt'>) => {
     try {
-      await axios.put(`${apiUrl}/${paymentId}`, updatedData);
+      await axios.put(`${apiUrl}/${paymentId}`, payment);
       await loadPayments();
     } catch (error) {
       console.error('Error updating payment:', error);
     }
   };
 
-const completePayment = async (paymentId: string) => {
-  try {
-    // PATCH directo al payment por su id
-    await axios.patch(`${apiUrl}/complete/${paymentId}`);
-    await loadPayments(); // recarga la lista después de completar
-  } catch (error) {
-    console.error('Error completing payment:', error);
-  }
-};
+  // Completar pago (PATCH)
+  const completePayment = async (paymentId: string) => {
+    try {
+      await axios.patch(`${apiUrl}/complete/${paymentId}`);
+      await loadPayments();
+    } catch (error) {
+      console.error('Error completing payment:', error);
+    }
+  };
 
+  // Eliminar pago (DELETE)
   const deletePayment = async (paymentId: string) => {
     try {
       await axios.delete(`${apiUrl}/${paymentId}`);
@@ -72,6 +62,7 @@ const completePayment = async (paymentId: string) => {
     }
   };
 
+  // Restaurar pago (PATCH)
   const restorePayment = async (paymentId: string) => {
     try {
       await axios.patch(`${apiUrl}/restore/${paymentId}`);
@@ -83,7 +74,7 @@ const completePayment = async (paymentId: string) => {
 
   useEffect(() => {
     loadPayments();
-  }, [selectedStudent]);
+  }, [studentId]);
 
   return {
     payments,

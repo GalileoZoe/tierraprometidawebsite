@@ -131,7 +131,7 @@ export const Contact = () => {
             <p>Ubicación</p>
           </li>
           <li className='item fade-in-element' title='Software' >
-            <FaCode className={theme === 2 ? 'iconred' : 'icon'} />
+            <a href='https://galileozoe.github.io/software'><FaCode className={theme === 2 ? 'iconred' : 'icon'} /></a>
             <p>Software</p>
           </li>
         </ul>

@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { FaCheck, FaArrowLeft, FaSave, FaTimes, FaPlus, FaTrash, FaUndo, FaDollarSign } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaCheck, FaArrowLeft, FaSave, FaTimes, FaPlus, FaTrash, FaUndo } from 'react-icons/fa';
 import { usePaymentsApi } from '../../../hooks/usePaymentsApi';
-import { useID } from '../../../context/IDContext';
-import { useFeed } from '../../../context/FeedContext';
+import { useStudentsApi } from '../../../hooks/useStudentsApi';
 import { Payment } from '../../../interfaces/Payment';
 
 export const Payments: React.FC = () => {
-  const { selectedStudent } = useID();
-  const { changeFeed } = useFeed();
+  const { id } = useParams<{ id: string }>(); // ID del estudiante desde URL
+  const navigate = useNavigate();
+
+  const { getStudentById } = useStudentsApi(); // función para obtener student por id
+  const [student, setStudent] = useState<{ name: string; lastname: string } | null>(null);
+
   const {
     payments,
     isLoading,
@@ -16,7 +20,7 @@ export const Payments: React.FC = () => {
     completePayment,
     deletePayment,
     restorePayment
-  } = usePaymentsApi();
+  } = usePaymentsApi(id);
 
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editData, setEditData] = useState<Partial<Payment>>({});
@@ -26,9 +30,17 @@ export const Payments: React.FC = () => {
     method: ''
   });
 
-  if (!selectedStudent) return <p>No se ha seleccionado ningún estudiante.</p>;
+  // Cargar datos del estudiante al inicio
+  useEffect(() => {
+    if (!id) return;
+    const fetchStudent = async () => {
+      const data = await getStudentById(id);
+      setStudent(data ? { name: data.name, lastname: data.lastname } : null);
+    };
+    fetchStudent();
+  }, [id]);
 
-  const filteredPayments = payments.filter(p => p.student === selectedStudent._id);
+  if (!id) return <p>No se ha seleccionado ningún estudiante.</p>;
 
   const handleSaveEdit = (id: string) => {
     if (!editData.concept || !editData.amount || !editData.method) {
@@ -50,8 +62,7 @@ export const Payments: React.FC = () => {
       concept: newPayment.concept,
       amount: newPayment.amount,
       method: newPayment.method,
-      status: 'pending',
-      student: selectedStudent._id
+      status: 'pending'
     });
 
     setNewPayment({ concept: '', amount: 0, method: '' });
@@ -59,30 +70,17 @@ export const Payments: React.FC = () => {
 
   return (
     <section className="section">
-      <button className="button" onClick={() => changeFeed(7)}>
+      <button className="button" onClick={() => navigate(-1)}>
         <FaArrowLeft /> Volver
       </button>
 
-      <h1>Pagos de {selectedStudent.name} {selectedStudent.lastname}</h1>
+      <h1>Pagos del estudiante {student ? `${student.name} ${student.lastname}` : id}</h1>
 
-      {/* Formulario para crear un nuevo pago */}
-      <div style={{ marginBottom: '1rem', display: 'flex', gap: 8, alignItems: 'center' }}>
-        <input
-          type="text"
-          placeholder="Concepto"
-          value={newPayment.concept}
-          onChange={e => setNewPayment({ ...newPayment, concept: e.target.value })}
-        />
-        <input
-          type="number"
-          placeholder="Monto"
-          value={newPayment.amount}
-          onChange={e => setNewPayment({ ...newPayment, amount: Number(e.target.value) })}
-        />
-        <select
-          value={newPayment.method}
-          onChange={e => setNewPayment({ ...newPayment, method: e.target.value })}
-        >
+      {/* Formulario nuevo pago */}
+      <div style={{ marginBottom: '1rem', display: 'flex', gap: 8 }}>
+        <input type="text" placeholder="Concepto" value={newPayment.concept} onChange={e => setNewPayment({ ...newPayment, concept: e.target.value })} />
+        <input type="number" placeholder="Monto" value={newPayment.amount} onChange={e => setNewPayment({ ...newPayment, amount: Number(e.target.value) })} />
+        <select value={newPayment.method} onChange={e => setNewPayment({ ...newPayment, method: e.target.value })}>
           <option value="">Seleccione un método</option>
           <option value="Efectivo">Efectivo</option>
           <option value="Transferencia">Transferencia</option>
@@ -93,7 +91,7 @@ export const Payments: React.FC = () => {
 
       {isLoading ? <p>Cargando pagos...</p> : (
         <table className="table">
-          <thead style={{ backgroundColor: '#db1313', color: 'white' }}>
+          <thead>
             <tr>
               <th>ID</th>
               <th>Concepto</th>
@@ -104,98 +102,38 @@ export const Payments: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredPayments.map(payment => {
+            {payments.map(payment => {
               const isEditing = editingId === payment._id;
               return (
                 <tr key={payment._id}>
                   <td>{payment._id}</td>
-                  <td>
-                    {isEditing ? (
-                      <input
-                        type="text"
-                        value={editData.concept ?? payment.concept}
-                        onChange={e => setEditData({ ...editData, concept: e.target.value })}
-                      />
-                    ) : payment.concept}
-                  </td>
-                  <td>
-                    {isEditing ? (
-                      <input
-                        type="number"
-                        value={editData.amount ?? payment.amount}
-                        onChange={e => setEditData({ ...editData, amount: Number(e.target.value) })}
-                      />
-                    ) : `$${payment.amount}`}
-                  </td>
-                  <td>
-                    {isEditing ? (
-                      <select
-                        value={editData.method ?? payment.method}
-                        onChange={e => setEditData({ ...editData, method: e.target.value })}
-                      >
-                        <option value="Efectivo">Efectivo</option>
-                        <option value="Transferencia">Transferencia</option>
-                        <option value="Tarjeta">Tarjeta</option>
-                      </select>
-                    ) : payment.method}
-                  </td>
-                  <td>
-                    {isEditing ? (
-                      <select
-                        value={editData.status ?? payment.status}
-                        onChange={e => setEditData({ ...editData, status: e.target.value as Payment['status'] })}
-                      >
-                        <option value="pending">Pending</option>
-                        <option value="completed">Completed</option>
-                      </select>
-                    ) : payment.status}
-                  </td>
+                  <td>{isEditing ? <input value={editData.concept ?? payment.concept} onChange={e => setEditData({ ...editData, concept: e.target.value })} /> : payment.concept}</td>
+                  <td>{isEditing ? <input type="number" value={editData.amount ?? payment.amount} onChange={e => setEditData({ ...editData, amount: Number(e.target.value) })} /> : `$${payment.amount}`}</td>
+                  <td>{isEditing ? (
+                    <select value={editData.method ?? payment.method} onChange={e => setEditData({ ...editData, method: e.target.value })}>
+                      <option value="Efectivo">Efectivo</option>
+                      <option value="Transferencia">Transferencia</option>
+                      <option value="Tarjeta">Tarjeta</option>
+                    </select>
+                  ) : payment.method}</td>
+                  <td>{isEditing ? (
+                    <select value={editData.status ?? payment.status} onChange={e => setEditData({ ...editData, status: e.target.value as Payment['status'] })}>
+                      <option value="pending">Pending</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  ) : payment.status}</td>
                   <td>
                     {isEditing ? (
                       <>
-                        <FaSave
-                          style={{ cursor: 'pointer', marginRight: 8 }}
-                          onClick={() => handleSaveEdit(payment._id!)}
-                        />
-                        <FaTimes
-                          style={{ cursor: 'pointer' }}
-                          onClick={() => setEditingId(null)}
-                        />
+                        <FaSave style={{ cursor: 'pointer', marginRight: 8 }} onClick={() => handleSaveEdit(payment._id!)} />
+                        <FaTimes style={{ cursor: 'pointer' }} onClick={() => setEditingId(null)} />
                       </>
                     ) : (
                       <>
-                        {payment.status !== 'completed' && !payment.deletedAt && (
-                          <FaCheck
-                            title="Completar pago"
-                            style={{ cursor: 'pointer', marginRight: 8, color: 'green' }}
-                            onClick={() => completePayment(payment._id!)}
-                          />
-                        )}
-
-                        <button
-                          onClick={() => {
-                            setEditingId(payment._id!);
-                            setEditData({ ...payment });
-                          }}
-                        >
-                          Editar
-                        </button>
-
-                        {!payment.deletedAt && (
-                          <FaTrash
-                            title="Eliminar pago"
-                            style={{ cursor: 'pointer', marginLeft: 8, color: 'red' }}
-                            onClick={() => deletePayment(payment._id!)}
-                          />
-                        )}
-
-                        {payment.deletedAt && (
-                          <FaUndo
-                            title="Restaurar pago"
-                            style={{ cursor: 'pointer', marginLeft: 8, color: 'orange' }}
-                            onClick={() => restorePayment(payment._id!)}
-                          />
-                        )}
+                        {payment.status !== 'completed' && !payment.deletedAt && <FaCheck style={{ cursor: 'pointer', color: 'green' }} onClick={() => completePayment(payment._id!)} />}
+                        <button onClick={() => { setEditingId(payment._id!); setEditData({ ...payment }); }}>Editar</button>
+                        {!payment.deletedAt && <FaTrash style={{ cursor: 'pointer', color: 'red' }} onClick={() => deletePayment(payment._id!)} />}
+                        {payment.deletedAt && <FaUndo style={{ cursor: 'pointer', color: 'orange' }} onClick={() => restorePayment(payment._id!)} />}
                       </>
                     )}
                   </td>

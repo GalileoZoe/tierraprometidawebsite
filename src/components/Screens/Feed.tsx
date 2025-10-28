@@ -3,13 +3,22 @@ import { useFeed } from '../../context/FeedContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useBackground } from '../../context/BackgroundContext';
 import { FaPhone, FaFacebook, FaWhatsapp, FaComment, FaEnvelope } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export const Feed: React.FC = () => {
-  const { changeFeed } = useFeed();
   const { theme } = useTheme();
+  const navigate = useNavigate(); 
+
 
   // Estado para manejar el icono actual
   const [iconIndex, setIconIndex] = useState(0);
+
+    // 🔹 Funciones de navegación
+  const goToContact = () => navigate('/contact');
+  const goToAbout = () => navigate('/about');
+  const goToServices = () => navigate('/services');
+  const goToHelp = () => navigate('/help');
+
 
   // Array de íconos
   const icons = [
@@ -69,7 +78,7 @@ export const Feed: React.FC = () => {
          Centro de Rehabilitación | Tierra Prometida
         </h1>
 
-        <a onClick={()=>changeFeed(6)}>
+        <a onClick={goToContact}>
         {navigator.userAgent.toLowerCase().includes('mobi')  ? (
    <div className='item'>
    <img className='img' src={require('../../assets/logo-09.png')} alt='Logo Tierra Prometida' />
@@ -96,7 +105,7 @@ export const Feed: React.FC = () => {
             <h2 className='paragraph'>Previniendo y liberando adicciones</h2>
 
 
-            <a className='icon fade-in-element' title='Contacto' onClick={() => changeFeed(6)}>
+            <a className='icon fade-in-element' title='Contacto' onClick={goToContact}>
               {icons[iconIndex]}
 
               <p className={theme===0?'button':'buttonblack'}>Contactáctanos</p>
